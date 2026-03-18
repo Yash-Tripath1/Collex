@@ -21,7 +21,603 @@ const DB = {
       {n:"Bureaucracy",v:7.0,c:"a"},{n:"Hostel Life",v:8.5,c:"g"}
     ]
   },
+  // ══════════════════════════════════════════
+  //  LUCKNOW & UTTAR PRADESH REGIONAL
+  // ══════════════════════════════════════════
 
+  "integral university": {
+    name:"Integral University", type:"Private State University", location:"Dasauli, Lucknow, UP", score:6.5, verdict:"Large Campus — Good for Medical/Architecture",
+    programs:"B.Tech, B.Arch, MBBS, B.Pharm, BBA, BCA; M.Tech, PhD",
+    fees:"₹1.2–₹1.5L/year; MBBS expensive",
+    campuses:"Massive lush green campus in Lucknow outskirts",
+    sports:"Football, cricket, huge indoor complex, gym",
+    extra:"Fiesta (cultural), technical fests; disciplined environment",
+    placement:"Avg ₹3.5–5 LPA; TCS, Wipro, regional companies",
+    est:"2004",
+    metrics:[{n:"Budget",v:7.5,c:"g"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:5.5,c:"r"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "bbau lucknow": {
+    name:"Babasaheb Bhimrao Ambedkar University", type:"Central University", location:"Vidya Vihar, Lucknow, UP", score:6.8, verdict:"Central Govt Status — Affordable",
+    programs:"B.Tech (UIET), BBA, B.Com, Law, MBA, PhD",
+    fees:"₹60K–₹80K/year — subsidized",
+    campuses:"Single campus with government infrastructure",
+    sports:"Basic sports grounds, badminton, gym",
+    extra:"Govt funded events, NSS, NCC; reservation focus",
+    placement:"Avg ₹4–6 LPA; off-campus opportunities preferred",
+    est:"1996",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:5.0,c:"r"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "bbd university": {
+    name:"Babu Banarasi Das University", type:"Private University", location:"Faizabad Road, Lucknow, UP", score:6.2, verdict:"Popular Local Choice — Active Life",
+    programs:"B.Tech, BDS, B.Arch, BBA, BCA, MBA",
+    fees:"₹1.2–₹1.5L/year",
+    campuses:"Integrated campus with BBDNITM and dental college",
+    sports:"BCCI approved cricket stadium, gym, courts",
+    extra:"Utkarsh (fest), Star nights; very active social life",
+    placement:"Avg ₹3.5–5 LPA; mass recruiters (TCS/Infosys)",
+    est:"2010",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:6.0,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:5.5,c:"r"},{n:"Infra",v:7.8,c:"a"}]
+  },
+
+  "ramswaroop lucknow": {
+    name:"SRMU (Shri Ramswaroop Memorial)", type:"Private University", location:"Deva Road, Lucknow, UP", score:6.0, verdict:"Strict Academics — School-like",
+    programs:"B.Tech, BBA, BCA, MBA, Diploma",
+    fees:"₹1.1–₹1.3L/year",
+    campuses:"Multiple blocks, uniform culture",
+    sports:"Basic fields, basketball court",
+    extra:"Gantavya (tech fest), Abhivyakti; strict attendance rules",
+    placement:"Avg ₹3.5–4.5 LPA; disciplined students preferred by TCS",
+    est:"2012",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:6.0,c:"r"},{n:"Placement",v:5.8,c:"a"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "hbtu kanpur": {
+    name:"HBTU Kanpur", type:"State Technical University", location:"Nawabganj, Kanpur, UP", score:7.8, verdict:"UP's Hidden Gem — Oil/Chemical Legacy",
+    programs:"B.Tech (Chemical, Paint, Oil, Food Tech specializations); M.Tech",
+    fees:"₹1.35L/year; govt scholarships",
+    campuses:"Two campuses (East/West) - historic red brick buildings",
+    sports:"Huge grounds, cricket, football, old-school gym",
+    extra:"Adhyaay (cultural); strong alumni network in PSU/Industry",
+    placement:"Avg ₹8–11 LPA; Chemical/Paint branches hit ₹15L+",
+    est:"1921",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:6.0,c:"r"}]
+  },
+
+  "mmmut gorakhpur": {
+    name:"MMMUT Gorakhpur", type:"State Technical University", location:"Gorakhpur, UP", score:7.4, verdict:"Best in Eastern UP — Good ROI",
+    programs:"B.Tech, MBA, MCA, M.Tech",
+    fees:"₹1.1L/year; affordable",
+    campuses:"Green residential campus",
+    sports:"Stadium, courts, active sports council",
+    extra:"Tech Srijan, Abhyudaya; robotics and coding clubs",
+    placement:"Avg ₹6–8 LPA; highest ₹40L+; improving fast",
+    est:"1962",
+    metrics:[{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:7.2,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  DELHI NCR (NOIDA/GHAZIABAD/GURGAON)
+  // ══════════════════════════════════════════
+
+  "galgotias university": {
+    name:"Galgotias University", type:"Private University", location:"Greater Noida, UP", score:6.5, verdict:"Huge Crowds — Good Marketing",
+    programs:"B.Tech (CSE has huge intake), Law, BBA, Media",
+    fees:"₹1.6–₹2L/year",
+    campuses:"Modern looking campus but very crowded",
+    sports:"Football ground, courts, celebrity visits",
+    extra:"Unifest (huge budget), celebrity concerts; lively crowd",
+    placement:"Avg ₹4–5 LPA; mass hiring by Wipro/Cognizant",
+    est:"2011",
+    metrics:[{n:"Budget",v:6.5,c:"a"},{n:"Academics",v:6.0,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "sharda university": {
+    name:"Sharda University", type:"Private University", location:"Greater Noida, UP", score:6.4, verdict:"Global Diversity — "The World is Here"",
+    programs:"B.Tech, Medical, Dental, Law, Business",
+    fees:"₹1.8–₹2.2L/year; expensive",
+    campuses:"Large sprawling campus with hospital",
+    sports:"Good facilities, international students sports meets",
+    extra:"Chorus (fest); diverse crowd with many international students",
+    placement:"Avg ₹4–6 LPA; decent for management/medical",
+    est:"2009",
+    metrics:[{n:"Budget",v:5.5,c:"r"},{n:"Academics",v:6.0,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:5.8,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "gl bajaj": {
+    name:"GL Bajaj", type:"Private College (AKTU)", location:"Greater Noida, UP", score:6.8, verdict:"Coding Factory — Placement Focused",
+    programs:"B.Tech, MBA",
+    fees:"₹1.4–₹1.6L/year",
+    campuses:"Compact campus, academic blocks dominant",
+    sports:"Limited; focus is on labs and classes",
+    extra:"Strict attendance; coding clubs are very active",
+    placement:"Avg ₹5–7 LPA; good record with Capgemini/Accenture",
+    est:"2005",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:6.0,c:"r"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+  // ══════════════════════════════════════════
+  //  BANGALORE & KARNATAKA (COMEDK/STATE)
+  // ══════════════════════════════════════════
+
+  "bmsit bangalore": {
+    name:"BMSIT & M", type:"Private College", location:"Yelahanka, Bengaluru", score:7.3, verdict:"BMS Legacy — Growing Fast",
+    programs:"B.E. (CSE, AI, ECE)",
+    fees:"₹2–₹3L/year (ComedK)",
+    campuses:"Green campus in North Bangalore suburbs",
+    sports:"Good grounds, active sports teams",
+    extra:"Utsaha; relaxed compared to main campus",
+    placement:"Avg ₹7–10 LPA; benefits from BMS brand",
+    est:"2002",
+    metrics:[{n:"Budget",v:6.5,c:"a"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "dsce bangalore": {
+    name:"Dayananda Sagar (DSCE)", type:"Private Autonomous", location:"Kumaraswamy Layout, Bengaluru", score:7.4, verdict:"Vibrant Campus — Huge Crowd",
+    programs:"B.E., M.Tech, MBA",
+    fees:"₹2.5L/year",
+    campuses:"Hilltop campus, crowded but lively",
+    sports:"Football, basketball, indoor complex",
+    extra:"Fests are massive; diverse student crowd",
+    placement:"Avg ₹6–9 LPA; huge number of companies visit",
+    est:"1979",
+    metrics:[{n:"Budget",v:6.5,c:"a"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "jain university": {
+    name:"Jain University", type:"Deemed University", location:"Jayanagar/Kanakapura, Bengaluru", score:7.0, verdict:"Sports Powerhouse — Entrepreneurial",
+    programs:"B.Tech, BBA, B.Com, BMS",
+    fees:"₹2.5–₹3.5L/year",
+    campuses:"Global Campus (Kanakapura) is far; City campus small",
+    sports:"Produced cricketers (Rahul, Mayank); top tier sports",
+    extra:"Infinity (fest); startup culture is strong",
+    placement:"Avg ₹5–8 LPA; good for commerce/management",
+    est:"1990",
+    metrics:[{n:"Budget",v:5.5,c:"a"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "new horizon": {
+    name:"New Horizon College", type:"Private Autonomous", location:"Marathahalli, Bengaluru", score:7.0, verdict:"IT Hub Location — Corporate Focus",
+    programs:"B.E.",
+    fees:"₹2.5L/year",
+    campuses:"Located in IT corridor (Outer Ring Road)",
+    sports:"Basketball, volleyball, gym",
+    extra:"Sargam; strong industry interface",
+    placement:"Avg ₹5–8 LPA; heavy recruitment by IT service firms",
+    est:"2001",
+    metrics:[{n:"Budget",v:6.0,c:"a"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "nitte meenakshi": {
+    name:"Nitte Meenakshi (NMIT)", type:"Private Autonomous", location:"Yelahanka, Bengaluru", score:7.2, verdict:"Disciplined — Good for Core/Defense",
+    programs:"B.E., M.Tech",
+    fees:"₹2.2L/year",
+    campuses:"Spacious campus near air base",
+    sports:"Good grounds, NCC focus",
+    extra:"Anaadyanta; research projects with DRDO/ISRO",
+    placement:"Avg ₹6–9 LPA; growing reputation",
+    est:"2001",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  HYDERABAD & TELANGANA
+  // ══════════════════════════════════════════
+
+  "cbit hyderabad": {
+    name:"CBIT Hyderabad", type:"Private Autonomous", location:"Gandipet, Hyderabad", score:7.8, verdict:"Telangana's #1 Private — Strict",
+    programs:"B.E. / B.Tech",
+    fees:"₹1.4L/year (Convenor); higher for B-Cat",
+    campuses:"Green campus near Ocean Park",
+    sports:"Cricket, basketball, indoor stadium",
+    extra:"Shruthi (fest); transport is iconic (CBIT buses)",
+    placement:"Avg ₹9–12 LPA; comparable to some NITs",
+    est:"1979",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "vasavi hyderabad": {
+    name:"Vasavi College of Engineering", type:"Private Autonomous", location:"Ibrahimbagh, Hyderabad", score:7.6, verdict:"Academic Focused — No Nonsense",
+    programs:"B.E.",
+    fees:"₹1.3L/year",
+    campuses:"Compact, hillside campus",
+    sports:"Limited grounds, focus on studies",
+    extra:"Euphoria; strict attendance norms",
+    placement:"Avg ₹8–11 LPA; Oracle, JPMorgan hire here",
+    est:"1981",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:7.8,c:"a"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "vnr vjiet": {
+    name:"VNR VJIET", type:"Private Autonomous", location:"Bachupally, Hyderabad", score:7.7, verdict:"Rising Star — Practical Learning",
+    programs:"B.Tech (Automobile, CSE, ECE)",
+    fees:"₹1.35L/year",
+    campuses:"Modern labs, growing campus",
+    sports:"Good sports complex",
+    extra:"Convergence; strong Vignana Jyothi backing",
+    placement:"Avg ₹8–10 LPA; very consistent growth",
+    est:"1995",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.8,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:7.8,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "gokaraju rangaraju": {
+    name:"Gokaraju Rangaraju (GRIET)", type:"Private Autonomous", location:"Kukatpally, Hyderabad", score:7.3, verdict:"Local Favorite — Value for Money",
+    programs:"B.Tech",
+    fees:"₹1.25L/year",
+    campuses:"Hilly terrain campus",
+    sports:"Basketball, volleyball, cricket",
+    extra:"Pulse; active student bodies",
+    placement:"Avg ₹6–9 LPA; Amazon, TCS, Wipro",
+    est:"1997",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  CHENNAI & TAMIL NADU
+  // ══════════════════════════════════════════
+
+  "ssn chennai": {
+    name:"SSN College of Engineering", type:"Private Autonomous", location:"Kalavakkam, Chennai", score:8.2, verdict:"Merit Only — No Management Quota",
+    programs:"B.E. / B.Tech",
+    fees:"₹50K–₹1L/year (highly subsidized by Shiv Nadar)",
+    campuses:"250-acre lush green campus, amazing infra",
+    sports:"Cricket stadium, international facilities",
+    extra:"Instincts; research active (Shiv Nadar funded)",
+    placement:"Avg ₹10–14 LPA; top notch profiles",
+    est:"1996",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:8.5,c:"g"},{n:"Infra",v:9.5,c:"g"}]
+  },
+
+  "sathyabama chennai": {
+    name:"Sathyabama Institute", type:"Deemed University", location:"OMR, Chennai", score:7.0, verdict:"Massive Recruitment — Strict Rules",
+    programs:"B.E., B.Tech, B.Arch, BDS",
+    fees:"₹1.5–₹2L/year",
+    campuses:"Large campus on OMR (IT corridor)",
+    sports:"Basketball, volleyball, mess is huge",
+    extra:"Cultural fests; strict discipline (dress code)",
+    placement:"Avg ₹4.5–6 LPA; Cognizant/Capgemini bulk hire",
+    est:"1987",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "hindustan university": {
+    name:"Hindustan University", type:"Deemed University", location:"Padur, Chennai", score:6.8, verdict:"Aviation/Auto Focus — Good Exposure",
+    programs:"B.Tech (Aero/Auto specializations)",
+    fees:"₹2–₹2.5L/year",
+    campuses:"Green campus with aircraft hangars",
+    sports:"Horse riding, football, courts",
+    extra:"Yantram; international exchange programs",
+    placement:"Avg ₹4–6 LPA; core companies visit",
+    est:"1985",
+    metrics:[{n:"Budget",v:6.0,c:"a"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "crescent chennai": {
+    name:"BS Abdur Rahman Crescent", type:"Deemed University", location:"Vandalur, Chennai", score:7.2, verdict:"Good Infrastructure — Balanced Life",
+    programs:"B.Tech, B.Arch, Law",
+    fees:"₹1.5–₹2L/year",
+    campuses:"Clean, green campus near Zoo",
+    sports:"Good grounds, active teams",
+    extra:"Orion; literary societies active",
+    placement:"Avg ₹5–7 LPA; IT and Core mixed",
+    est:"1984",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "psg tech": {
+    name:"PSG College of Technology", type:"Private Govt Aided", location:"Peelamedu, Coimbatore", score:8.3, verdict:"Industry Integrated — The Best in Kovai",
+    programs:"B.E., B.Tech, Sandwich Courses (Industry)",
+    fees:"₹50K–₹80K/year (Aided)",
+    campuses:"Industrial atmosphere, attached to factories",
+    sports:"Indoor stadium, courts",
+    extra:"Kriya; intense industry exposure",
+    placement:"Avg ₹10–12 LPA; core engineering paradise",
+    est:"1951",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:8.8,c:"g"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:8.5,c:"g"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  KOLKATA & EAST
+  // ══════════════════════════════════════════
+
+  "iem kolkata": {
+    name:"IEM Kolkata (Institute of Engg & Mgmt)", type:"Private College", location:"Salt Lake, Kolkata", score:7.5, verdict:"Strict Discipline — Consistent Jobs",
+    programs:"B.Tech, BCA, BBA",
+    fees:"₹1.5L/year",
+    campuses:"Corporate-style towers (no large ground)",
+    sports:"Limited; focus on academics",
+    extra:"Innovacion; uniform mandatory, strict rules",
+    placement:"Avg ₹5–8 LPA; TCS/Cognizant mass hire",
+    est:"1989",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:5.0,c:"r"},{n:"Placement",v:7.8,c:"a"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "heritage kolkata": {
+    name:"Heritage Institute (HIT-K)", type:"Private Autonomous", location:"Anandapur, Kolkata", score:7.4, verdict:"Best Campus in Kolkata Private",
+    programs:"B.Tech, M.Tech",
+    fees:"₹1.2L/year",
+    campuses:"Green, Gothic style architecture",
+    sports:"Football, cricket, swimming pool",
+    extra:"Eclecia; active club culture",
+    placement:"Avg ₹5–7 LPA; good TCS/Wipro numbers",
+    est:"2001",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "techno india salt lake": {
+    name:"Techno India (Main)", type:"Private College", location:"Salt Lake, Kolkata", score:7.0, verdict:"IT Hub Location — Mass Placement",
+    programs:"B.Tech, BCA, MCA",
+    fees:"₹1.5L/year",
+    campuses:"Sector 5 IT Hub location",
+    sports:"Limited",
+    extra:"Edge; proximity to IT companies",
+    placement:"Avg ₹4–6 LPA; bulk hiring",
+    est:"2001",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "kiit bhubaneswar": {
+    name:"KIIT University", type:"Deemed University", location:"Bhubaneswar, Odisha", score:7.5, verdict:"Massive Scale — 100% Placement Claim",
+    programs:"B.Tech, Law, Medical, Biotech",
+    fees:"₹3.5–₹4L/year (High)",
+    campuses:"Huge township-like campus, 20+ campuses",
+    sports:"World class stadiums, hosted Khelo India",
+    extra:"KIIT Fest; huge diversity of students",
+    placement:"Avg ₹6–9 LPA; thousands of offers",
+    est:"1992",
+    metrics:[{n:"Budget",v:4.0,c:"r"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:9.5,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:9.5,c:"g"}]
+  },
+
+  "soa bhubaneswar": {
+    name:"SOA University (ITER)", type:"Deemed University", location:"Bhubaneswar, Odisha", score:7.2, verdict:"Academically Serious — Good Ranking",
+    programs:"B.Tech, Medical, Hotel Mgmt",
+    fees:"₹2.5L/year",
+    campuses:"Multiple campuses, ITER is main engineering",
+    sports:"Courts, grounds available",
+    extra:"Strict academics compared to KIIT",
+    placement:"Avg ₹5–7 LPA; Microsoft, Amazon visit",
+    est:"1996",
+    metrics:[{n:"Budget",v:6.0,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  INDORE & CENTRAL INDIA
+  // ══════════════════════════════════════════
+
+  "sgsits indore": {
+    name:"SGSITS Indore", type:"Govt Aided Autonomous", location:"Park Road, Indore, MP", score:7.8, verdict:"MP's No. 1 Engineering College",
+    programs:"B.E., B.Pharm, MBA",
+    fees:"₹70K–₹1L/year",
+    campuses:"Central Indore, old but functional",
+    sports:"Cricket, tennis, badminton",
+    extra:"Aayaam; strong alumni base in MP",
+    placement:"Avg ₹8–12 LPA; Goldman Sachs, Adobe visit",
+    est:"1952",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:6.0,c:"r"}]
+  },
+
+  "davv indore": {
+    name:"IET DAVV Indore", type:"University Department", location:"Khandwa Road, Indore", score:7.2, verdict:"Reliable Govt Option — Low Fees",
+    programs:"B.E., M.E.",
+    fees:"₹70K/year",
+    campuses:"Part of Takshashila campus",
+    sports:"University stadium access",
+    extra:"Engineer's Day fest; coding culture growing",
+    placement:"Avg ₹5–8 LPA; mass recruiters + VMware",
+    est:"1996",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:6.0,c:"a"}]
+  },
+
+  "medicaps indore": {
+    name:"Medi-Caps University", type:"Private University", location:"AB Road, Indore", score:6.5, verdict:"Strict Discipline — Safe Bet",
+    programs:"B.Tech, BBA, MBA",
+    fees:"₹1.2L/year",
+    campuses:"Green campus outside city",
+    sports:"Grounds, courts available",
+    extra:"Moonstone; school-like discipline",
+    placement:"Avg ₹4–5 LPA; TCS is major recruiter",
+    est:"2000",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "lnct bhopal": {
+    name:"LNCT Bhopal", type:"Private College", location:"Raisen Road, Bhopal", score:6.8, verdict:"Placement Engine of MP",
+    programs:"B.E. (CSE intake is huge)",
+    fees:"₹1.1L/year",
+    campuses:"Large campus, multiple buildings",
+    sports:"Cricket, volleyball",
+    extra:"Srishti; attendance focused",
+    placement:"Avg ₹4–6 LPA; highest number of offers in region",
+    est:"1994",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  JAIPUR & RAJASTHAN
+  // ══════════════════════════════════════════
+
+  "jecrc jaipur": {
+    name:"JECRC University", type:"Private University", location:"Sitapura, Jaipur", score:6.7, verdict:"Vibrant Life — Good Marketing",
+    programs:"B.Tech, BBA, Design",
+    fees:"₹1.5–₹1.8L/year",
+    campuses:"Modern brick architecture, photogenic",
+    sports:"Grounds, courts, gym",
+    extra:"Renaissance; lively campus culture",
+    placement:"Avg ₹5–7 LPA; Accenture/Capgemini hire",
+    est:"2012",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:6.2,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "manipal jaipur": {
+    name:"Manipal University Jaipur (MUJ)", type:"Private University", location:"Jaipur-Ajmer Expressway", score:7.5, verdict:"Premium Campus — Manipal Legacy",
+    programs:"B.Tech, B.Arch, BBA, Law",
+    fees:"₹3–₹4L/year (Expensive)",
+    campuses:"Award winning architecture, resort-like hostels",
+    sports:"Top class, gym, swimming, courts",
+    extra:"Oneiros; rich student life, expensive crowd",
+    placement:"Avg ₹7–10 LPA; growing fast",
+    est:"2011",
+    metrics:[{n:"Budget",v:4.5,c:"r"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:9.5,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:9.5,c:"g"}]
+  },
+  "kiet ghaziabad": {
+    name:"KIET Group of Institutions", type:"Private College (AKTU)", location:"Muradnagar, Ghaziabad", score:7.0, verdict:"Consistent Performer in NCR",
+    programs:"B.Tech, Pharmacy, MBA",
+    fees:"₹1.4L/year",
+    campuses:"On highway, decent infrastructure",
+    sports:"Grounds available, active sports clubs",
+    extra:"Epoque (fest); strong coding culture (DSC/CSI)",
+    placement:"Avg ₹5–8 LPA; consistent placement record",
+    est:"1998",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "mait delhi": {
+    name:"MAIT Delhi (Maharaja Agrasen)", type:"Private (GGSIPU)", location:"Rohini, Delhi", score:7.6, verdict:"Top Tier IPU — Low Fee, High Value",
+    programs:"B.Tech (CSE/IT/ECE/MAE), MBA",
+    fees:"₹1.1–₹1.3L/year; great ROI",
+    campuses:"Small urban campus (block-based)",
+    sports:"Small ground, badminton, table tennis",
+    extra:"Techsurge, Mridang; coding societies are top notch",
+    placement:"Avg ₹8–12 LPA; Amazon/Adobe visit on-campus/off-campus",
+    est:"1999",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:7.8,c:"a"},{n:"Campus",v:5.5,c:"r"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "msit delhi": {
+    name:"MSIT Delhi (Surajmal)", type:"Private (GGSIPU)", location:"Janakpuri, Delhi", score:7.5, verdict:"Strict but Effective — Top IPU",
+    programs:"B.Tech, BCA",
+    fees:"₹1.2L/year",
+    campuses:"Very small campus (5 acres) in Janakpuri",
+    sports:"Limited space; mostly indoor or shared grounds",
+    extra:"Avensis (tech); disciplined academic environment",
+    placement:"Avg ₹7–10 LPA; strong recruiters list",
+    est:"2001",
+    metrics:[{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:7.8,c:"a"},{n:"Campus",v:4.5,c:"r"},{n:"Placement",v:7.8,c:"a"},{n:"Infra",v:6.0,c:"r"}]
+  },
+
+  "manav rachna": {
+    name:"Manav Rachna (MRIIRS)", type:"Deemed University", location:"Faridabad, Haryana", score:6.6, verdict:"Good Infra — Sports & Media Focus",
+    programs:"B.Tech, BBA, BJMC, Dental",
+    fees:"₹1.8–₹2.2L/year",
+    campuses:"Good infrastructure, shooting range, clean campus",
+    sports:"Excellent sports facilities (shooting, cricket, basketball)",
+    extra:"Resurrection (fest); radio station, innovation center",
+    placement:"Avg ₹4–6 LPA; variable by course",
+    est:"1997",
+    metrics:[{n:"Budget",v:6.0,c:"a"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  MUMBAI & PUNE REGIONAL
+  // ══════════════════════════════════════════
+
+  "vjti mumbai": {
+    name:"VJTI Mumbai", type:"State Govt Aided", location:"Matunga, Mumbai", score:8.5, verdict:"Mumbai's Engineering Pride — Elite",
+    programs:"B.Tech, M.Tech, Diploma",
+    fees:"₹85K/year; incredible ROI",
+    campuses:"Historic campus in heart of Mumbai (Matunga)",
+    sports:"Cricket ground, courts; active Gymkhana",
+    extra:"Technovanza (massive tech fest), Pratibimb",
+    placement:"Avg ₹10–14 LPA (CSE ₹20L+); Morgan Stanley, banks",
+    est:"1887",
+    metrics:[{n:"Budget",v:9.5,c:"g"},{n:"Academics",v:8.8,c:"g"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:9.0,c:"g"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "spit mumbai": {
+    name:"S.P.I.T. Mumbai", type:"Private Autonomous", location:"Andheri, Mumbai", score:8.2, verdict:"Coding Powerhouse — No Nonsense",
+    programs:"B.Tech (CSE, IT, E & TC)",
+    fees:"₹1.7L/year",
+    campuses:"Shared campus with SP Jain (Bhavan's)",
+    sports:"Lake on campus, grounds, boating",
+    extra:"Oculus (fest); very competitive coding culture",
+    placement:"Avg ₹12–15 LPA; top product companies hire here",
+    est:"2005",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:8.8,c:"g"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "dj sanghvi": {
+    name:"DJ Sanghvi (DJSCE)", type:"Private Autonomous", location:"Vile Parle, Mumbai", score:8.0, verdict:"Gujarati Minority — Top Tier Placements",
+    programs:"B.Tech (Specializations in Data Science, AI)",
+    fees:"₹1.9–₹2.1L/year",
+    campuses:"Single building (vertical campus) in Vile Parle",
+    sports:"No ground; indoor gaming only",
+    extra:"Trinity (fest); strong alumni network, posh crowd",
+    placement:"Avg ₹10–12 LPA; JP Morgan, Morgan Stanley favorites",
+    est:"1994",
+    metrics:[{n:"Budget",v:6.5,c:"a"},{n:"Academics",v:8.2,c:"g"},{n:"Campus",v:5.0,c:"r"},{n:"Placement",v:8.5,c:"g"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "kj somaiya engineering": {
+    name:"K.J. Somaiya College of Engineering", type:"Private Autonomous", location:"Vidyavihar, Mumbai", score:7.8, verdict:"Huge Campus in Mumbai — Expensive",
+    programs:"B.Tech in various branches",
+    fees:"₹4–₹4.5L/year (High)",
+    campuses:"65-acre lush green campus (rare in Mumbai)",
+    sports:"Olympic tracks, football, squash, huge grounds",
+    extra:"Symphony (cultural); Maker spaces, Formula racing team",
+    placement:"Avg ₹8–10 LPA; mass and premium recruiters",
+    est:"1983",
+    metrics:[{n:"Budget",v:4.0,c:"r"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:9.5,c:"g"},{n:"Placement",v:7.8,c:"a"},{n:"Infra",v:9.0,c:"g"}]
+  },
+
+  "mit wpu pune": {
+    name:"MIT WPU Pune", type:"Private University", location:"Kothrud, Pune", score:7.4, verdict:"Great Branding — Expensive but Happening",
+    programs:"B.Tech, BBA, Law, Liberal Arts",
+    fees:"₹3–₹3.5L/year",
+    campuses:"Iconic World Peace Dome, modern architecture",
+    sports:"Good facilities, rowing, basketball",
+    extra:"Aarohan; 'Peace' curriculum mandatory; rich student life",
+    placement:"Avg ₹6–9 LPA; wide range of companies",
+    est:"1983 (Uni 2017)",
+    metrics:[{n:"Budget",v:5.0,c:"r"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:9.0,c:"g"}]
+  },
+
+  "vit pune": {
+    name:"VIT Pune (Vishwakarma)", type:"Private Autonomous", location:"Bibwewadi, Pune", score:7.8, verdict:"Pune's Student Favorite — Balanced",
+    programs:"B.Tech",
+    fees:"₹1.8–₹2L/year",
+    campuses:"Compact but functional campus",
+    sports:"Limited grounds, active sports clubs",
+    extra:"Melange (fest); very active student chapters",
+    placement:"Avg ₹7–10 LPA; consistent record",
+    est:"1983",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:7.8,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.8,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "dy patil akurdi": {
+    name:"DY Patil Akurdi", type:"Private College", location:"Akurdi, Pune", score:7.2, verdict:"Good Infrastructure — Decent Coding Culture",
+    programs:"B.Tech, B.Arch, MCA",
+    fees:"₹1.5L/year",
+    campuses:"Modern campus, shared with medical college",
+    sports:"Cricket stadium nearby, good courts",
+    extra:"Vibrance; disciplined but active",
+    placement:"Avg ₹5–7 LPA; bulk recruiters + some product firms",
+    est:"1984",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:8.2,c:"g"}]
+  },
+
+  "nirma university": {
+    name:"Nirma University", type:"Private University", location:"Ahmedabad, Gujarat", score:8.0, verdict:"Gujarat's No. 1 Private — Strict",
+    programs:"B.Tech, Law, MBA, Pharmacy",
+    fees:"₹2.2–₹2.5L/year",
+    campuses:"115-acre green, spotless campus",
+    sports:"Good complex, cricket, tennis",
+    extra:"Vaudeville; strict attendance (85%), rigorous academics",
+    placement:"Avg ₹9–12 LPA; strong industry connect",
+    est:"2003",
+    metrics:[{n:"Budget",v:6.0,c:"a"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:9.0,c:"g"}]
+  },
+
+  "pdeu gandhinagar": {
+    name:"PDEU (Pandit Deendayal)", type:"Private University", location:"Gandhinagar, Gujarat", score:7.8, verdict:"Petroleum Legacy — Rich Infra",
+    programs:"B.Tech (Petro, Civil, CSE), Liberal Arts",
+    fees:"₹2.5L/year",
+    campuses:"100-acre solar powered modern campus",
+    sports:"Excellent sports infra, international exposure",
+    extra:"Flare (fest); active student clubs",
+    placement:"Avg ₹7–10 LPA; strong in Energy sector",
+    est:"2007",
+    metrics:[{n:"Budget",v:5.5,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:9.2,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:9.5,c:"g"}]
+  },
   "kgmu lucknow": {
     name:"King George's Medical University", type:"Autonomous State Medical University", location:"Lucknow, Uttar Pradesh", score:8.5, verdict:"Top Medical College in North India",
     programs:"MBBS (150 seats), BDS, B.Sc Nursing; MD/MS (all specialties), MDS, DM/MCh, PhD",
@@ -2918,7 +3514,1124 @@ const DB = {
       {n:"Bureaucracy",v:7.0,c:"a"},{n:"Hostel Life",v:7.8,c:"a"}
     ]
   },
+  // ══════════════════════════════════════════
+  //  PUNJAB, HARYANA & UTTARAKHAND
+  // ══════════════════════════════════════════
 
+  "chitkara university": {
+    name:"Chitkara University", type:"Private University", location:"Rajpura, Punjab", score:7.2, verdict:"Placement Machine — Strict Rules",
+    programs:"B.E. (CSE is huge), BBA, Pharmacy, Hotel Mgmt",
+    fees:"₹1.6–₹1.8L/year",
+    campuses:"Clean, disciplined campus on Chandigarh-Patiala highway",
+    sports:"Good facilities, active sports culture",
+    extra:"Algorythm (fest); very strict on uniforms and attendance",
+    placement:"Avg ₹6–8 LPA; massive recruiters like Capgemini/Wipro",
+    est:"2002",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "cgc landran": {
+    name:"CGC Landran", type:"Private College", location:"Mohali, Punjab", score:6.8, verdict:"Massive Crowds — Decent ROI",
+    programs:"B.Tech, MBA, BCA",
+    fees:"₹1.1–₹1.3L/year",
+    campuses:"Crowded campus, shared by multiple colleges",
+    sports:"Limited space due to student volume",
+    extra:"Parivartan; known for placement drives (joint campus)",
+    placement:"Avg ₹4–6 LPA; hub for pool campus drives",
+    est:"2001",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "graphic era": {
+    name:"Graphic Era University", type:"Deemed University", location:"Dehradun, Uttarakhand", score:7.0, verdict:"Scenic Campus — Growing Reputation",
+    programs:"B.Tech, BBA, Hotel Mgmt",
+    fees:"₹2–₹2.5L/year",
+    campuses:"Beautiful hilly campus in Clement Town",
+    sports:"Good grounds, chilly weather sports",
+    extra:"Grafest; active student life",
+    placement:"Avg ₹5–7 LPA; good for CS/IT",
+    est:"1993",
+    metrics:[{n:"Budget",v:6.0,c:"a"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "upes dehradun": {
+    name:"UPES Dehradun", type:"Private University", location:"Bidholi, Dehradun", score:7.3, verdict:"Niche Courses — Expensive but Good",
+    programs:"B.Tech (Oil/Gas, Cloud, Cyber), Law, Design",
+    fees:"₹3–₹4L/year (High)",
+    campuses:"Stunning campus in Himalayan foothills",
+    sports:"Good facilities, trekking clubs",
+    extra:"Uurja; very posh crowd, modern vibe",
+    placement:"Avg ₹6–9 LPA; strong domain specific hiring",
+    est:"2003",
+    metrics:[{n:"Budget",v:4.0,c:"r"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:9.5,c:"g"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:9.0,c:"g"}]
+  },
+
+  "dit dehradun": {
+    name:"DIT University", type:"Private University", location:"Dehradun, Uttarakhand", score:6.7, verdict:"Standard Private — Good Location",
+    programs:"B.Tech, B.Arch",
+    fees:"₹2L/year",
+    campuses:"Mussoorie Road campus, scenic",
+    sports:"Basketball, volleyball, gym",
+    extra:"Youthopia; decent clubs",
+    placement:"Avg ₹4.5–6 LPA; standard IT recruiters",
+    est:"1998",
+    metrics:[{n:"Budget",v:6.0,c:"a"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  MAHARASHTRA TIER-2 (NAGPUR/NASHIK/AURANGABAD)
+  // ══════════════════════════════════════════
+
+  "rcoem nagpur": {
+    name:"Ramdeobaba (RCOEM)", type:"Private Autonomous", location:"Nagpur, Maharashtra", score:7.6, verdict:"Nagpur's No. 1 Private — Reliable",
+    programs:"B.E. (CSE, IT, ECE), MBA",
+    fees:"₹1.4–₹1.6L/year",
+    campuses:"Located on Katol Road, temple inside campus",
+    sports:"Good sports culture, huge playground",
+    extra:"Pratishruti; disciplined environment",
+    placement:"Avg ₹7–10 LPA; dominant in Vidarbha region",
+    est:"1984",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.8,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:7.8,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "ycce nagpur": {
+    name:"YCCE Nagpur", type:"Private Autonomous", location:"Hingna, Nagpur", score:7.0, verdict:"Meghe Group's Best — Mass Recruiters",
+    programs:"B.E., M.Tech",
+    fees:"₹1.3L/year",
+    campuses:"Large campus outskirts of Nagpur",
+    sports:"Good grounds, active annual sports",
+    extra:"Yash; rigorous academics",
+    placement:"Avg ₹4.5–6 LPA; heavy TCS hiring",
+    est:"1984",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "geca aurangabad": {
+    name:"Govt College of Engineering Aurangabad", type:"State Autonomous", location:"Aurangabad, Maharashtra", score:7.2, verdict:"Govt Tag — Low Fee, Decent Job",
+    programs:"B.E. (Civil, Mech, CSE, EEP)",
+    fees:"₹70K/year",
+    campuses:"Historic city campus",
+    sports:"Large open grounds, cricket",
+    extra:"Wings; technical focus",
+    placement:"Avg ₹5–7 LPA; good for core branches",
+    est:"1960",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:5.5,c:"r"}]
+  },
+
+  "sandip university": {
+    name:"Sandip University", type:"Private University", location:"Nashik, Maharashtra", score:6.5, verdict:"Huge Campus — Nashik's Giant",
+    programs:"B.Tech, Law, Management",
+    fees:"₹1.2–₹1.5L/year",
+    campuses:"Massive 250+ acre green campus",
+    sports:"Stadiums, amphitheatres",
+    extra:"Sandipotsav; very photogenic campus",
+    placement:"Avg ₹3.5–5 LPA; local companies + IT service",
+    est:"2017",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:6.0,c:"a"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:5.5,c:"r"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  KARNATAKA REGIONAL (MYSORE/TUMKUR/MANGALORE)
+  // ══════════════════════════════════════════
+
+  "sjce mysore": {
+    name:"SJCE Mysore (JSS S&T)", type:"Private Autonomous", location:"Mysuru, Karnataka", score:8.0, verdict:"Mysore's Pride — Excellent Legacy",
+    programs:"B.E. (CSE, IS, E&C, Env)",
+    fees:"₹50K–₹1L (CET/ComedK)",
+    campuses:"Sprawling 102-acre campus, lush green",
+    sports:"Cricket stadium, huge grounds",
+    extra:"Jayciana (one of Karnataka's biggest fests)",
+    placement:"Avg ₹8–11 LPA; tough competition to Bangalore colleges",
+    est:"1963",
+    metrics:[{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:8.2,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "nie mysore": {
+    name:"NIE Mysore", type:"Private Aided Autonomous", location:"Mysuru, Karnataka", score:7.8, verdict:"Core Engineering Excellence",
+    programs:"B.E. (Civil & Mech are famous)",
+    fees:"₹60K–₹2L (Aided/Unaided)",
+    campuses:"Old world charm, city center",
+    sports:"Indoor complex, active sports",
+    extra:"Technieks; Narayana Murthy is an alumnus",
+    placement:"Avg ₹7–10 LPA; very strong alumni network",
+    est:"1946",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.8,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "sit tumkur": {
+    name:"SIT Tumkur", type:"Private Autonomous", location:"Tumakuru, Karnataka", score:7.4, verdict:"Disciplined & Consistent",
+    programs:"B.E.",
+    fees:"₹2L/year",
+    campuses:"65-acre green campus, 70km from Bangalore",
+    sports:"Hockey, cricket grounds",
+    extra:"Halcyon; strict but good education",
+    placement:"Avg ₹5–7 LPA; consistent placements",
+    est:"1963",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "sahyadri mangalore": {
+    name:"Sahyadri College", type:"Private College", location:"Mangaluru, Karnataka", score:7.0, verdict:"Innovation Hub — Mangalore's Best",
+    programs:"B.E.",
+    fees:"₹1.5–₹2L/year",
+    campuses:"River-side campus, scenic",
+    sports:"Cricket ground, boating",
+    extra:"Sinchana; huge focus on startups/projects",
+    placement:"Avg ₹4.5–7 LPA; growing fast",
+    est:"2007",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "sdm dharwad": {
+    name:"SDM Dharwad", type:"Private Autonomous", location:"Dharwad, Karnataka", score:7.1, verdict:"North Karnataka's Leader",
+    programs:"B.E.",
+    fees:"₹1.5L/year",
+    campuses:"Clean, disciplined campus",
+    sports:"Good facilities",
+    extra:"Insignia; cultural hub of region",
+    placement:"Avg ₹5–7 LPA; Infosys, TCS, Robert Bosch",
+    est:"1979",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  TAMIL NADU REGIONAL (COIMBATORE/MADURAI)
+  // ══════════════════════════════════════════
+
+  "cit coimbatore": {
+    name:"CIT Coimbatore", type:"Govt Aided Autonomous", location:"Coimbatore, TN", score:7.9, verdict:"Academic Rigor — Govt Aided",
+    programs:"B.E., B.Tech",
+    fees:"₹50K–₹1L/year",
+    campuses:"On Avinashi Road, functional",
+    sports:"Hockey, football, athletics",
+    extra:"Takshashila; strict academics",
+    placement:"Avg ₹7–10 LPA; strong core placements",
+    est:"1956",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:8.2,c:"g"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "skcet coimbatore": {
+    name:"SKCET Coimbatore", type:"Private Autonomous", location:"Kuniamuthur, Coimbatore", score:7.6, verdict:"Modern & Progressive",
+    programs:"B.E., B.Tech",
+    fees:"₹1.5L/year",
+    campuses:"Beautiful green modern campus",
+    sports:"Basketball, gym, lush grounds",
+    extra:"Dhruva; liberal compared to others",
+    placement:"Avg ₹6–9 LPA; Amazon, Zoho, Accenture",
+    est:"1998",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "kct coimbatore": {
+    name:"Kumaraguru (KCT)", type:"Private Autonomous", location:"Saravanampatti, Coimbatore", score:7.8, verdict:"Best Infrastructure in Region",
+    programs:"B.E., B.Tech",
+    fees:"₹1.5–₹2L/year",
+    campuses:"Massive 150-acre tech-savvy campus",
+    sports:"World class grounds, gym",
+    extra:"Yugam; huge focus on leadership (FORGE)",
+    placement:"Avg ₹6–9 LPA; very active placement cell",
+    est:"1984",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:9.2,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:9.5,c:"g"}]
+  },
+
+  "tce madurai": {
+    name:"Thiagarajar College (TCE)", type:"Govt Aided Autonomous", location:"Madurai, TN", score:7.9, verdict:"Madurai's Engineering Pride",
+    programs:"B.E., B.Arch",
+    fees:"₹50K–₹1L/year",
+    campuses:"Historic campus near temple",
+    sports:"Cricket, ball badminton",
+    extra:"Tech fests; architectural beauty",
+    placement:"Avg ₹7–10 LPA; Honeywell, Zoho favorites",
+    est:"1957",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "mepco schlenk": {
+    name:"Mepco Schlenk", type:"Private Autonomous", location:"Sivakasi, TN", score:7.5, verdict:"Strict Discipline — Academic Topper",
+    programs:"B.E., B.Tech",
+    fees:"₹1–₹1.5L/year",
+    campuses:"Remote campus, strict rules",
+    sports:"Mineral water swimming pool, courts",
+    extra:"Legacy of university ranks",
+    placement:"Avg ₹5–8 LPA; consistent record",
+    est:"1984",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  ANDHRA & TELANGANA REGIONAL (VIZAG/WARANGAL)
+  // ══════════════════════════════════════════
+
+  "gitam vizag": {
+    name:"GITAM University", type:"Deemed University", location:"Visakhapatnam, AP", score:7.4, verdict:"Vizag's Education Hub — Massive",
+    programs:"B.Tech, Medical, Science, Law",
+    fees:"₹2.5–₹3L/year",
+    campuses:"Beach-view campus, one of India's best",
+    sports:"Indoor stadiums, cricket grounds",
+    extra:"Gusac; huge student activity center",
+    placement:"Avg ₹5–7 LPA; mass recruiters mostly",
+    est:"1980",
+    metrics:[{n:"Budget",v:5.0,c:"r"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "gvp vizag": {
+    name:"Gayatri Vidya Parishad (GVP)", type:"Private Autonomous", location:"Madhurawada, Vizag", score:7.3, verdict:"Academic Focused — Best EAPCET Option",
+    programs:"B.Tech",
+    fees:"₹1.1L/year",
+    campuses:"Hillside campus",
+    sports:"Limited grounds",
+    extra:"Vidya; focus on studies/GATE",
+    placement:"Avg ₹5–8 LPA; Amazon, TCS Sol",
+    est:"1996",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.8,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "vr siddhartha": {
+    name:"VR Siddhartha (VRSEC)", type:"Private Autonomous", location:"Vijayawada, AP", score:7.2, verdict:"Vijayawada's Top Engineering",
+    programs:"B.Tech",
+    fees:"₹1.1L/year",
+    campuses:"Urban campus in Kanuru",
+    sports:"Basic facilities",
+    extra:"AFOSEC; alumni network strong",
+    placement:"Avg ₹5–7 LPA; Microsoft, Cisco",
+    est:"1977",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "kits warangal": {
+    name:"KITSW (Kakatiya Institute)", type:"Private Autonomous", location:"Warangal, Telangana", score:7.0, verdict:"Warangal's Best Private",
+    programs:"B.Tech",
+    fees:"₹1.25L/year",
+    campuses:"Spacious campus",
+    sports:"Large grounds",
+    extra:"Sumshodhini; decent technical culture",
+    placement:"Avg ₹4.5–6.5 LPA; TCS, Infosys",
+    est:"1980",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:7.2,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  KERALA (COCHIN/TRIVANDRUM)
+  // ══════════════════════════════════════════
+
+  "rajagiri kochi": {
+    name:"Rajagiri (RSET)", type:"Private Autonomous", location:"Kakkanad, Kochi", score:7.4, verdict:"Infopark Location — Strict & Good",
+    programs:"B.Tech",
+    fees:"₹1–₹1.5L/year",
+    campuses:"Beautiful architecture in IT hub",
+    sports:"Basketball, football, gym",
+    extra:"Bharatham; very strict discipline",
+    placement:"Avg ₹5–8 LPA; proximity to companies helps",
+    est:"2001",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "mec kochi": {
+    name:"Model Engineering College", type:"Govt Controlled", location:"Thrikkakara, Kochi", score:7.6, verdict:"Coding Culture — Top in Kerala",
+    programs:"B.Tech",
+    fees:"₹40K–₹75K/year",
+    campuses:"Small but productive",
+    sports:"Limited",
+    extra:"Excel (tech fest); huge coding reputation",
+    placement:"Avg ₹8–12 LPA; product companies love MEC",
+    est:"1989",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:5.5,c:"r"},{n:"Placement",v:8.5,c:"g"},{n:"Infra",v:6.0,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  PRIVATE MEDICAL & LAW (REAL OPTIONS)
+  // ══════════════════════════════════════════
+
+  "ramaiah medical": {
+    name:"MS Ramaiah Medical College", type:"Private Medical", location:"Bengaluru, Karnataka", score:8.5, verdict:"Top Tier Private Medical",
+    programs:"MBBS, MD/MS, DM",
+    fees:"High (Management quota)",
+    campuses:"Attached to huge hospital in MSR Nagar",
+    sports:"Shared with engineering college",
+    extra:"Udbhav; excellent clinical exposure",
+    placement:"One of the best in South India",
+    est:"1979",
+    metrics:[{n:"Budget",v:4.0,c:"r"},{n:"Academics",v:9.0,c:"g"},{n:"Campus",v:8.0,c:"g"},{n:"Clinical",v:9.0,c:"g"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "kims bangalore": {
+    name:"Kempegowda Institute (KIMS)", type:"Private Medical", location:"Bengaluru, Karnataka", score:7.8, verdict:"City Center — High Patient Flow",
+    programs:"MBBS, MD/MS",
+    fees:"Moderate (Govt seats) to High",
+    campuses:"VV Puram (College) + Banashankari (Hospital)",
+    sports:"Limited space",
+    extra:"Atharva; Vokkaliga sangha management",
+    placement:"Strong clinical skills due to caseload",
+    est:"1980",
+    metrics:[{n:"Budget",v:5.0,c:"r"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:5.0,c:"r"},{n:"Clinical",v:8.5,c:"g"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "sri ramachandra": {
+    name:"Sri Ramachandra Medical", type:"Deemed University", location:"Porur, Chennai", score:8.4, verdict:"Premium Medical Education — Elite",
+    programs:"MBBS, MD/MS, BDS",
+    fees:"₹25L/year (Very Expensive)",
+    campuses:"World class infrastructure, green campus",
+    sports:"Top tier grounds and gym",
+    extra:"Research focus; Harvard tie-ups",
+    placement:"Alumni in US/UK; high quality training",
+    est:"1985",
+    metrics:[{n:"Budget",v:2.0,c:"r"},{n:"Academics",v:9.0,c:"g"},{n:"Campus",v:9.5,c:"g"},{n:"Clinical",v:9.0,c:"g"},{n:"Infra",v:9.8,c:"g"}]
+  },
+
+  "dy patil medical pune": {
+    name:"Dr. D.Y. Patil Medical College", type:"Deemed University", location:"Pimpri, Pune", score:7.5, verdict:"Huge Infra — Very Expensive",
+    programs:"MBBS, MD/MS",
+    fees:"₹25L+/year",
+    campuses:"Massive hi-tech campus, stadium nearby",
+    sports:"Stadium access, world class",
+    extra:"Opulence; distinct campus culture",
+    placement:"Good clinical exposure",
+    est:"1996",
+    metrics:[{n:"Budget",v:2.0,c:"r"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:9.5,c:"g"},{n:"Clinical",v:8.0,c:"g"},{n:"Infra",v:9.5,c:"g"}]
+  },
+
+  "ils pune": {
+    name:"ILS Law College", type:"Private Aided", location:"Law College Road, Pune", score:8.8, verdict:"Legendary Law School — High ROI",
+    programs:"BA LLB, LLB",
+    fees:"₹40K–₹50K/year (Very Low)",
+    campuses:"Green 195-acre campus, famous hill",
+    sports:"Cricket, swimming pool",
+    extra:"Legal Aid, Mooting; relaxed vibe",
+    placement:"Strong litigation/judiciary focus + firms",
+    est:"1924",
+    metrics:[{n:"Budget",v:9.5,c:"g"},{n:"Academics",v:8.8,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "sls pune": {
+    name:"Symbiosis Law School (SLS)", type:"Private", location:"Viman Nagar, Pune", score:8.6, verdict:"Top Private Law School",
+    programs:"BA LLB, BBA LLB",
+    fees:"₹3–₹4L/year",
+    campuses:"Modern Viman Nagar campus (near airport)",
+    sports:"Shared facilities",
+    extra:"Symbhav; corporate culture",
+    placement:"Avg ₹8–10 LPA; top law firms recruit",
+    est:"1977",
+    metrics:[{n:"Budget",v:5.0,c:"r"},{n:"Academics",v:8.8,c:"g"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:8.5,c:"g"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "army law mohali": {
+    name:"Army Institute of Law", type:"Private (Army)", location:"Mohali, Punjab", score:8.0, verdict:"Disciplined — Best for Army Kids",
+    programs:"BA LLB",
+    fees:"₹1.5–₹2L/year",
+    campuses:"Compact, secure campus",
+    sports:"Basketball, volleyball",
+    extra:"Checkmate (moot); disciplined life",
+    placement:"Good firm placements; strong alumni",
+    est:"1999",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+    // ══════════════════════════════════════════
+  //  UTTAR PRADESH (AKTU/STATE GIANTS)
+  // ══════════════════════════════════════════
+
+  "iet lucknow": {
+    name:"IET Lucknow", type:"State Government (AKTU)", location:"Sitapur Road, Lucknow", score:7.5, verdict:"Top AKTU College — Low Fees",
+    programs:"B.Tech, MBA, MCA",
+    fees:"₹80K–₹90K/year",
+    campuses:"Green government campus, decent location",
+    sports:"Stadium available, annual fest",
+    extra:"Encore; studious environment",
+    placement:"Avg ₹5–7 LPA; TCS, checking for Govt exams",
+    est:"1984",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:6.0,c:"a"}]
+  },
+
+  "psit kanpur": {
+    name:"PSIT Kanpur", type:"Private College", location:"Bhauti, Kanpur", score:7.0, verdict:"Strict Discipline — 90% Attendance",
+    programs:"B.Tech, B.Pharm, BBA, BCA",
+    fees:"₹1.5–₹1.8L/year",
+    campuses:"Hotel-like infrastructure on highway",
+    sports:"Good grounds but limited time due to classes",
+    extra:"Ignitia; strict uniform, school-like vibe",
+    placement:"Avg ₹4–6 LPA; Infosys/Capgemini bulk hiring",
+    est:"2004",
+    metrics:[{n:"Budget",v:6.5,c:"a"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:9.0,c:"g"}]
+  },
+
+  "knit sultanpur": {
+    name:"KNIT Sultanpur", type:"State Government", location:"Sultanpur, UP", score:7.0, verdict:"Rural Govt College — Good ROI",
+    programs:"B.Tech, MCA",
+    fees:"₹65K–₹80K/year",
+    campuses:"Large campus on Varanasi-Lucknow highway",
+    sports:"Standard government facilities",
+    extra:"Anubhuti; strong alumni in PSU/IES",
+    placement:"Avg ₹4–6 LPA; mostly off-campus/GATE focus",
+    est:"1976",
+    metrics:[{n:"Budget",v:9.5,c:"g"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:5.5,c:"r"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:5.0,c:"r"}]
+  },
+
+  "biet jhansi": {
+    name:"BIET Jhansi", type:"State Government", location:"Jhansi, UP", score:6.8, verdict:"Bundelkhand's Best Govt Option",
+    programs:"B.Tech",
+    fees:"₹60K–₹70K/year",
+    campuses:"Rocky terrain campus, isolated",
+    sports:"Open grounds",
+    extra:"Abhinandan; peaceful, low distraction",
+    placement:"Avg ₹4–5 LPA; TCS is main recruiter",
+    est:"1986",
+    metrics:[{n:"Budget",v:9.5,c:"g"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:5.5,c:"r"}]
+  },
+
+  "jss noida": {
+    name:"JSS Academy (JSSATE)", type:"Private (AKTU)", location:"Sector 62, Noida", score:7.2, verdict:"Strict — Good Location Advantage",
+    programs:"B.Tech (CSE/IT focus)",
+    fees:"₹1.4L/year",
+    campuses:"Compact campus in IT hub",
+    sports:"Limited space",
+    extra:"Zealicon; rigorous academics",
+    placement:"Avg ₹5–7 LPA; Adobe/Amazon visit occasionally",
+    est:"1998",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "abes ghaziabad": {
+    name:"ABES Engineering College", type:"Private (AKTU)", location:"Lal Kuan, Ghaziabad", score:6.9, verdict:"Discipline Factory — Reliable",
+    programs:"B.Tech",
+    fees:"₹1.4L/year",
+    campuses:"On NH-24, decent infra",
+    sports:"Stadium nearby",
+    extra:"Generations; coding clubs active",
+    placement:"Avg ₹4.5–6 LPA; consistent mass recruitment",
+    est:"2000",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "akgec ghaziabad": {
+    name:"Ajay Kumar Garg (AKGEC)", type:"Private (AKTU)", location:"Ghaziabad, UP", score:7.1, verdict:"Technical Discipline — Strict",
+    programs:"B.Tech",
+    fees:"₹1.4L/year",
+    campuses:"Clean, disciplined campus",
+    sports:"Football, robotic labs",
+    extra:"Scrolls; focus on robotics/automation",
+    placement:"Avg ₹5–6.5 LPA; Infosys major recruiter",
+    est:"1998",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "niet greater noida": {
+    name:"NIET Greater Noida", type:"Private Autonomous", location:"Knowledge Park, Greater Noida", score:6.7, verdict:"Growing Fast — Marketing Heavy",
+    programs:"B.Tech, Pharmacy",
+    fees:"₹1.3–₹1.5L/year",
+    campuses:"Standard private campus",
+    sports:"Courts, gym",
+    extra:"Ebullience; active placement cell",
+    placement:"Avg ₹4–5.5 LPA; Capgemini/TCS",
+    est:"2001",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  DELHI IPU & HARYANA GOVT
+  // ══════════════════════════════════════════
+
+  "ymca faridabad": {
+    name:"JC Bose UST (YMCA)", type:"State Government", location:"Faridabad, Haryana", score:7.6, verdict:"Haryana's Best ROI — Tech Focus",
+    programs:"B.Tech",
+    fees:"₹80K–₹90K/year",
+    campuses:"Urban campus on Mathura Road",
+    sports:"Active sports culture",
+    extra:"Elements; strong tech clubs",
+    placement:"Avg ₹6–9 LPA; Samsung, Adobe recruit here",
+    est:"1969",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:6.0,c:"a"}]
+  },
+
+  "dcrust murthal": {
+    name:"DCRUST Murthal", type:"State Government", location:"Murthal, Sonipat", score:7.0, verdict:"Govt Campus — Relaxed Life",
+    programs:"B.Tech, B.Arch",
+    fees:"₹60K/year",
+    campuses:"Huge 270-acre campus near famous Dhabas",
+    sports:"Great grounds",
+    extra:"Technova; laid back academic pressure",
+    placement:"Avg ₹4–6 LPA; TCS + core companies",
+    est:"1987",
+    metrics:[{n:"Budget",v:9.5,c:"g"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "bpit delhi": {
+    name:"BPIT Delhi", type:"Private (IPU)", location:"Rohini, Delhi", score:7.2, verdict:"Good IPU College — Value",
+    programs:"B.Tech",
+    fees:"₹1.2L/year",
+    campuses:"Small campus in Rohini",
+    sports:"Limited",
+    extra:"Corona; coding society is improving",
+    placement:"Avg ₹6–8 LPA; ZS Associates, Amazon",
+    est:"2007",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:5.0,c:"r"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:6.0,c:"a"}]
+  },
+
+  "bvcoe delhi": {
+    name:"Bharati Vidyapeeth Delhi", type:"Private (IPU)", location:"Paschim Vihar, Delhi", score:7.3, verdict:"Stable IPU Choice — Metro Connected",
+    programs:"B.Tech",
+    fees:"₹1.3L/year",
+    campuses:"Next to Metro station, compact",
+    sports:"Shared grounds",
+    extra:"Xstasy; good location advantage",
+    placement:"Avg ₹6–8 LPA; TCS, Ion",
+    est:"1999",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:5.5,c:"r"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "vips delhi": {
+    name:"VIPS Delhi", type:"Private (IPU)", location:"Pitampura, Delhi", score:7.4, verdict:"Best for BCA/BJMC/Law in IPU",
+    programs:"BCA, BJMC, BA LLB, BBA",
+    fees:"₹1L/year",
+    campuses:"Flashy modern building (The Matrix movie vibes)",
+    sports:"Indoor focused",
+    extra:"Spandan; very active media/law crowds",
+    placement:"Decent for non-tech; Avg ₹4–5 LPA",
+    est:"2000",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:9.0,c:"g"}]
+  },
+
+  "iitm janakpuri": {
+    name:"IITM Janakpuri", type:"Private (IPU)", location:"Janakpuri, Delhi", score:6.5, verdict:"Decent for BCA/BBA",
+    programs:"BCA, BBA, MBA",
+    fees:"₹90K/year",
+    campuses:"Small building based campus",
+    sports:"Very limited",
+    extra:"Fiesta; academic focused",
+    placement:"Avg ₹3–4 LPA; Wipro/Deloitte hire",
+    est:"1999",
+    metrics:[{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:4.0,c:"r"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:5.5,c:"r"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  PUNE & MUMBAI (TIER 2/3 WORKHORSES)
+  // ══════════════════════════════════════════
+
+  "pccoe pune": {
+    name:"PCCOE Pune", type:"Private (PCET)", location:"Akurdi/Nigdi, Pune", score:7.6, verdict:"Placement Engine of Pune",
+    programs:"B.E.",
+    fees:"₹1.3–₹1.5L/year",
+    campuses:"Disciplined campus in industrial belt",
+    sports:"Good grounds",
+    extra:"Spectrum; strict attendance policy",
+    placement:"Avg ₹6–9 LPA; KPIT, Capgemini favorites",
+    est:"1999",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "cummins pune": {
+    name:"Cummins College of Engineering", type:"Private (Women)", location:"Karve Nagar, Pune", score:7.9, verdict:"Top Women's Engineering College",
+    programs:"B.Tech (Women Only)",
+    fees:"₹1.6–₹1.8L/year",
+    campuses:"Green campus in heart of Pune",
+    sports:"Active sports teams",
+    extra:"Gandhaar; strong technical focus",
+    placement:"Avg ₹8–12 LPA; Goldman, Microsoft, Walmart diversity hiring",
+    est:"1991",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:8.5,c:"g"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "sinhgad vadgaon": {
+    name:"Sinhgad (SCOE) Vadgaon", type:"Private", location:"Vadgaon Budruk, Pune", score:6.8, verdict:"Massive Campus — Huge Crowd",
+    programs:"B.E. (Huge intake)",
+    fees:"₹1.1–₹1.3L/year",
+    campuses:"Hillside massive campus, famous for crowds",
+    sports:"Cricket ground is legendary",
+    extra:"Neon (Karandak); lively, party atmosphere",
+    placement:"Avg ₹4–5 LPA; Accenture/Cognizant mass hire",
+    est:"1996",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:6.0,c:"a"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "aissms pune": {
+    name:"AISSMS IOIT", type:"Private", location:"Near RTO, Pune", score:7.0, verdict:"Royal Heritage — Central Location",
+    programs:"B.E.",
+    fees:"₹1.2L/year",
+    campuses:"Historic building near station",
+    sports:"Shared grounds",
+    extra:"Alacrity; Shivaji Maharaj heritage",
+    placement:"Avg ₹4.5–6 LPA",
+    est:"1992",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "thadomal mumbai": {
+    name:"Thadomal Shahani (TSEC)", type:"Private", location:"Bandra West, Mumbai", score:7.5, verdict:"SoBo Crowd — Coding Culture",
+    programs:"B.E. (CSE/IT focus)",
+    fees:"₹1.8L/year",
+    campuses:"Vertical campus in posh Bandra",
+    sports:"None (use National College ground)",
+    extra:"Trifles; rich lively crowd",
+    placement:"Avg ₹8–10 LPA; JP Morgan, Deutsche Bank",
+    est:"1983",
+    metrics:[{n:"Budget",v:6.5,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:4.0,c:"r"},{n:"Placement",v:7.8,c:"a"},{n:"Infra",v:6.0,c:"a"}]
+  },
+
+  "vesit mumbai": {
+    name:"VESIT Mumbai", type:"Private", location:"Chembur, Mumbai", score:7.4, verdict:"Disciplined — Sindhi Minority",
+    programs:"B.E., MCA",
+    fees:"₹1.2L/year",
+    campuses:"Spacious (for Mumbai) in Chembur",
+    sports:"Playground available",
+    extra:"Utsav; strict academic focus",
+    placement:"Avg ₹6–9 LPA; consistent IT jobs",
+    est:"1984",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "dy patil navi mumbai": {
+    name:"RAIT (DY Patil)", type:"Private", location:"Nerul, Navi Mumbai", score:7.2, verdict:"Huge Stadium Campus — Active Life",
+    programs:"B.E.",
+    fees:"₹1.5–₹1.7L/year",
+    campuses:"Famous for DY Patil Stadium",
+    sports:"World class cricket stadium access",
+    extra:"Horizon; concerts and events",
+    placement:"Avg ₹5–7 LPA; mass recruiters",
+    est:"1983",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "walchand sangli": {
+    name:"Walchand College of Engineering", type:"Govt Aided Autonomous", location:"Sangli, Maharashtra", score:7.7, verdict:"Historic Engineering — Civil/Mech Legacy",
+    programs:"B.Tech, M.Tech",
+    fees:"₹85K/year",
+    campuses:"90-acre old school campus",
+    sports:"Huge grounds",
+    extra:"Gathering; simple town life",
+    placement:"Avg ₹7–9 LPA; very strong alumni base",
+    est:"1947",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:7.8,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  KARNATAKA (BANGALORE & REGIONAL TIER 3)
+  // ══════════════════════════════════════════
+
+  "acharya bangalore": {
+    name:"Acharya Institute of Technology", type:"Private", location:"Soladevanahalli, Bengaluru", score:6.8, verdict:"Massive Campus — Diverse Crowd",
+    programs:"B.E., M.Tech, MBA",
+    fees:"₹2–₹2.5L/year",
+    campuses:"120-acre huge campus, very scenic",
+    sports:"Stadium, horse riding",
+    extra:"Acharya Habba (huge fest); international students",
+    placement:"Avg ₹4–6 LPA; bulk hiring",
+    est:"2000",
+    metrics:[{n:"Budget",v:6.0,c:"a"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "mvj bangalore": {
+    name:"MVJ College of Engineering", type:"Private", location:"Whitefield, Bengaluru", score:6.5, verdict:"Near IT Parks — Good Infra",
+    programs:"B.E.",
+    fees:"₹2L/year",
+    campuses:"On highway, near Whitefield",
+    sports:"Good grounds",
+    extra:"Swayam; strict management",
+    placement:"Avg ₹4–5.5 LPA",
+    est:"1982",
+    metrics:[{n:"Budget",v:6.5,c:"a"},{n:"Academics",v:6.2,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "reva university": {
+    name:"Reva University", type:"Private University", location:"Yelahanka, Bengaluru", score:7.0, verdict:"Modern & Green — Marketing Heavy",
+    programs:"B.Tech, Law, Architecture",
+    fees:"₹2.5–₹3.5L/year",
+    campuses:"Impeccable green modern campus",
+    sports:"Good facilities",
+    extra:"Revamp; vibrant student life",
+    placement:"Avg ₹5–7 LPA; growing fast",
+    est:"2012",
+    metrics:[{n:"Budget",v:5.0,c:"r"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:9.0,c:"g"}]
+  },
+
+  "kle tech hubli": {
+    name:"KLE Tech (BVB Hubli)", type:"Private University", location:"Hubli, Karnataka", score:7.6, verdict:"Entrepreneurship Hub of North Karnataka",
+    programs:"B.E.",
+    fees:"₹1.5–₹2L/year",
+    campuses:"Spacious, innovation focused",
+    sports:"Good grounds",
+    extra:"Pleiades; famous for Sudha Murthy alumnus",
+    placement:"Avg ₹6–9 LPA; increasing product companies",
+    est:"1947",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "git belgaum": {
+    name:"KLS Gogte (GIT)", type:"Private Autonomous", location:"Belagavi, Karnataka", score:7.2, verdict:"Belgaum's Best — Landmark",
+    programs:"B.E., B.Arch",
+    fees:"₹1.2L/year",
+    campuses:"Beautiful hilly campus",
+    sports:"Active sports culture",
+    extra:"Aura; nice weather",
+    placement:"Avg ₹5–7 LPA; Mercedes Benz recruits here",
+    est:"1979",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  TAMIL NADU (CHENNAI & DISTRICTS)
+  // ══════════════════════════════════════════
+
+  "rajalakshmi chennai": {
+    name:"Rajalakshmi Engineering (REC)", type:"Private Autonomous", location:"Thandalam, Chennai", score:7.5, verdict:"Yellow Bus Empire — Strict & Good",
+    programs:"B.E., B.Tech",
+    fees:"₹1.5L/year",
+    campuses:"Large campus on highway",
+    sports:"Good facilities, morning practice",
+    extra:"Recharge; strict on dress code/buses",
+    placement:"Avg ₹5–8 LPA; TCS/Pegasystems",
+    est:"1997",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "panimalar chennai": {
+    name:"Panimalar Engineering College", type:"Private", location:"Poonamallee, Chennai", score:7.0, verdict:"Famous for Food & Discipline",
+    programs:"B.E.",
+    fees:"₹1.2L/year",
+    campuses:"Grand arch, massive mess hall",
+    sports:"Limited",
+    extra:"Free lunch for all (famous); very strict rules",
+    placement:"Avg ₹4–6 LPA; Infosys bulk hire",
+    est:"2000",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "sri sairam chennai": {
+    name:"Sri Sairam Engineering", type:"Private Autonomous", location:"West Tambaram, Chennai", score:7.4, verdict:"Discipline First — Consistent Results",
+    programs:"B.E.",
+    fees:"₹1.2L/year",
+    campuses:"Green, school-like vibe",
+    sports:"Indoor stadium",
+    extra:"Strict monitoring; results focus",
+    placement:"Avg ₹5–7 LPA; Zoho/TCS",
+    est:"1995",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "kongu engineering": {
+    name:"Kongu Engineering College", type:"Private Autonomous", location:"Erode, Tamil Nadu", score:7.3, verdict:"Erode's Giant — Rural Tech Hub",
+    programs:"B.E., B.Sc",
+    fees:"₹1L/year",
+    campuses:"167-acre massive campus",
+    sports:"Excellent rural sports culture",
+    extra:"Enthusia; huge alumni network",
+    placement:"Avg ₹4.5–7 LPA; core & IT mix",
+    est:"1984",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "sona salem": {
+    name:"Sona College of Technology", type:"Private Autonomous", location:"Salem, Tamil Nadu", score:7.2, verdict:"Salem's Best — Textile/Fashion History",
+    programs:"B.E., B.Tech (Fashion/Textile)",
+    fees:"₹1–₹1.2L/year",
+    campuses:"City center campus",
+    sports:"Swimming pool, grounds",
+    extra:"Sonaria; industry connected",
+    placement:"Avg ₹4.5–6.5 LPA; strong in textile/IT",
+    est:"1997",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "kalasalingam": {
+    name:"Kalasalingam University", type:"Deemed University", location:"Srivilliputhur, Madurai", score:6.8, verdict:"Rural University — Inclusive",
+    programs:"B.Tech, Agriculture, B.Arch",
+    fees:"₹1–₹1.5L/year",
+    campuses:" scenic hill backdrop",
+    sports:"Huge grounds, swimming",
+    extra:"Special schools for speech/hearing impaired",
+    placement:"Avg ₹4–5 LPA; mass hiring",
+    est:"1984",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  ANDHRA & TELANGANA (LOCAL GIANTS)
+  // ══════════════════════════════════════════
+
+  "malla reddy": {
+    name:"Malla Reddy Engineering (MREC)", type:"Private Autonomous", location:"Maisammaguda, Hyderabad", score:6.8, verdict:"Massive Crowd — The 'Group' Effect",
+    programs:"B.Tech",
+    fees:"₹1L/year",
+    campuses:"Multiple colleges in one campus",
+    sports:"Cricket grounds",
+    extra:"Vishesh; busy campus",
+    placement:"Avg ₹4–6 LPA; bulk hiring hub",
+    est:"2002",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "vardhaman hyderabad": {
+    name:"Vardhaman College", type:"Private Autonomous", location:"Shamshabad, Hyderabad", score:7.4, verdict:"Strict & Disciplined — Near Airport",
+    programs:"B.Tech",
+    fees:"₹1.3L/year",
+    campuses:"Green campus",
+    sports:"Good facilities",
+    extra:"Technolites; strict on bunking",
+    placement:"Avg ₹6–8 LPA; Amazon hires here",
+    est:"1999",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:7.2,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "narayanamma": {
+    name:"G. Narayanamma (GNITS)", type:"Private (Women)", location:"Shaikpet, Hyderabad", score:7.6, verdict:"Top Women's College in TS",
+    programs:"B.Tech (Women Only)",
+    fees:"₹1.2L/year",
+    campuses:"Secure, green campus",
+    sports:"Indoor/Outdoor courts",
+    extra:"Cultural fests; Apple/JPMC recruitment",
+    placement:"Avg ₹7–10 LPA; diversity hiring advantage",
+    est:"1997",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.8,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "mvgr vizag": {
+    name:"MVGR College", type:"Private Autonomous", location:"Vizianagaram, AP", score:7.0, verdict:"North Coastal AP's Reliable Choice",
+    programs:"B.Tech",
+    fees:"₹1L/year",
+    campuses:"Spacious campus",
+    sports:"Cricket ground",
+    extra:"Aadhrita; industry focus",
+    placement:"Avg ₹4.5–6 LPA; TCS/Wipro",
+    est:"1997",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  KERALA (TIER 2/3)
+  // ══════════════════════════════════════════
+
+  "saintgits kottayam": {
+    name:"Saintgits College", type:"Private Autonomous", location:"Kottayam, Kerala", score:7.0, verdict:"Strict — Beautiful Hill Campus",
+    programs:"B.Tech, MBA",
+    fees:"₹1–₹1.2L/year",
+    campuses:"Very scenic, disciplined",
+    sports:"Basketball, gym",
+    extra:"Nakshatra; uniform mandatory",
+    placement:"Avg ₹4–6 LPA; Infosys/IBS",
+    est:"2002",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "fisat kerala": {
+    name:"FISAT", type:"Private Self-Financing", location:"Angamaly, Kochi", score:7.1, verdict:"Federal Bank Funded — Good Infra",
+    programs:"B.Tech",
+    fees:"₹1L/year",
+    campuses:"Well maintained",
+    sports:"Cricket/football",
+    extra:"Bharatham; bank backed stability",
+    placement:"Avg ₹4.5–6.5 LPA; TCS/Cognizant",
+    est:"2002",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  PUNJAB/MP/GUJARAT/ODISHA (REGIONAL)
+  // ══════════════════════════════════════════
+
+  "pcte ludhiana": {
+    name:"PCTE Group", type:"Private", location:"Ludhiana, Punjab", score:6.5, verdict:"Management/Tech Mix — Lively",
+    programs:"B.Tech, MBA, Hotel Mgmt",
+    fees:"₹1L/year",
+    campuses:"Compact",
+    sports:"Limited",
+    extra:"Koshish (cultural); active student life",
+    placement:"Avg ₹4–5 LPA",
+    est:"1999",
+    metrics:[{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:6.0,c:"a"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "gne ludhiana": {
+    name:"GNE Ludhiana", type:"Govt Aided Autonomous", location:"Ludhiana, Punjab", score:7.2, verdict:"Oldest in Punjab — Core Engg",
+    programs:"B.Tech",
+    fees:"₹90K/year",
+    campuses:"Old brick campus",
+    sports:"Hockey, football",
+    extra:"Anand Utsav; Sikh minority status",
+    placement:"Avg ₹5–7 LPA; good mechanical/civil jobs",
+    est:"1956",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:6.0,c:"a"}]
+  },
+
+  "oriental bhopal": {
+    name:"Oriental (OIST) Bhopal", type:"Private", location:"Raisen Road, Bhopal", score:6.8, verdict:"MP's Oldest Private — Coding Hub",
+    programs:"B.E. (CSE)",
+    fees:"₹1.1L/year",
+    campuses:"Standard architecture",
+    sports:"Basic courts",
+    extra:"Tech fests; TCS major recruiter",
+    placement:"Avg ₹4–6 LPA; consistent mass hiring",
+    est:"1995",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "acropolis indore": {
+    name:"Acropolis Indore", type:"Private", location:"Bypass Road, Indore", score:6.7, verdict:"School-like Discipline — Safe",
+    programs:"B.Tech",
+    fees:"₹1.1L/year",
+    campuses:"One building mostly",
+    sports:"Limited",
+    extra:"Ardor; academics first",
+    placement:"Avg ₹4–5 LPA; coding focused",
+    est:"2005",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:5.5,c:"r"},{n:"Placement",v:6.2,c:"a"},{n:"Infra",v:6.5,c:"a"}]
+  },
+
+  "ld engineering": {
+    name:"LD College of Engineering", type:"State Government", location:"Ahmedabad, Gujarat", score:7.8, verdict:"Gujarat's Govt Pride — ROI King",
+    programs:"B.E.",
+    fees:"₹1.5K–₹5K/year (Yes, barely anything)",
+    campuses:"Next to Gujarat University, old infra",
+    sports:"Shared university grounds",
+    extra:"Lakshya; highly competitive entry",
+    placement:"Avg ₹6–9 LPA; Reliance, Adani, L&T",
+    est:"1948",
+    metrics:[{n:"Budget",v:10.0,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:5.5,c:"r"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:5.0,c:"r"}]
+  },
+
+  "indus ahmedabad": {
+    name:"Indus University", type:"Private University", location:"Rancharda, Ahmedabad", score:6.5, verdict:"Aircraft Design Niche — Far from City",
+    programs:"B.Tech, Architecture, Aviation",
+    fees:"₹1.2L/year",
+    campuses:"Green, silent campus",
+    sports:"Good grounds",
+    extra:"Electika; transport is long",
+    placement:"Avg ₹4–5 LPA",
+    est:"2006",
+    metrics:[{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:5.8,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "cv raman odisha": {
+    name:"CV Raman Global University", type:"Private University", location:"Bhubaneswar, Odisha", score:6.8, verdict:"Skills Focused — WorldSkills Winners",
+    programs:"B.Tech, Marine Engg",
+    fees:"₹1.2–₹1.5L/year",
+    campuses:"Green campus",
+    sports:"Average",
+    extra:"Celegance; focus on vocational skills",
+    placement:"Avg ₹4.5–6 LPA",
+    est:"1997",
+    metrics:[{n:"Budget",v:7.0,c:"a"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "silicon bhubaneswar": {
+    name:"Silicon Institute (Silicon Tech)", type:"Private Autonomous", location:"Bhubaneswar, Odisha", score:7.0, verdict:"Academic Rigor — The 'IIT' of Private",
+    programs:"B.Tech",
+    fees:"₹1.2L/year",
+    campuses:"Compact, serious vibe",
+    sports:"Limited",
+    extra:"Zygon; known for strict studies",
+    placement:"Avg ₹5–7 LPA; Infosys/Wipro/Mindtree",
+    est:"2001",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:6.8,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "bit patna": {
+    name:"BIT Mesra (Patna Campus)", type:"Extension Centre", location:"Patna, Bihar", score:6.8, verdict:"BIT Brand — Near Airport",
+    programs:"B.E., BCA",
+    fees:"₹2.5L/year (High)",
+    campuses:"Small campus",
+    sports:"Very limited",
+    extra:"Technika; BIT Mesra degree",
+    placement:"Avg ₹6–8 LPA (Combined with Mesra)",
+    est:"2006",
+    metrics:[{n:"Budget",v:5.0,c:"r"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:5.0,c:"r"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:6.0,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  ARTS / SCIENCE / COMMERCE LEGENDS
+  // ══════════════════════════════════════════
+
+  "fergusson pune": {
+    name:"Fergusson College", type:"Private Autonomous", location:"FC Road, Pune", score:8.5, verdict:"Liberal Arts Legend — Heritage",
+    programs:"BA, BSc (Psychology, Economics, Geology, etc.)",
+    fees:"₹10K–₹20K/year (Very low)",
+    campuses:"135-year-old gothic campus",
+    sports:"Cricket, tennis (Deccan Gymkhana nearby)",
+    extra:"Spandan; hub of civil services aspirants/artists",
+    placement:"Not placement focused; higher studies hub",
+    est:"1885",
+    metrics:[{n:"Budget",v:9.5,c:"g"},{n:"Academics",v:9.0,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:5.0,c:"r"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "loyola chennai": {
+    name:"Loyola College", type:"Private Autonomous", location:"Nungambakkam, Chennai", score:8.8, verdict:"Elite Arts/Commerce — NIRF Top 10",
+    programs:"B.Com, B.Sc, BA",
+    fees:"₹20K–₹50K/year",
+    campuses:"99-acre lush green campus in city center",
+    sports:"Famous cricket/football grounds",
+    extra:"Ovations; politicians/actors alumni",
+    placement:"Avg ₹4–6 LPA; Big 4 audit firms hire",
+    est:"1925",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:9.0,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "mcc chennai": {
+    name:"Madras Christian College", type:"Private Aided", location:"Tambaram, Chennai", score:8.5, verdict:"Campus is a Forest — Heritage",
+    programs:"BA, BSc, BCom",
+    fees:"₹30K/year",
+    campuses:"300-acre forest campus (deer/boars visible)",
+    sports:"Huge grounds, historic cricket pavilion",
+    extra:"Deep Woods; famous cultural life",
+    placement:"Decent; focus on holistic growth",
+    est:"1837",
+    metrics:[{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:9.5,c:"g"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "mithibai mumbai": {
+    name:"Mithibai College", type:"Private Autonomous", location:"Vile Parle, Mumbai", score:8.2, verdict:"Glamour & Academics — Cultural Hub",
+    programs:"BA, BCom, BMS, BSc",
+    fees:"₹30K–₹50K/year",
+    campuses:"Shared building, very crowded",
+    sports:"None (indoor only)",
+    extra:"Kshitij (massive fest); celebrity alumni",
+    placement:"Good for BMS/BCom; Avg ₹4–6 LPA",
+    est:"1961",
+    metrics:[{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:5.0,c:"r"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "nm college mumbai": {
+    name:"NM College of Commerce", type:"Private Autonomous", location:"Vile Parle, Mumbai", score:8.4, verdict:"CA Factory — Best for Commerce",
+    programs:"B.Com, BMS, BAF",
+    fees:"₹30K–₹50K/year",
+    campuses:"Shared with Mithibai",
+    sports:"None",
+    extra:"Umang; strictly academic focus",
+    placement:"Avg ₹5–7 LPA; Finance/Audit roles",
+    est:"1964",
+    metrics:[{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:9.0,c:"g"},{n:"Campus",v:5.0,c:"r"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "st xaviers mumbai": {
+    name:"St. Xavier's College Mumbai", type:"Private Autonomous", location:"Fort, Mumbai", score:8.7, verdict:"The Hogwarts of Mumbai — Iconic",
+    programs:"BA, BSc, BMS",
+    fees:"₹10K–₹30K/year",
+    campuses:"Gothic architecture, movie shoot favorite",
+    sports:"Basketball court (famous)",
+    extra:"Malhar (legendary fest); vibrant crowd",
+    placement:"Avg ₹5–8 LPA; Consulting/Media",
+    est:"1869",
+    metrics:[{n:"Budget",v:9.5,c:"g"},{n:"Academics",v:9.0,c:"g"},{n:"Campus",v:9.5,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:9.0,c:"g"}]
+  },
+
+  "st xaviers kolkata": {
+    name:"St. Xavier's College Kolkata", type:"Private Autonomous", location:"Park Street, Kolkata", score:8.6, verdict:"Prestige & Legacy — Park Street",
+    programs:"B.Com, BA, BSc, BMS",
+    fees:"₹40K–₹60K/year",
+    campuses:"Heritage campus, white building",
+    sports:"Grounds available",
+    extra:"Xavotsav; elite alumni network",
+    placement:"Avg ₹6–9 LPA; Deloitte, Google, Futures First",
+    est:"1860",
+    metrics:[{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:9.0,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:8.5,c:"g"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "mount carmel bangalore": {
+    name:"Mount Carmel College", type:"Private Autonomous (Women)", location:"Vasanth Nagar, Bengaluru", score:8.0, verdict:"Top Women's College — Liberal Arts",
+    programs:"BA, BSc, BCom",
+    fees:"₹50K–₹1L/year",
+    campuses:"Posh location, green campus",
+    sports:"Stadium nearby",
+    extra:"Cul-Ah; fashion/arts culture",
+    placement:"Avg ₹4–6 LPA; Goldman Sachs, DE Shaw",
+    est:"1948",
+    metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:8.0,c:"g"}]
+  },
   "iiser bhopal": {
     name:"IISER Bhopal", type:"Autonomous Public Research Institute (INI)", location:"Bhauri, Bhopal, Madhya Pradesh", score:8.8, verdict:"Strong Science Research — Growing Fast",
     programs:"BS-MS dual degree (5 years) in Biological, Chemical, Earth, Mathematical, Physical Sciences; MSc, PhD",
@@ -3110,5 +4823,143 @@ const ALIASES = {
   "cmi":"cmi chennai","chennai mathematical":"cmi chennai",
   "tifr":"tifr mumbai","tata institute":"tifr mumbai",
   "hri":"hri allahabad","harish chandra":"hri allahabad",
-  "niser":"niser bhubaneswar"
+  "niser":"niser bhubaneswar",
+    // ── Regional Colleges (Add these to existing ALIASES) ──
+  "integral":"integral university","integral lucknow":"integral university",
+  "bbau":"bbau lucknow","babasaheb bhimrao":"bbau lucknow",
+  "bbd":"bbd university","babu banarasi das":"bbd university",
+  "ramswaroop":"ramswaroop lucknow","srmu lucknow":"ramswaroop lucknow",
+  "hbtu":"hbtu kanpur","harcourt butler":"hbtu kanpur",
+  "mmmut":"mmmut gorakhpur","madan mohan malaviya":"mmmut gorakhpur",
+  "galgotias":"galgotias university",
+  "sharda":"sharda university",
+  "gl bajaj":"gl bajaj","glb":"gl bajaj",
+  "kiet":"kiet ghaziabad",
+  "mait":"mait delhi","maharaja agrasen":"mait delhi",
+  "msit":"msit delhi","surajmal":"msit delhi",
+  "manav rachna":"manav rachna","mriirs":"manav rachna",
+  "vjti":"vjti mumbai","veermata jijabai":"vjti mumbai",
+  "spit":"spit mumbai","sardar patel":"spit mumbai",
+  "dj sanghvi":"dj sanghvi","djsce":"dj sanghvi",
+  "somaiya":"kj somaiya engineering","kj somaiya":"kj somaiya engineering",
+  "mit wpu":"mit wpu pune","mit pune":"mit wpu pune",
+  "vit pune":"vit pune","vishwakarma":"vit pune",
+  "dy patil":"dy patil akurdi","dypcoe":"dy patil akurdi",
+  "nirma":"nirma university",
+  "pdeu":"pdeu gandhinagar","pdpu":"pdeu gandhinagar",
+  "bmsit":"bmsit bangalore",
+  "dsce":"dsce bangalore","dayananda sagar":"dsce bangalore",
+  "jain":"jain university",
+  "new horizon":"new horizon",
+  "nmit":"nitte meenakshi","nitte":"nitte meenakshi",
+  "cbit":"cbit hyderabad",
+  "vasavi":"vasavi hyderabad",
+  "vnr":"vnr vjiet","vnr vjiet":"vnr vjiet",
+  "griet":"gokaraju rangaraju",
+  "ssn":"ssn chennai",
+  "sathyabama":"sathyabama chennai",
+  "hindustan":"hindustan university",
+  "crescent":"crescent chennai","bs abdur rahman":"crescent chennai",
+  "psg":"psg tech","psg tech":"psg tech",
+  "iem":"iem kolkata",
+  "heritage":"heritage kolkata","hitk":"heritage kolkata",
+  "techno india":"techno india salt lake",
+  "kiit":"kiit bhubaneswar",
+  "soa":"soa bhubaneswar","iter":"soa bhubaneswar",
+  "sgsits":"sgsits indore",
+  "iet davv":"davv indore","davv":"davv indore",
+  "medicaps":"medicaps indore",
+  "lnct":"lnct bhopal",
+  "jecrc":"jecrc jaipur",
+  "muj":"manipal jaipur","manipal jaipur":"manipal jaipur",
+    // ── Batch 2 Regional Aliases ──
+  "chitkara":"chitkara university",
+  "cgc":"cgc landran","chandigarh group":"cgc landran",
+  "graphic era":"graphic era",
+  "upes":"upes dehradun",
+  "dit":"dit dehradun",
+  "rcoem":"rcoem nagpur","ramdeobaba":"rcoem nagpur",
+  "ycce":"ycce nagpur","yeshwantrao chavan":"ycce nagpur",
+  "geca":"geca aurangabad","govt aurangabad":"geca aurangabad",
+  "sandip":"sandip university",
+  "sjce":"sjce mysore","jss mysore":"sjce mysore","jssst":"sjce mysore",
+  "nie":"nie mysore","national institute of engineering":"nie mysore",
+  "sit":"sit tumkur","siddaganga":"sit tumkur",
+  "sahyadri":"sahyadri mangalore",
+  "sdm":"sdm dharwad",
+  "cit":"cit coimbatore","coimbatore institute":"cit coimbatore",
+  "skcet":"skcet coimbatore","sri krishna":"skcet coimbatore",
+  "kct":"kct coimbatore","kumaraguru":"kct coimbatore",
+  "tce":"tce madurai","thiagarajar":"tce madurai",
+  "mepco":"mepco schlenk",
+  "gitam":"gitam vizag",
+  "gvp":"gvp vizag","gayatri vidya":"gvp vizag",
+  "vrsec":"vr siddhartha","siddhartha vijayawada":"vr siddhartha",
+  "kits":"kits warangal","kitsw":"kits warangal",
+  "rajagiri":"rajagiri kochi","rset":"rajagiri kochi",
+  "mec":"mec kochi","model engineering":"mec kochi",
+  "ramaiah medical":"ramaiah medical","msr medical":"ramaiah medical",
+  "kims":"kims bangalore","kempegowda medical":"kims bangalore",
+  "sri ramachandra":"sri ramachandra","srmc":"sri ramachandra",
+  "dy patil medical":"dy patil medical pune",
+  "ils":"ils pune","ils law":"ils pune",
+  "sls":"sls pune","symbiosis law":"sls pune",
+  "ail":"army law mohali","army institute of law":"army law mohali",
+    // ── Batch 3 Aliases (Paste into ALIASES object) ──
+  "iet lucknow":"iet lucknow","iet lko":"iet lucknow",
+  "psit":"psit kanpur","pranveer singh":"psit kanpur",
+  "knit":"knit sultanpur","kamla nehru":"knit sultanpur",
+  "biet":"biet jhansi","bundelkhand engineering":"biet jhansi",
+  "jss":"jss noida","jssate":"jss noida",
+  "abes":"abes ghaziabad",
+  "akgec":"akgec ghaziabad","ajay kumar garg":"akgec ghaziabad",
+  "niet":"niet greater noida",
+  "ymca":"ymca faridabad","jc bose":"ymca faridabad",
+  "dcrust":"dcrust murthal","murthal":"dcrust murthal",
+  "bpit":"bpit delhi","bhagwan parshuram":"bpit delhi",
+  "bvcoe":"bvcoe delhi","bharati vidyapeeth delhi":"bvcoe delhi",
+  "vips":"vips delhi","vivekananda ipU":"vips delhi",
+  "iitm":"iitm janakpuri",
+  "pccoe":"pccoe pune","impri chinchwad":"pccoe pune",
+  "cummins":"cummins pune","cummins college":"cummins pune",
+  "sinhgad":"sinhgad vadgaon","scoe":"sinhgad vadgaon",
+  "aissms":"aissms pune","ioit":"aissms pune",
+  "thadomal":"thadomal mumbai","tsec":"thadomal mumbai",
+  "vesit":"vesit mumbai","vivekanand chembur":"vesit mumbai",
+  "rait":"dy patil navi mumbai","dy patil nerul":"dy patil navi mumbai",
+  "walchand":"walchand sangli","wce":"walchand sangli",
+  "acharya":"acharya bangalore",
+  "mvj":"mvj bangalore",
+  "reva":"reva university",
+  "kle tech":"kle tech hubli","bvb hubli":"kle tech hubli",
+  "git":"git belgaum","gogte":"git belgaum",
+  "rajalakshmi":"rajalakshmi chennai","rec":"rajalakshmi chennai",
+  "panimalar":"panimalar chennai",
+  "sairam":"sri sairam chennai","sri sairam":"sri sairam chennai",
+  "kongu":"kongu engineering",
+  "sona":"sona salem",
+  "kalasalingam":"kalasalingam",
+  "malla reddy":"malla reddy","mrec":"malla reddy",
+  "vardhaman":"vardhaman hyderabad",
+  "narayanamma":"narayanamma","gnits":"narayanamma",
+  "mvgr":"mvgr vizag",
+  "saintgits":"saintgits kottayam",
+  "fisat":"fisat kerala","federal institute":"fisat kerala",
+  "pcte":"pcte ludhiana",
+  "gne":"gne ludhiana","guru nanak dev":"gne ludhiana",
+  "oriental":"oriental bhopal","oist":"oriental bhopal",
+  "acropolis":"acropolis indore",
+  "ld":"ld engineering","ld college":"ld engineering",
+  "indus":"indus ahmedabad",
+  "cv raman":"cv raman odisha",
+  "silicon":"silicon bhubaneswar",
+  "fergusson":"fergusson pune","fc pune":"fergusson pune",
+  "loyola":"loyola chennai",
+  "mcc":"mcc chennai","madras christian":"mcc chennai",
+  "mithibai":"mithibai mumbai",
+  "nm":"nm college mumbai","nm college":"nm college mumbai",
+  "xaviers mumbai":"st xaviers mumbai","st xaviers mumbai":"st xaviers mumbai",
+  "xaviers kolkata":"st xaviers kolkata","st xaviers kolkata":"st xaviers kolkata",
+  "mount carmel":"mount carmel bangalore","mcc bangalore":"mount carmel bangalore"
+  
 };
