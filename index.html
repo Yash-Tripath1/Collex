@@ -834,8 +834,31 @@ async function fetchReview(college) {
 const res = await fetch('/api/groq', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: chatHistory, temperature: 0.7, max_tokens: 500 }) });    const data = await res.json();
     if (data.error) { showReviewError(data.error.message); return; }
     const raw = data.choices[0].message.content;
-    const clean = raw.substring(raw.indexOf('{'), raw.lastIndexOf('}') + 1);
-    const parsed = JSON.parse(clean); reviewCache[college.name] = parsed; renderReview(parsed);
+    async function fetchReview(college) {
+  if (reviewCache[college.name]) { renderReview(reviewCache[college.name]); return; }
+  const prompt = `You are Collex, an honest India college research assistant. Based on verified data about ${college.name}, generate student sentiment analysis.\nData: fees=${college.fees}, placement=${college.placement}, score=${college.score}/10, verdict=${college.verdict}\nRespond with ONLY a raw JSON object. No markdown. No backticks. No explanation. Just the JSON starting with { and ending with }:\n{"summary":"2-3 honest sentences from student perspective","pros":["specific pro 1","specific pro 2","specific pro 3"],"cons":["specific con 1","specific con 2","specific con 3"],"voices":[{"quote":"realistic student quote","source":"Reddit r/india"},{"quote":"realistic student quote","source":"Quora"},{"quote":"realistic student quote","source":"Reddit r/indianstudents"}]}`;
+  try {
+    const res = await fetch('/api/groq', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: [{ role: 'user', content: prompt }], temperature: 0.7, max_tokens: 800 })
+    });
+    const data = await res.json();
+    if (data.error) { showReviewError(data.error); return; }
+    const raw = data.choices[0].message.content;
+    console.log('Raw AI response:', raw);
+    const start = raw.indexOf('{');
+    const end = raw.lastIndexOf('}');
+    if (start === -1 || end === -1) { showReviewError('AI returned invalid format: ' + raw.substring(0, 100)); return; }
+    const clean = raw.substring(start, end + 1);
+    const parsed = JSON.parse(clean);
+    reviewCache[college.name] = parsed;
+    renderReview(parsed);
+  } catch (err) {
+    console.error('fetchReview error:', err);
+    showReviewError(err.message);
+  }
+}
   } catch (err) { console.error(err); showReviewError(err.message); }
 }
 function renderReview(d) {
