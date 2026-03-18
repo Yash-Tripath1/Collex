@@ -93,7 +93,6 @@
     .chip:hover { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
     .slideshow-section { width: 100%; max-width: 680px; margin-bottom: 52px; position: relative; z-index: 1; }
 
-    /* ═══ STATS — REDESIGNED ═══ */
     .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; padding-top: 36px; border-top: 1px solid var(--border); position: relative; z-index: 1; width: 100%; max-width: 560px; }
     .stat-item { display: flex; flex-direction: column; align-items: center; padding: 20px 16px; position: relative; cursor: default; }
     .stat-item:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px; background: var(--border); }
@@ -102,7 +101,6 @@
     .stat-accent { color: var(--accent); }
     .stat-item:hover .stat-num { color: var(--accent); transform: scale(1.05); }
 
-    /* ═══ REQUEST COLLEGE BUTTON ═══ */
     .request-section { display: flex; align-items: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; }
     .request-btn { display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--text); color: #fff; border: none; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1); }
     .request-btn:hover { transform: translateY(-2px) scale(1.03); background: var(--accent); box-shadow: 0 6px 20px rgba(193,126,74,0.3); }
@@ -112,7 +110,6 @@
     .contact-link:hover { color: var(--accent); }
     .contact-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
 
-    /* ═══ REQUEST MODAL ═══ */
     .req-modal-overlay { position: fixed; inset: 0; z-index: 600; background: rgba(26,23,20,0.5); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 20px; }
     .req-modal-overlay.show { display: flex; animation: fadeIn 0.25s; }
     .req-modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; max-width: 480px; width: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.15); animation: modalIn 0.35s cubic-bezier(0.16,1,0.3,1); overflow: hidden; }
@@ -134,7 +131,6 @@
     .req-cancel { padding: 12px 18px; background: var(--surface2); color: var(--muted); border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
     .req-cancel:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
 
-    /* ═══ FOOTER ═══ */
     .site-footer { border-top: 1px solid var(--border); padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: var(--surface2); }
     .footer-left { font-family: 'DM Serif Display', serif; font-size: 16px; display: flex; align-items: center; gap: 6px; }
     .footer-left span { color: var(--accent); }
@@ -292,9 +288,122 @@
     .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
     body.dark .toast { background: #EDE8E0; color: #1A1714; }
 
-    .chat-fab { position: fixed; bottom: 24px; right: 24px; z-index: 300; width: 54px; height: 54px; border-radius: 50%; background: var(--text); color: #fff; border: none; cursor: pointer; box-shadow: 0 6px 24px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; transition: all 0.3s; }
-    .chat-fab:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-    body.dark .chat-fab { background: #EDE8E0; color: #1A1714; }
+    /* ═══ CHAT FAB — HIGHLIGHTED ═══ */
+    .chat-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 300;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, #a86b3a 100%);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(193,126,74,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      transition: all 0.3s;
+      animation: fabAttention 3s ease-in-out infinite;
+    }
+    .chat-fab::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(193,126,74,0.4) 0%, transparent 70%);
+      animation: fabRing 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .chat-fab::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid rgba(193,126,74,0.25);
+      animation: fabRipple 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .chat-fab:hover {
+      transform: scale(1.12);
+      box-shadow: 0 8px 32px rgba(193,126,74,0.5);
+      animation: none;
+    }
+    .chat-fab:hover::before,
+    .chat-fab:hover::after {
+      animation: none;
+      opacity: 0;
+    }
+    body.dark .chat-fab {
+      background: linear-gradient(135deg, var(--accent) 0%, #b87a3a 100%);
+      box-shadow: 0 6px 24px rgba(217,154,91,0.35);
+    }
+
+    @keyframes fabAttention {
+      0%, 100% { transform: scale(1); box-shadow: 0 6px 24px rgba(193,126,74,0.35); }
+      50% { transform: scale(1.06); box-shadow: 0 8px 28px rgba(193,126,74,0.45); }
+    }
+    @keyframes fabRing {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.15); opacity: 0; }
+    }
+    @keyframes fabRipple {
+      0%, 100% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.35); opacity: 0; }
+    }
+
+    /* Tooltip hint */
+    .chat-fab-hint {
+      position: fixed;
+      bottom: 42px;
+      right: 86px;
+      z-index: 301;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      animation: hintIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+      pointer-events: none;
+    }
+    .chat-fab-hint.show {
+      display: flex;
+    }
+    .chat-fab-hint::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 10px;
+      height: 10px;
+      background: var(--surface);
+      border-right: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+    }
+    .chat-fab-hint .hint-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes hintIn {
+      from { opacity: 0; transform: translateX(12px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
     .chat-window { position: fixed; bottom: 90px; right: 24px; z-index: 350; width: 380px; max-width: calc(100vw - 48px); height: 500px; max-height: calc(100vh - 120px); background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 16px 48px rgba(0,0,0,0.15); display: none; flex-direction: column; overflow: hidden; }
     .chat-window.show { display: flex; animation: modalIn 0.3s cubic-bezier(0.16,1,0.3,1); }
     .chat-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--surface2); }
@@ -333,6 +442,13 @@
       .nav-pill { display: none; }
       .chat-window { right: 8px; left: 8px; width: auto; bottom: 86px; }
       .compare-fab { bottom: 86px; right: 16px; }
+      .chat-fab-hint {
+        bottom: 86px;
+        right: 16px;
+      }
+      .chat-fab-hint::after {
+        display: none;
+      }
     }
 
     .slideshow-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--light); margin-bottom: 16px; text-align: center; }
@@ -687,7 +803,6 @@
       transform: translateY(-1px);
     }
 
-    /* Filter Results Dropdown */
     .filter-results-dropdown {
       width: 100%;
       background: var(--surface);
@@ -902,7 +1017,6 @@
   </div>
 </div>
 
-<!-- REQUEST COLLEGE MODAL -->
 <div class="req-modal-overlay" id="req-modal" onclick="if(event.target===this)closeRequestModal()">
   <div class="req-modal">
     <div class="req-modal-head">
@@ -1017,7 +1131,6 @@
       </div>
     </div>
 
-    <!-- Filter results dropdown -->
     <div class="filter-results-dropdown" id="filter-results-dropdown">
       <div class="filter-results-header">
         <span class="filter-results-title" id="filter-results-title">Results</span>
@@ -1050,7 +1163,6 @@
     </div>
   </div>
 
-  <!-- REDESIGNED STATS -->
   <div class="stats">
     <div class="stat-item">
       <span class="stat-num" id="college-count">240+</span>
@@ -1066,7 +1178,6 @@
     </div>
   </div>
 
-  <!-- REQUEST + CONTACT -->
   <div class="request-section">
     <button class="request-btn" onclick="openRequestModal()">
       ✦ Request a College
@@ -1149,7 +1260,6 @@
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-left">Collex<span></span></div>
   <div class="footer-right">
@@ -1160,6 +1270,10 @@
   </div>
 </footer>
 
+<div class="chat-fab-hint" id="chat-fab-hint">
+  <span class="hint-dot"></span>
+  Ask AI anything about colleges
+</div>
 <button class="chat-fab" id="chat-fab" onclick="toggleChat()">✦</button>
 <div class="chat-window" id="chat-window">
   <div class="chat-head">
@@ -1434,7 +1548,28 @@ function showReviewError(msg) {
 
 // ═══ AI CHATBOT ══════════════════════════
 let chatHistory = [ { role: 'system', content: `You are Collex AI, a friendly and knowledgeable assistant about Indian colleges. You know about IITs, NITs, IIMs, BITS, AIIMS, IISc, and many more. Give concise, helpful answers. Use data when possible. If you don't know, say so honestly. Keep answers short — max 3-4 sentences unless asked for detail. You can reference college scores, fees, placements. Be conversational and use emojis sparingly.` } ];
-function toggleChat() { const win = document.getElementById('chat-window'); const fab = document.getElementById('chat-fab'); win.classList.toggle('show'); fab.style.display = win.classList.contains('show') ? 'none' : 'flex'; }
+
+function toggleChat() {
+  const win = document.getElementById('chat-window');
+  const fab = document.getElementById('chat-fab');
+  const hint = document.getElementById('chat-fab-hint');
+  win.classList.toggle('show');
+  fab.style.display = win.classList.contains('show') ? 'none' : 'flex';
+  if (hint) { hint.classList.remove('show'); hint.style.display = 'none'; }
+  localStorage.setItem('collex-chat-seen', '1');
+}
+
+// Show hint tooltip after a delay for first-time visitors
+setTimeout(() => {
+  if (!localStorage.getItem('collex-chat-seen')) {
+    const hint = document.getElementById('chat-fab-hint');
+    if (hint) hint.classList.add('show');
+    setTimeout(() => {
+      if (hint) { hint.classList.remove('show'); }
+    }, 8000);
+  }
+}, 4000);
+
 document.getElementById('chat-input').addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatSend(); } });
 async function chatSend(text) {
   const input = document.getElementById('chat-input'); const msg = text || input.value.trim(); if (!msg) return; input.value = '';
@@ -1662,7 +1797,6 @@ function clearFilters() {
   closeFilterResults();
 }
 
-// Initialize filters
 function initFilters() {
   if (typeof DB !== 'undefined') {
     populateFilterOptions();
@@ -1712,7 +1846,7 @@ try {
 
 try { const hero = document.getElementById('page-hero'); if (hero) { hero.addEventListener('mousemove', (e) => { const rect = hero.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; hero.style.setProperty('--mx', `${x * 30}px`); hero.style.setProperty('--my', `${y * 20}px`); }); } } catch(e) {}
 
-// Initialize filters after everything loads
+// Initialize filters
 document.addEventListener('DOMContentLoaded', initFilters);
 if (document.readyState !== 'loading') { initFilters(); }
 </script>
