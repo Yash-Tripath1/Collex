@@ -114,7 +114,7 @@ const DB = {
   },
 
   "sharda university": {
-    name:"Sharda University", type:"Private University", location:"Greater Noida, UP", score:6.4, verdict:"Global Diversity — "The World is Here"",
+    name:"Sharda University", type:"Private University", location:"Greater Noida, UP", score:6.4, verdict:"Global Diversity — 'The World is Here'",
     programs:"B.Tech, Medical, Dental, Law, Business",
     fees:"₹1.8–₹2.2L/year; expensive",
     campuses:"Large sprawling campus with hospital",
