@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/groq.js": {
+      "memory": 128,
+      "maxDuration": 30
+    }
+  }
+}

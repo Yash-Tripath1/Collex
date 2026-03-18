@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Collex — College Reality Check</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+  <script src="colleges.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F7F5F2; --surface: #FFFFFF; --surface2: #F0EDE8;
+      --border: #E8E4DE; --text: #1A1714; --muted: #7A7570; --light: #B0AAA3;
+      --accent: #C17E4A; --accent-bg: #F5EDE3;
+      --green: #4A7C59; --green-bg: #E8F2EC;
+      --red: #C14A4A; --red-bg: #F5E3E3;
+      --amber: #C19A4A;
+      --r: 14px; --shadow: 0 2px 12px rgba(26,23,20,0.06);
+      --nav-bg: rgba(247,245,242,0.9);
+      --score-bg: #1A1714;
+      --score-text: #FFFFFF;
+      --score-denom-text: rgba(255,255,255,0.45);
+      --score-label-text: rgba(255,255,255,0.55);
+      --score-verdict-text: rgba(255,255,255,0.6);
+      --score-glow: rgba(26,23,20,0.12);
+    }
+
+    body.dark {
+      --bg: #141210; --surface: #1E1C19; --surface2: #262420;
+      --border: #333028; --text: #EDE8E0; --muted: #9A958D; --light: #5A5650;
+      --accent: #D99A5B; --accent-bg: #2A2218;
+      --green: #6BA87A; --green-bg: #1A2A1E;
+      --red: #D46A6A; --red-bg: #2A1A1A;
+      --amber: #D4B05A;
+      --shadow: 0 2px 12px rgba(0,0,0,0.3);
+      --nav-bg: rgba(20,18,16,0.92);
+    }
+
+    .score-card {
+      background: var(--score-bg) !important;
+      box-shadow: 0 4px 20px var(--score-glow), 0 1px 0 rgba(255,255,255,0.06) inset;
+    }
+    .score-card .score-num { color: var(--score-text) !important; }
+    .score-card .score-label { color: var(--score-label-text) !important; }
+    .score-card .score-verdict { color: var(--score-verdict-text) !important; }
+    .score-card .score-denom { color: var(--score-denom-text) !important; }
+
+    body.dark .slide-glass { background: rgba(30,28,25,0.82); border-color: rgba(255,255,255,0.08); }
+    body.dark .slide-glass .slide-title,
+    body.dark .slide-glass .slide-pill strong { color: var(--text); }
+    body.dark .slide-pill { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.06); }
+    body.dark .slide-score-circle { background: var(--score-bg); }
+    body.dark .slide-score-circle .slide-score-num { color: var(--score-text); }
+    body.dark .slide-score-circle .slide-score-den { color: var(--score-denom-text); }
+    body.dark ::selection { background: var(--accent-bg); color: var(--accent); }
+    body.dark ::-webkit-scrollbar-thumb { background: var(--border); }
+
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; line-height: 1.6; transition: background 0.4s, color 0.4s; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); height: 58px; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; transition: background 0.4s, border-color 0.4s; }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 21px; letter-spacing: -0.3px; cursor: pointer; }
+    .logo span { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .nav-pill { font-size: 12px; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); padding: 4px 12px; border-radius: 20px; transition: all 0.3s; }
+    .dm-toggle { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.3s; }
+    .dm-toggle:hover { background: var(--accent-bg); border-color: var(--accent); transform: rotate(20deg); }
+    .nav-btn { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.2s; position: relative; }
+    .nav-btn:hover { background: var(--accent-bg); border-color: var(--accent); }
+    .nav-btn .badge { position: absolute; top: -4px; right: -4px; min-width: 16px; height: 16px; border-radius: 8px; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0 4px; }
+    .share-btn { width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.2s; }
+    .share-btn:hover { background: var(--accent-bg); border-color: var(--accent); }
+
+    #page-hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 24px 60px; text-align: center; }
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-bg); border: 1px solid rgba(193,126,74,0.25); padding: 5px 14px; border-radius: 20px; display: inline-block; margin-bottom: 24px; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 6vw, 68px); line-height: 1.08; letter-spacing: -1.5px; max-width: 680px; margin-bottom: 18px; }
+    h1 em { font-style: italic; color: var(--accent); }
+    .subtitle { font-size: 17px; color: var(--muted); font-weight: 300; line-height: 1.7; max-width: 460px; margin-bottom: 44px; }
+
+    /* ═══ SEARCH WRAP — HIGH Z-INDEX TO FIX DROPDOWN ═══ */
+    .search-wrap { width: 100%; max-width: 560px; position: relative; margin-bottom: 8px; z-index: 50; }
+    .search-wrap input { width: 100%; padding: 17px 60px 17px 22px; font-family: 'DM Sans', sans-serif; font-size: 15px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 50px; outline: none; color: var(--text); box-shadow: var(--shadow); transition: border-color 0.2s, box-shadow 0.2s; }
+    .search-wrap input::placeholder { color: var(--light); }
+    .search-wrap input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(193,126,74,0.12); }
+    .search-wrap button { position: absolute; right: 7px; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; background: var(--accent); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+    .search-wrap button:hover { background: #a86b3a; }
+    .search-wrap button svg { width: 17px; height: 17px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+    .autocomplete { position: absolute; top: calc(100% + 6px); left: 0; right: 0; background: var(--surface); border: 1.5px solid var(--border); border-radius: 16px; box-shadow: 0 8px 32px rgba(26,23,20,0.12); z-index: 200; overflow: hidden; display: none; }
+    .autocomplete-item { padding: 12px 20px; cursor: pointer; font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 10px; transition: background 0.1s; }
+    .autocomplete-item:hover { background: var(--accent-bg); }
+    .autocomplete-item .ac-type { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+    /* ═══ CHIPS & BELOW — LOW Z-INDEX SO DROPDOWN COVERS THEM ═══ */
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 16px; margin-bottom: 56px; position: relative; z-index: 1; }
+    .chip { padding: 6px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; font-size: 13px; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+    .chip:hover { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+    .slideshow-section { width: 100%; max-width: 680px; margin-bottom: 52px; position: relative; z-index: 1; }
+    .stats { display: flex; gap: 48px; padding-top: 36px; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 26px; display: block; }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    #page-results { display: none; padding: 78px 0 60px; min-height: 100vh; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+    .back { width: 38px; height: 38px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; flex-shrink: 0; }
+    .back:hover { background: var(--surface2); }
+    .back svg { width: 15px; height: 15px; stroke: var(--muted); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .top-search { flex: 1; max-width: 420px; position: relative; }
+    .top-search input { width: 100%; padding: 10px 42px 10px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 50px; outline: none; color: var(--text); transition: border-color 0.2s; }
+    .top-search input:focus { border-color: var(--accent); }
+    .top-search button { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; background: var(--accent); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .top-search button svg { width: 13px; height: 13px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+    .topbar-actions { display: flex; gap: 8px; margin-left: auto; }
+    .college-header { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 28px 32px; margin-bottom: 20px; display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; box-shadow: var(--shadow); transition: background 0.4s, border-color 0.4s; }
+    .college-badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); background: var(--accent-bg); padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+    .college-name { font-family: 'DM Serif Display', serif; font-size: 30px; letter-spacing: -0.3px; line-height: 1.1; margin-bottom: 6px; }
+    .college-loc { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+    .college-loc svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    .score-card {
+      border-radius: 14px;
+      padding: 22px 26px;
+      text-align: center;
+      min-width: 140px;
+      flex-shrink: 0;
+      transition: background 0.5s, box-shadow 0.5s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .score-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .score-label { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; position: relative; }
+    .score-num { font-family: 'DM Serif Display', serif; font-size: 46px; line-height: 1; position: relative; }
+    .score-denom { font-size: 15px; }
+    .score-verdict { font-size: 11px; margin-top: 8px; position: relative; }
+
+    .grid { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
+    .left, .right { display: flex; flex-direction: column; gap: 20px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 24px 28px; box-shadow: var(--shadow); transition: background 0.4s, border-color 0.4s; }
+    .card-label { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+    .ai-tag { background: var(--accent-bg); color: var(--accent); font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+    table { width: 100%; border-collapse: collapse; }
+    tr { border-bottom: 1px solid var(--border); }
+    tr:last-child { border-bottom: none; }
+    td { padding: 12px 0; vertical-align: top; font-size: 14px; }
+    td:first-child { font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); width: 140px; padding-right: 16px; padding-top: 14px; }
+    .metric { margin-bottom: 13px; }
+    .metric:last-child { margin-bottom: 0; }
+    .metric-top { display: flex; justify-content: space-between; margin-bottom: 5px; }
+    .metric-name { font-size: 13px; }
+    .metric-val { font-size: 13px; font-weight: 600; }
+    .bar-bg { height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 3px; width: 0%; transition: width 1s cubic-bezier(0.4,0,0.2,1); }
+
+    .metric-val.tier-high { color: #3d8b5e; }
+    .metric-val.tier-mid { color: #b8860b; }
+    .metric-val.tier-low { color: #c0392b; }
+    body.dark .metric-val.tier-high { color: #6fcf97; }
+    body.dark .metric-val.tier-mid { color: #f0c040; }
+    body.dark .metric-val.tier-low { color: #e87272; }
+
+    .bar-high { background: linear-gradient(90deg, #3d8b5e, #52b078); }
+    .bar-mid { background: linear-gradient(90deg, #c9952e, #e0b63a); }
+    .bar-low { background: linear-gradient(90deg, #c0392b, #d4574a); }
+
+    .summary { font-size: 14px; line-height: 1.75; color: var(--text); margin-bottom: 16px; }
+    .section-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .section-label.pro { color: var(--green); }
+    .section-label.con { color: var(--red); }
+    .items { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .item { font-size: 13px; line-height: 1.5; padding: 8px 11px; border-radius: 8px; }
+    .item.pro { background: var(--green-bg); }
+    .item.con { background: var(--red-bg); }
+    .voice { font-size: 13px; line-height: 1.6; padding: 12px 14px; background: var(--surface2); border-radius: 10px; border-left: 3px solid var(--accent); margin-bottom: 10px; }
+    .voice:last-child { margin-bottom: 0; }
+    .voice-src { font-size: 11px; color: var(--muted); margin-top: 5px; font-weight: 500; }
+    .loading { display: flex; flex-direction: column; align-items: center; padding: 36px 20px; text-align: center; }
+    .spinner { width: 36px; height: 36px; border: 2.5px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.75s linear infinite; margin-bottom: 12px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-size: 13px; color: var(--muted); }
+    .loading-sub { font-size: 12px; color: var(--light); margin-top: 3px; }
+    .nf { text-align: center; padding: 36px 20px; }
+    .nf-icon { font-size: 28px; margin-bottom: 10px; }
+    .nf-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    .skeleton { background: var(--surface2); border-radius: 6px; position: relative; overflow: hidden; }
+    .skeleton::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation: shimmer 1.5s infinite; }
+    body.dark .skeleton::after { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); }
+    @keyframes shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+    .skel-line { height: 14px; margin-bottom: 10px; }
+    .skel-line.w80 { width: 80%; }
+    .skel-line.w60 { width: 60%; }
+    .skel-line.w90 { width: 90%; }
+    .skel-line.w40 { width: 40%; }
+    .skel-block { height: 60px; margin-bottom: 12px; }
+    .skel-bar { height: 5px; margin-top: 6px; }
+    .skel-circle { width: 48px; height: 48px; border-radius: 50%; }
+    .skel-row { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
+
+    .compare-fab { position: fixed; bottom: 90px; right: 24px; z-index: 300; background: var(--accent); color: #fff; border: none; border-radius: 50px; padding: 12px 22px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 24px rgba(193,126,74,0.35); display: none; align-items: center; gap: 8px; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    .compare-fab:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 32px rgba(193,126,74,0.45); }
+    .compare-fab .fab-count { background: #fff; color: var(--accent); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+    .compare-fab.show { display: flex; animation: fabIn 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes fabIn { from { transform: translateY(60px) scale(0.5); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+    .compare-check { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 12px; color: var(--muted); margin-top: 10px; transition: color 0.2s; }
+    .compare-check:hover { color: var(--accent); }
+    .compare-check input { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; }
+
+    .modal-overlay { position: fixed; inset: 0; z-index: 500; background: rgba(26,23,20,0.5); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.show { display: flex; animation: fadeIn 0.25s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; max-width: 900px; width: 100%; max-height: 85vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.15); animation: modalIn 0.35s cubic-bezier(0.16,1,0.3,1); }
+    @keyframes modalIn { from { transform: translateY(30px) scale(0.96); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+    .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px; border-bottom: 1px solid var(--border); }
+    .modal-title { font-family: 'DM Serif Display', serif; font-size: 22px; }
+    .modal-close { width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface2); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.2s; }
+    .modal-close:hover { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+    .modal-body { padding: 24px 28px; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .compare-table th { text-align: left; padding: 10px 12px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); background: var(--surface2); border-bottom: 2px solid var(--border); position: sticky; top: 0; }
+    .compare-table th:first-child { border-radius: 8px 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 8px 0 0; }
+    .compare-table td { padding: 11px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table td:first-child { font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); width: 120px; background: var(--surface2); }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-college-name { font-family: 'DM Serif Display', serif; font-size: 16px; margin-bottom: 2px; }
+    .compare-score { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; font-family: 'DM Serif Display', serif; font-size: 16px; }
+    .compare-remove { font-size: 11px; color: var(--red); cursor: pointer; margin-top: 4px; display: inline-block; }
+    .compare-remove:hover { text-decoration: underline; }
+    .compare-empty { text-align: center; padding: 40px 20px; color: var(--muted); }
+    .compare-empty-icon { font-size: 36px; margin-bottom: 12px; }
+
+    .bookmarks-overlay { position: fixed; inset: 0; z-index: 400; background: rgba(26,23,20,0.4); backdrop-filter: blur(3px); display: none; }
+    .bookmarks-overlay.show { display: block; animation: fadeIn 0.2s; }
+    .bookmarks-panel { position: fixed; top: 0; right: 0; bottom: 0; z-index: 401; width: 360px; max-width: 90vw; background: var(--surface); border-left: 1px solid var(--border); box-shadow: -8px 0 32px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; }
+    .bookmarks-panel.show { transform: translateX(0); }
+    .bm-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--border); }
+    .bm-title { font-family: 'DM Serif Display', serif; font-size: 18px; }
+    .bm-close { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface2); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.2s; }
+    .bm-close:hover { background: var(--red-bg); border-color: var(--red); }
+    .bm-list { flex: 1; overflow-y: auto; padding: 14px 16px; }
+    .bm-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; }
+    .bm-item:hover { border-color: var(--accent); background: var(--accent-bg); transform: translateX(3px); }
+    .bm-item-info { flex: 1; min-width: 0; }
+    .bm-item-name { font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bm-item-loc { font-size: 11px; color: var(--muted); }
+    .bm-item-score { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--accent); flex-shrink: 0; }
+    .bm-item-del { width: 26px; height: 26px; border-radius: 50%; border: none; background: transparent; cursor: pointer; font-size: 12px; color: var(--light); transition: all 0.2s; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .bm-item-del:hover { background: var(--red-bg); color: var(--red); }
+    .bm-empty { text-align: center; padding: 50px 20px; color: var(--muted); font-size: 13px; }
+    .bm-empty-icon { font-size: 32px; margin-bottom: 10px; }
+    .bookmark-btn { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 17px; transition: all 0.25s; }
+    .bookmark-btn:hover { border-color: var(--red); background: var(--red-bg); }
+    .bookmark-btn.active { background: var(--red-bg); border-color: var(--red); }
+    .bookmark-btn.active::after { content: ''; }
+    .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); z-index: 600; background: var(--text); color: #fff; padding: 12px 24px; border-radius: 50px; font-size: 13px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s; opacity: 0; pointer-events: none; white-space: nowrap; }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    body.dark .toast { background: #EDE8E0; color: #1A1714; }
+
+    .chat-fab { position: fixed; bottom: 24px; right: 24px; z-index: 300; width: 54px; height: 54px; border-radius: 50%; background: var(--text); color: #fff; border: none; cursor: pointer; box-shadow: 0 6px 24px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; transition: all 0.3s; }
+    .chat-fab:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    
+    body.dark .chat-fab { background: #EDE8E0; color: #1A1714; }
+    .chat-window { position: fixed; bottom: 90px; right: 24px; z-index: 350; width: 380px; max-width: calc(100vw - 48px); height: 500px; max-height: calc(100vh - 120px); background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 16px 48px rgba(0,0,0,0.15); display: none; flex-direction: column; overflow: hidden; }
+    .chat-window.show { display: flex; animation: modalIn 0.3s cubic-bezier(0.16,1,0.3,1); }
+    .chat-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--surface2); }
+    .chat-head-title { font-family: 'DM Serif Display', serif; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+    .chat-head-title .ai-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .chat-close { width: 28px; height: 28px; border-radius: 50%; border: none; background: transparent; cursor: pointer; font-size: 16px; color: var(--muted); display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .chat-close:hover { background: var(--red-bg); color: var(--red); }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
+    .chat-msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 13px; line-height: 1.55; animation: msgIn 0.3s cubic-bezier(0.16,1,0.3,1); word-wrap: break-word; }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .chat-msg.bot { background: var(--surface2); align-self: flex-start; border-bottom-left-radius: 4px; }
+    .chat-msg.user { background: var(--accent); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .chat-msg.typing { background: var(--surface2); align-self: flex-start; border-bottom-left-radius: 4px; }
+    .typing-dots { display: flex; gap: 4px; padding: 4px 0; }
+    .typing-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--light); animation: typingBounce 1.2s infinite; }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+    .chat-input-row { display: flex; gap: 8px; padding: 14px 16px; border-top: 1px solid var(--border); background: var(--surface); }
+    .chat-input-row input { flex: 1; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 13px; background: var(--surface2); color: var(--text); outline: none; transition: border-color 0.2s; }
+    .chat-input-row input:focus { border-color: var(--accent); }
+    .chat-input-row input::placeholder { color: var(--light); }
+    .chat-send { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+    .chat-send:hover { background: #a86b3a; transform: scale(1.06); }
+    .chat-send svg { width: 15px; height: 15px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .chat-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 18px 12px; }
+    .chat-sug { padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); font-size: 11px; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+    .chat-sug:hover { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; }
+      .college-header { flex-direction: column; }
+      .stats { gap: 28px; }
+      nav { padding: 0 16px; }
+      .nav-pill { display: none; }
+      .chat-window { right: 8px; left: 8px; width: auto; bottom: 86px; }
+      .compare-fab { bottom: 86px; right: 16px; }
+    }
+
+    .slideshow-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--light); margin-bottom: 16px; text-align: center; }
+    .slideshow-wrap { position: relative; width: 100%; height: 320px; border-radius: 20px; overflow: hidden; }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1); cursor: pointer; overflow: hidden; }
+    .slide.active { opacity: 1; z-index: 1; }
+    .slide-mesh { position: absolute; inset: -20%; width: 140%; height: 140%; animation: meshFloat 12s ease-in-out infinite alternate; filter: blur(0px); }
+    @keyframes meshFloat { 0% { transform: translate(0,0) scale(1); } 33% { transform: translate(-3%,2%) scale(1.02); } 66% { transform: translate(2%,-2%) scale(0.98); } 100% { transform: translate(-1%,1%) scale(1.01); } }
+    .slide-fog { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 80%, rgba(255,255,255,0.25) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 50%), linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%); z-index: 1; }
+    .slide-glass { position: absolute; z-index: 2; bottom: 20px; left: 20px; right: 20px; background: rgba(255,255,255,0.72); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.5); border-radius: 16px; padding: 22px 24px 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 1px 0 rgba(255,255,255,0.6) inset; transition: transform 0.3s, box-shadow 0.3s; }
+    .slide:hover .slide-glass { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 1px 0 rgba(255,255,255,0.6) inset; }
+    .slide-glass-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .slide-type { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); opacity: 0.85; margin-bottom: 5px; }
+    .slide-title { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.1; letter-spacing: -0.3px; color: var(--text); margin-bottom: 3px; }
+    .slide-location { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+    .slide-location svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; flex-shrink: 0; }
+    .slide-score-circle { width: 56px; height: 56px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(26,23,20,0.15); transition: background 0.4s; }
+    .slide-score-num { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1; }
+    .slide-score-den { font-size: 9px; margin-top: 1px; }
+    .slide-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .slide-pill { font-size: 10px; font-weight: 500; padding: 4px 10px; border-radius: 20px; background: rgba(26,23,20,0.05); color: var(--muted); border: 1px solid rgba(26,23,20,0.06); white-space: nowrap; line-height: 1.3; }
+    .slide-pill strong { color: var(--text); font-weight: 600; }
+    .slide-pill.green { background: var(--green-bg); color: var(--green); border-color: rgba(74,124,89,0.12); }
+    .slide-pill.amber { background: var(--accent-bg); color: var(--accent); border-color: rgba(193,126,74,0.12); }
+    .slide-verdict { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(26,23,20,0.06); font-size: 11px; color: var(--muted); font-style: italic; display: flex; align-items: center; gap: 6px; }
+    .slide-verdict::before { content: '✦'; color: var(--accent); font-style: normal; font-size: 10px; }
+    .slide-est { position: absolute; top: 16px; left: 20px; z-index: 3; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.2); backdrop-filter: blur(8px); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); }
+    .slide-nav { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; }
+    .slide-dots { display: flex; gap: 6px; }
+    .slide-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); border: none; padding: 0; cursor: pointer; transition: all 0.3s; }
+    .slide-dot.active { background: var(--accent); width: 20px; border-radius: 3px; }
+    .slide-arrow { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; }
+    .slide-arrow:hover { background: var(--accent-bg); border-color: var(--accent); }
+    .slide-arrow svg { width: 14px; height: 14px; stroke: var(--muted); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .slide-arrow:hover svg { stroke: var(--accent); }
+    .slide-counter { font-size: 11px; color: var(--light); min-width: 36px; text-align: center; font-variant-numeric: tabular-nums; }
+    @media (max-width: 720px) {
+      .slideshow-wrap { height: 290px; }
+      .slide-glass { bottom: 14px; left: 14px; right: 14px; padding: 18px 18px 14px; }
+      .slide-title { font-size: 18px; }
+      .slide-pills { gap: 4px; }
+      .slide-pill { font-size: 9px; padding: 3px 8px; }
+      .slide-score-circle { width: 48px; height: 48px; }
+      .slide-score-num { font-size: 18px; }
+    }
+
+    /* ═══ ANIMATIONS ═══ */
+    #page-hero .eyebrow, #page-hero h1, #page-hero .subtitle, #page-hero .search-wrap, #page-hero .chips, #page-hero .slideshow-section, #page-hero .stats { opacity: 0; transform: translateY(24px); animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
+    #page-hero .eyebrow { animation-delay: 0.1s; }
+    #page-hero h1 { animation-delay: 0.2s; }
+    #page-hero .subtitle { animation-delay: 0.35s; }
+    #page-hero .search-wrap { animation-delay: 0.45s; }
+    #page-hero .chips { animation-delay: 0.55s; }
+    #page-hero .slideshow-section { animation-delay: 0.6s; }
+    #page-hero .stats { animation-delay: 0.7s; }
+    @keyframes fadeSlideUp { to { opacity: 1; transform: translateY(0); } }
+    .logo { transition: transform 0.2s; }
+    .logo:hover { transform: scale(1.04); }
+    .logo span { display: inline-block; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    .logo:hover span { transform: rotate(-8deg) scale(1.15); }
+    nav { animation: navSlide 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+    @keyframes navSlide { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .search-wrap input { transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s; }
+    .search-wrap input:focus { transform: scale(1.01); box-shadow: 0 0 0 4px rgba(193,126,74,0.1), 0 8px 32px rgba(193,126,74,0.08); }
+    .search-wrap button { transition: background 0.15s, transform 0.15s, box-shadow 0.15s; }
+    .search-wrap button:hover { transform: translateY(-50%) scale(1.08); box-shadow: 0 4px 16px rgba(193,126,74,0.3); }
+    .search-wrap button:active { transform: translateY(-50%) scale(0.95); }
+    .chip { transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1); }
+    .chip:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 4px 12px rgba(193,126,74,0.12); }
+    .chip:active { transform: translateY(0) scale(0.97); }
+    .stat-num { display: inline-block; transition: transform 0.3s; }
+    .stats > div:hover .stat-num { transform: scale(1.08); color: var(--accent); }
+    .autocomplete { transform-origin: top center; }
+    .autocomplete.visible { animation: dropIn 0.25s cubic-bezier(0.16,1,0.3,1) both; }
+    @keyframes dropIn { from { opacity: 0; transform: scaleY(0.9) translateY(-4px); } to { opacity: 1; transform: scaleY(1) translateY(0); } }
+    .autocomplete-item { transition: background 0.15s, padding-left 0.2s; }
+    .autocomplete-item:hover { padding-left: 26px; }
+    #page-results { animation: pageEnter 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+    @keyframes pageEnter { from { opacity: 0; } to { opacity: 1; } }
+    .college-header { animation: cardEnter 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both; transition: box-shadow 0.3s, transform 0.3s; }
+    .college-header:hover { box-shadow: 0 8px 32px rgba(26,23,20,0.1); }
+    @keyframes cardEnter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .grid .card { opacity: 0; transform: translateY(20px); }
+    .grid .card.animated { animation: cardEnter 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .grid .left .card:nth-child(1).animated { animation-delay: 0.15s; }
+    .grid .left .card:nth-child(2).animated { animation-delay: 0.25s; }
+    .grid .right .card:nth-child(1).animated { animation-delay: 0.2s; }
+    .grid .right .card:nth-child(2).animated { animation-delay: 0.3s; }
+    .card { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(26,23,20,0.09); }
+    .score-card { transition: transform 0.3s, background 0.5s, box-shadow 0.5s; }
+    .college-header:hover .score-card { transform: scale(1.04); }
+    .score-num { display: inline-block; animation: scoreCount 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
+    @keyframes scoreCount { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+    .bar-fill { position: relative; overflow: hidden; }
+    .bar-fill::after { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 60px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: barShimmer 2s ease-in-out 1s; }
+    @keyframes barShimmer { from { transform: translateX(-60px); } to { transform: translateX(400px); } }
+    .metric { transition: transform 0.2s; }
+    .metric:hover { transform: translateX(3px); }
+    tr { transition: background 0.15s; }
+    tr:hover { background: rgba(193,126,74,0.03); }
+    .item { transition: transform 0.2s, box-shadow 0.2s; }
+    .item:hover { transform: translateX(4px); box-shadow: -3px 0 0 var(--accent); }
+    .item.pro:hover { box-shadow: -3px 0 0 var(--green); }
+    .item.con:hover { box-shadow: -3px 0 0 var(--red); }
+    .voice { transition: transform 0.2s, box-shadow 0.2s; }
+    .voice:hover { transform: translateX(4px); }
+    .back { transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1); }
+    .back:hover { transform: scale(1.1) rotate(-4deg); border-color: var(--accent); }
+    .college-badge { position: relative; overflow: hidden; }
+    .college-badge::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: badgeShimmer 3s ease-in-out 1s; }
+    @keyframes badgeShimmer { to { left: 200%; } }
+    .eyebrow { position: relative; overflow: hidden; }
+    .eyebrow::after { content: '✦'; position: absolute; right: -2px; top: 50%; transform: translateY(-50%); font-size: 8px; opacity: 0; animation: sparkle 3s ease-in-out 1.5s infinite; }
+    @keyframes sparkle { 0%, 100% { opacity: 0; transform: translateY(-50%) scale(0.5) rotate(0deg); } 50% { opacity: 1; transform: translateY(-50%) scale(1) rotate(180deg); } }
+    .nav-pill { transition: all 0.2s; cursor: default; }
+    .nav-pill:hover { background: var(--accent-bg); color: var(--accent); border-color: rgba(193,126,74,0.3); }
+    .college-name { animation: nameReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
+    @keyframes nameReveal { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; transform: translateX(0); } }
+    .nf-icon { animation: nfBounce 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes nfBounce { from { transform: scale(0) rotate(-10deg); } to { transform: scale(1) rotate(0deg); } }
+    .ai-tag { animation: aiPulse 2.5s ease-in-out infinite; }
+    @keyframes aiPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+    .summary { animation: textFade 0.6s ease 0.1s both; }
+    @keyframes textFade { from { opacity: 0; } to { opacity: 1; } }
+    .section-label { animation: textFade 0.5s ease 0.2s both; }
+    .items .item:nth-child(1) { animation: cardEnter 0.4s ease 0.25s both; }
+    .items .item:nth-child(2) { animation: cardEnter 0.4s ease 0.35s both; }
+    .items .item:nth-child(3) { animation: cardEnter 0.4s ease 0.45s both; }
+    .voice:nth-child(1) { animation: cardEnter 0.4s ease 0.1s both; }
+    .voice:nth-child(2) { animation: cardEnter 0.4s ease 0.2s both; }
+    .voice:nth-child(3) { animation: cardEnter 0.4s ease 0.3s both; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--light); }
+    ::selection { background: var(--accent-bg); color: var(--accent); }
+
+    /* ═══ HERO BACKGROUND ORBS ═══ */
+    #page-hero { position: relative; overflow: hidden; }
+    #page-hero::before, #page-hero::after { content: ''; position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.08; pointer-events: none; z-index: 0; }
+    #page-hero::before { width: 500px; height: 500px; background: var(--accent); top: -100px; left: -100px; animation: orbFloat 20s ease-in-out infinite alternate; }
+    #page-hero::after { width: 400px; height: 400px; background: var(--green); bottom: -50px; right: -80px; animation: orbFloat2 18s ease-in-out infinite alternate; }
+    @keyframes orbFloat { from { transform: translate(0,0); } to { transform: translate(80px,60px); } }
+    @keyframes orbFloat2 { from { transform: translate(0,0); } to { transform: translate(-60px,-50px); } }
+
+    /* ═══ THE FIX: search-wrap gets higher z-index than siblings ═══ */
+    #page-hero > * { position: relative; z-index: 1; }
+    #page-hero > .search-wrap { z-index: 50; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="goHome()">Collex<span>.</span></div>
+  <div class="nav-right">
+    <div class="nav-pill">India College Intelligence</div>
+    <button class="nav-btn" id="bookmarks-btn" onclick="toggleBookmarks()" title="Watchlist">
+      🔖
+      <span class="badge" id="bm-badge" style="display:none">0</span>
+    </button>
+    <button class="dm-toggle" id="dm-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙</button>
+  </div>
+</nav>
+
+<div class="bookmarks-overlay" id="bm-overlay" onclick="toggleBookmarks()"></div>
+<div class="bookmarks-panel" id="bm-panel">
+  <div class="bm-head">
+    <div class="bm-title">📚 Your Watchlist</div>
+    <button class="bm-close" onclick="toggleBookmarks()">✕</button>
+  </div>
+  <div class="bm-list" id="bm-list"></div>
+</div>
+
+<div class="modal-overlay" id="compare-modal" onclick="if(event.target===this)closeCompare()">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">⚖️ Compare Colleges</div>
+      <button class="modal-close" onclick="closeCompare()">✕</button>
+    </div>
+    <div class="modal-body" id="compare-body"></div>
+  </div>
+</div>
+
+<button class="compare-fab" id="compare-fab" onclick="openCompare()">
+  ⚖️ Compare <span class="fab-count" id="fab-count">0</span>
+</button>
+
+<div class="toast" id="toast"></div>
+
+<section id="page-hero">
+  <div class="eyebrow">Free · Verified · AI-Powered</div>
+  <h1>Find your college,<br><em>without the noise.</em></h1>
+  <p class="subtitle">Real data. AI-powered insights. Student voices. No fluff.</p>
+
+  <div class="search-wrap">
+    <input id="hero-input" type="text" placeholder="Search any college in India…" autocomplete="off"/>
+    <button onclick="search(document.getElementById('hero-input').value)">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+    <div class="autocomplete" id="hero-autocomplete"></div>
+  </div>
+
+  <div class="chips">
+    <div class="chip" onclick="search('IIT Bombay')">IIT Bombay</div>
+    <div class="chip" onclick="search('IIT Madras')">IIT Madras</div>
+    <div class="chip" onclick="search('BITS Pilani')">BITS Pilani</div>
+    <div class="chip" onclick="search('NIT Trichy')">NIT Trichy</div>
+    <div class="chip" onclick="search('IIM Ahmedabad')">IIM Ahmedabad</div>
+  </div>
+
+  <div class="slideshow-section">
+    <div class="slideshow-label">Explore Top Colleges</div>
+    <div class="slideshow-wrap" id="slideshow"></div>
+    <div class="slide-nav">
+      <button class="slide-arrow" id="slide-prev">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="slide-dots" id="slide-dots"></div>
+      <span class="slide-counter" id="slide-counter">1 / 8</span>
+      <button class="slide-arrow" id="slide-next">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div><span class="stat-num" id="college-count">200+</span><span class="stat-label">Verified Colleges</span></div>
+    <div><span class="stat-num">10</span><span class="stat-label">Metrics Tracked</span></div>
+    <div><span class="stat-num">Real</span><span class="stat-label">Student Voices</span></div>
+  </div>
+</section>
+
+<div id="page-results">
+  <div class="container">
+    <div class="topbar">
+      <button class="back" onclick="goHome()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="top-search">
+        <input id="results-input" type="text" placeholder="Search another college…" autocomplete="off"/>
+        <button onclick="search(document.getElementById('results-input').value)">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+      <div class="topbar-actions">
+        <button class="bookmark-btn" id="result-bookmark" onclick="toggleBookmarkCurrent()" title="Add to watchlist">🤍</button>
+        <button class="share-btn" onclick="shareCollege()" title="Copy share link">🔗</button>
+        <label class="compare-check" title="Add to comparison">
+          <input type="checkbox" id="compare-toggle" onchange="toggleCompare()"/>
+          Compare
+        </label>
+      </div>
+    </div>
+
+    <div class="college-header">
+      <div>
+        <div class="college-badge" id="col-type">—</div>
+        <div class="college-name" id="col-name">—</div>
+        <div class="college-loc">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span id="col-loc">—</span>
+        </div>
+      </div>
+      <div class="score-card" id="score-card">
+        <div class="score-label">Reality Score</div>
+        <div class="score-num" id="col-score">—<span class="score-denom">/10</span></div>
+        <div class="score-verdict" id="col-verdict">—</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="left">
+        <div class="card">
+          <div class="card-label">College Overview</div>
+          <table>
+            <tr><td>Programs</td><td id="d-programs">—</td></tr>
+            <tr><td>Fee Structure</td><td id="d-fees">—</td></tr>
+            <tr><td>Campuses</td><td id="d-campuses">—</td></tr>
+            <tr><td>Sports</td><td id="d-sports">—</td></tr>
+            <tr><td>Extra-Curricular</td><td id="d-extra">—</td></tr>
+            <tr><td>Avg Placement</td><td id="d-placement">—</td></tr>
+            <tr><td>Established</td><td id="d-est">—</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-label">Rating Breakdown</div>
+          <div id="metrics-list"></div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="card">
+          <div class="card-label">AI Analysis <span class="ai-tag">✦ Live</span></div>
+          <div id="ai-review"></div>
+        </div>
+        <div class="card">
+          <div class="card-label">Student Voices <span class="ai-tag">AI Sourced</span></div>
+          <div id="voices"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="chat-fab" id="chat-fab" onclick="toggleChat()">✦</button>
+<div class="chat-window" id="chat-window">
+  <div class="chat-head">
+    <div class="chat-head-title"><span class="ai-dot"></span> Ask Collex AI</div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">Hey! 👋 I'm the Collex AI assistant. Ask me anything about Indian colleges — rankings, placements, fees, campus life, or help choosing between two colleges!</div>
+  </div>
+  <div class="chat-suggestions" id="chat-suggestions">
+    <div class="chat-sug" onclick="chatSend('Which IIT has the best placements?')">Best IIT placements?</div>
+    <div class="chat-sug" onclick="chatSend('Compare BITS Pilani vs NIT Trichy')">BITS vs NIT Trichy</div>
+    <div class="chat-sug" onclick="chatSend('Top colleges under 5 LPA fees')">Under 5 LPA fees</div>
+  </div>
+  <div class="chat-input-row">
+    <input id="chat-input" type="text" placeholder="Ask about any college…" autocomplete="off"/>
+    <button class="chat-send" onclick="chatSend()">
+      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+
+const reviewCache = {};
+let currentCollege = null;
+
+document.getElementById('college-count').textContent = Object.keys(DB).length + '+';
+
+// ═══ SCORE COLOR SYSTEM ══════════════════
+function getScoreColors(score) {
+  const s = parseFloat(score);
+  const isDark = document.body.classList.contains('dark');
+  if (s >= 8.5) {
+    return { bg: isDark ? 'linear-gradient(135deg, #1a4a2e 0%, #245e3a 50%, #2d7048 100%)' : 'linear-gradient(135deg, #1a5c32 0%, #2d7a48 50%, #3d8b5e 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(45,112,72,0.4)' : 'rgba(45,112,72,0.2)' };
+  } else if (s >= 7.5) {
+    return { bg: isDark ? 'linear-gradient(135deg, #1a3d3a 0%, #24584e 50%, #2e7068 100%)' : 'linear-gradient(135deg, #1e5d52 0%, #2a7a6e 50%, #3a9485 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(46,112,104,0.35)' : 'rgba(46,112,104,0.18)' };
+  } else if (s >= 6.5) {
+    return { bg: isDark ? 'linear-gradient(135deg, #3a2e10 0%, #5a4518 50%, #7a5c22 100%)' : 'linear-gradient(135deg, #7a5c1a 0%, #9a7825 50%, #b8932e 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(122,92,34,0.4)' : 'rgba(184,147,46,0.2)' };
+  } else if (s >= 5.5) {
+    return { bg: isDark ? 'linear-gradient(135deg, #3a2415 0%, #5a3520 50%, #7a4828 100%)' : 'linear-gradient(135deg, #8a5530 0%, #a86b3a 50%, #c07e45 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(122,72,40,0.4)' : 'rgba(168,107,58,0.2)' };
+  } else {
+    return { bg: isDark ? 'linear-gradient(135deg, #3a1818 0%, #5a2828 50%, #7a3535 100%)' : 'linear-gradient(135deg, #8a3535 0%, #a84848 50%, #c05555 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(122,53,53,0.4)' : 'rgba(192,74,74,0.2)' };
+  }
+}
+
+function applyScoreColors(score) {
+  const colors = getScoreColors(score);
+  const card = document.getElementById('score-card');
+  card.style.background = colors.bg;
+  card.style.boxShadow = `0 6px 24px ${colors.glow}, 0 1px 0 rgba(255,255,255,0.08) inset`;
+  document.documentElement.style.setProperty('--score-text', colors.text);
+  document.documentElement.style.setProperty('--score-denom-text', colors.denom);
+  document.documentElement.style.setProperty('--score-label-text', colors.label);
+  document.documentElement.style.setProperty('--score-verdict-text', colors.verdict);
+}
+
+function getMetricTier(val) { const v = parseFloat(val); if (v >= 7.5) return 'high'; if (v >= 5) return 'mid'; return 'low'; }
+function getBarClass(val) { const v = parseFloat(val); if (v >= 7.5) return 'bar-high'; if (v >= 5) return 'bar-mid'; return 'bar-low'; }
+function getCompareScoreBg(score) { const s = parseFloat(score); if (s >= 8.5) return 'background:#2d7a48;color:#fff;'; if (s >= 7.5) return 'background:#2a7a6e;color:#fff;'; if (s >= 6.5) return 'background:#9a7825;color:#fff;'; if (s >= 5.5) return 'background:#a86b3a;color:#fff;'; return 'background:#a84848;color:#fff;'; }
+
+// ═══ DARK MODE ═══════════════════════════
+function toggleDarkMode() {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  localStorage.setItem('collex-dark', isDark ? '1' : '0');
+  document.getElementById('dm-toggle').textContent = isDark ? '☀️' : '🌙';
+  if (currentCollege) applyScoreColors(currentCollege.score);
+}
+if (localStorage.getItem('collex-dark') === '1') {
+  document.body.classList.add('dark');
+  document.getElementById('dm-toggle').textContent = '☀️';
+}
+
+// ═══ DEEP LINKS ══════════════════════════
+function updateURL(collegeName) {
+  const slug = collegeName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/,'');
+  history.pushState({ college: collegeName }, '', '#' + slug);
+}
+function loadFromHash() {
+  const hash = location.hash.replace('#','').replace(/-/g,' ').trim();
+  if (hash) { const college = findCollege(hash); if (college) { search(college.name); return true; } }
+  return false;
+}
+window.addEventListener('popstate', (e) => { if (e.state && e.state.college) { search(e.state.college); } else if (!location.hash) { goHome(); } });
+window.addEventListener('DOMContentLoaded', () => { loadFromHash(); });
+
+function shareCollege() {
+  if (!currentCollege) return;
+  const url = location.origin + location.pathname + '#' + currentCollege.name.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+  if (navigator.share) { navigator.share({ title: currentCollege.name + ' — Collex', text: 'Check out ' + currentCollege.name + ' on Collex', url: url }); }
+  else { navigator.clipboard.writeText(url).then(() => showToast('🔗 Link copied to clipboard!')); }
+}
+function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2800); }
+
+// ═══ BOOKMARKS ═══════════════════════════
+function getBookmarks() { try { return JSON.parse(localStorage.getItem('collex-bookmarks') || '[]'); } catch { return []; } }
+function saveBookmarks(arr) { localStorage.setItem('collex-bookmarks', JSON.stringify(arr)); updateBookmarkUI(); }
+function isBookmarked(name) { return getBookmarks().some(b => b.name === name); }
+function addBookmark(college) { const bms = getBookmarks(); if (!bms.some(b => b.name === college.name)) { bms.push({ name: college.name, location: college.location, score: college.score }); saveBookmarks(bms); showToast('🔖 Added to watchlist!'); } }
+function removeBookmark(name) { saveBookmarks(getBookmarks().filter(b => b.name !== name)); }
+function toggleBookmarkCurrent() { if (!currentCollege) return; if (isBookmarked(currentCollege.name)) { removeBookmark(currentCollege.name); showToast('Removed from watchlist'); } else { addBookmark(currentCollege); } updateResultBookmarkBtn(); }
+function updateResultBookmarkBtn() { const btn = document.getElementById('result-bookmark'); if (!currentCollege) return; const active = isBookmarked(currentCollege.name); btn.textContent = active ? '❤️' : '🤍'; btn.classList.toggle('active', active); }
+function updateBookmarkUI() {
+  const bms = getBookmarks(); const badge = document.getElementById('bm-badge'); const list = document.getElementById('bm-list');
+  badge.style.display = bms.length > 0 ? 'flex' : 'none'; badge.textContent = bms.length;
+  if (bms.length === 0) { list.innerHTML = '<div class="bm-empty"><div class="bm-empty-icon">📚</div>Your watchlist is empty.<br>Bookmark colleges to track them here.</div>'; return; }
+  list.innerHTML = bms.map(b => `<div class="bm-item" onclick="search('${b.name}');toggleBookmarks()"><div class="bm-item-info"><div class="bm-item-name">${b.name}</div><div class="bm-item-loc">${b.location}</div></div><div class="bm-item-score">${b.score}</div><button class="bm-item-del" onclick="event.stopPropagation();removeBookmark('${b.name}')" title="Remove">✕</button></div>`).join('');
+}
+function toggleBookmarks() { const overlay = document.getElementById('bm-overlay'); const panel = document.getElementById('bm-panel'); const isOpen = panel.classList.contains('show'); if (isOpen) { panel.classList.remove('show'); overlay.classList.remove('show'); } else { updateBookmarkUI(); panel.classList.add('show'); overlay.classList.add('show'); } }
+updateBookmarkUI();
+
+// ═══ COMPARE ═════════════════════════════
+function getCompareList() { try { return JSON.parse(sessionStorage.getItem('collex-compare') || '[]'); } catch { return []; } }
+function saveCompareList(arr) { sessionStorage.setItem('collex-compare', JSON.stringify(arr)); updateCompareFab(); }
+function updateCompareFab() { const list = getCompareList(); const fab = document.getElementById('compare-fab'); const count = document.getElementById('fab-count'); if (list.length > 0) { fab.classList.add('show'); count.textContent = list.length; } else { fab.classList.remove('show'); } }
+function toggleCompare() {
+  if (!currentCollege) return; const list = getCompareList(); const idx = list.findIndex(c => c.name === currentCollege.name);
+  if (idx > -1) { list.splice(idx, 1); } else { if (list.length >= 3) { showToast('⚠️ Max 3 colleges to compare'); document.getElementById('compare-toggle').checked = false; return; }
+  list.push({ name: currentCollege.name, type: currentCollege.type, location: currentCollege.location, score: currentCollege.score, verdict: currentCollege.verdict, fees: currentCollege.fees, placement: currentCollege.placement, est: currentCollege.est, programs: currentCollege.programs, campuses: currentCollege.campuses, metrics: currentCollege.metrics }); }
+  saveCompareList(list); document.getElementById('compare-toggle').checked = list.some(c => c.name === currentCollege.name);
+}
+function openCompare() {
+  const list = getCompareList(); const body = document.getElementById('compare-body');
+  if (list.length === 0) { body.innerHTML = '<div class="compare-empty"><div class="compare-empty-icon">⚖️</div><p>No colleges selected for comparison.</p><p style="font-size:12px;color:var(--light);margin-top:6px">Search a college and check "Compare" to add it.</p></div>'; }
+  else {
+    const fields = [ { label: 'Score', key: 'score', fmt: v => `<span class="compare-score" style="${getCompareScoreBg(v)}">${v}</span>` }, { label: 'Type', key: 'type' }, { label: 'Location', key: 'location' }, { label: 'Programs', key: 'programs' }, { label: 'Fees', key: 'fees' }, { label: 'Placement', key: 'placement' }, { label: 'Established', key: 'est' }, { label: 'Campuses', key: 'campuses' }, { label: 'Verdict', key: 'verdict' } ];
+    const metricNames = ['Budget Friendliness','Academic Rigor','Campus & Infra','Placement Strength','Student Life','Research Output','Faculty Quality','Industry Connect','Alumni Power','Overall Value'];
+    let headerCols = '<th>Metric</th>' + list.map(c => `<th><div class="compare-college-name">${c.name}</div><div class="compare-remove" onclick="removeCompare('${c.name}')">✕ Remove</div></th>`).join('');
+    let rows = fields.map(f => `<tr><td>${f.label}</td>${list.map(c => `<td>${f.fmt ? f.fmt(c[f.key]) : (c[f.key]||'—')}</td>`).join('')}</tr>`).join('');
+    metricNames.forEach((mn, mi) => { rows += `<tr><td>${mn}</td>${list.map(c => { const m = c.metrics && c.metrics[mi]; if (!m) return '<td>—</td>'; const tier = getMetricTier(m.v); const color = tier === 'high' ? 'var(--green)' : tier === 'mid' ? 'var(--amber)' : 'var(--red)'; return `<td><span style="font-weight:600;color:${color}">${m.v}/10</span></td>`; }).join('')}</tr>`; });
+    body.innerHTML = `<div style="overflow-x:auto"><table class="compare-table"><thead><tr>${headerCols}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+  document.getElementById('compare-modal').classList.add('show');
+}
+function closeCompare() { document.getElementById('compare-modal').classList.remove('show'); }
+function removeCompare(name) { const list = getCompareList().filter(c => c.name !== name); saveCompareList(list); openCompare(); if (currentCollege) document.getElementById('compare-toggle').checked = list.some(c => c.name === currentCollege.name); }
+updateCompareFab();
+
+// ═══ SKELETONS ═══════════════════════════
+function showSkeletonMetrics() { return `<div>${[1,2,3,4,5].map(() => `<div style="margin-bottom:16px"><div class="skel-row"><div class="skeleton skel-line w60"></div><div class="skeleton skel-line w40" style="margin-left:auto"></div></div><div class="skeleton skel-bar" style="width:100%"></div></div>`).join('')}</div>`; }
+function showSkeletonAI() { return `<div style="padding:4px 0"><div class="skeleton skel-line w90"></div><div class="skeleton skel-line w80"></div><div class="skeleton skel-line w60"></div><div style="height:16px"></div><div class="skeleton skel-block" style="border-radius:10px"></div><div class="skeleton skel-block" style="border-radius:10px"></div><div class="skeleton skel-block" style="border-radius:10px;width:80%"></div></div>`; }
+function showSkeletonVoices() { return `<div style="padding:4px 0">${[1,2,3].map(() => `<div class="skeleton skel-block" style="border-radius:10px;margin-bottom:10px;height:72px"></div>`).join('')}</div>`; }
+
+// ═══ SEARCH ══════════════════════════════
+function findCollege(q) {
+  q = q.toLowerCase().trim();
+  if (ALIASES[q]) return DB[ALIASES[q]];
+  for (const key in DB) { if (key.includes(q) || q.includes(key) || DB[key].name.toLowerCase().includes(q)) return DB[key]; }
+  return null;
+}
+function goHome() { document.getElementById('page-results').style.display = 'none'; document.getElementById('page-hero').style.display = 'flex'; hideAutocomplete(); history.pushState(null, '', location.pathname); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+function showAutocomplete(inputEl, dropdownEl) {
+  const q = inputEl.value.toLowerCase().trim();
+  if (q.length < 1) { hideAutocomplete(); return; }
+  const matches = Object.values(DB).filter(c => c.name.toLowerCase().includes(q)).slice(0, 6);
+  if (matches.length === 0) { hideAutocomplete(); return; }
+  dropdownEl.innerHTML = matches.map(c => `<div class="autocomplete-item" onclick="search('${c.name}')">${c.name}<span class="ac-type">${c.type.split(' ')[0]}</span></div>`).join('');
+  dropdownEl.style.display = 'block';
+}
+function hideAutocomplete() { document.querySelectorAll('.autocomplete').forEach(d => d.style.display = 'none'); }
+
+document.getElementById('hero-input').addEventListener('input', function() { showAutocomplete(this, document.getElementById('hero-autocomplete')); });
+document.getElementById('hero-input').addEventListener('keydown', e => { if (e.key === 'Enter') { hideAutocomplete(); search(e.target.value); } if (e.key === 'Escape') hideAutocomplete(); });
+document.getElementById('results-input').addEventListener('keydown', e => { if (e.key === 'Enter') search(e.target.value); });
+document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) hideAutocomplete(); });
+
+function search(query) {
+  query = (query || '').trim(); if (!query) return;
+  hideAutocomplete();
+  document.getElementById('page-hero').style.display = 'none';
+  document.getElementById('page-results').style.display = 'block';
+  document.getElementById('results-input').value = query;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const college = findCollege(query);
+  if (!college) { showNotFound(query); currentCollege = null; return; }
+  currentCollege = college; updateURL(college.name); updateResultBookmarkBtn();
+  const compareList = getCompareList();
+  document.getElementById('compare-toggle').checked = compareList.some(c => c.name === college.name);
+  document.getElementById('col-type').textContent = college.type;
+  document.getElementById('col-name').textContent = college.name;
+  document.getElementById('col-loc').textContent = college.location;
+  document.getElementById('col-score').innerHTML = college.score + '<span class="score-denom">/10</span>';
+  document.getElementById('col-verdict').textContent = college.verdict;
+  document.getElementById('d-programs').textContent = college.programs;
+  document.getElementById('d-fees').textContent = college.fees;
+  document.getElementById('d-campuses').textContent = college.campuses;
+  document.getElementById('d-sports').textContent = college.sports;
+  document.getElementById('d-extra').textContent = college.extra;
+  document.getElementById('d-placement').textContent = college.placement;
+  document.getElementById('d-est').textContent = college.est;
+  applyScoreColors(college.score);
+  const ml = document.getElementById('metrics-list'); ml.innerHTML = showSkeletonMetrics();
+  setTimeout(() => {
+    ml.innerHTML = college.metrics.map(m => { const tier = getMetricTier(m.v); const barClass = getBarClass(m.v); return `<div class="metric"><div class="metric-top"><span class="metric-name">${m.n}</span><span class="metric-val tier-${tier}">${m.v}<span style="font-weight:400;color:var(--light);font-size:11px">/10</span></span></div><div class="bar-bg"><div class="bar-fill ${barClass}" style="width:0%" data-w="${m.v*10}%"></div></div></div>`; }).join('');
+    setTimeout(() => document.querySelectorAll('.bar-fill').forEach(b => b.style.width = b.dataset.w), 80);
+  }, 400);
+  document.getElementById('ai-review').innerHTML = showSkeletonAI();
+  document.getElementById('voices').innerHTML = showSkeletonVoices();
+  fetchReview(college);
+  setTimeout(() => { document.querySelectorAll('.grid .card').forEach(card => card.classList.add('animated')); }, 50);
+}
+
+function showNotFound(query) {
+  currentCollege = null;
+  document.getElementById('col-type').textContent = 'Not in Database';
+  document.getElementById('col-name').textContent = query;
+  document.getElementById('col-loc').textContent = 'India';
+  document.getElementById('col-score').innerHTML = '—<span class="score-denom">/10</span>';
+  document.getElementById('col-verdict').textContent = 'Coming soon';
+  const card = document.getElementById('score-card');
+  card.style.background = document.body.classList.contains('dark') ? '#333028' : '#1A1714';
+  card.style.boxShadow = 'var(--shadow)';
+  ['d-programs','d-fees','d-campuses','d-sports','d-extra','d-placement','d-est'].forEach(id => { document.getElementById(id).textContent = 'Not in database yet.'; });
+  document.getElementById('metrics-list').innerHTML = '<div class="nf"><div class="nf-icon">🏫</div><div class="nf-text">Not in database yet.<br>Adding 100+ colleges soon.</div></div>';
+  document.getElementById('ai-review').innerHTML = '<div class="nf"><div class="nf-text">No data to generate review.</div></div>';
+  document.getElementById('voices').innerHTML = '<div class="nf"><div class="nf-text">No voices yet.</div></div>';
+  document.getElementById('result-bookmark').textContent = '🤍'; document.getElementById('result-bookmark').classList.remove('active');
+  document.getElementById('compare-toggle').checked = false;
+}
+
+async function fetchReview(college) {
+  if (reviewCache[college.name]) { renderReview(reviewCache[college.name]); return; }
+  const prompt = `You are Collex, an honest India college research assistant. Based on verified data about ${college.name}, generate student sentiment analysis.\nData: fees=${college.fees}, placement=${college.placement}, score=${college.score}/10, verdict=${college.verdict}\nRespond with ONLY a raw JSON object. No markdown. No backticks. No explanation. Just the JSON starting with { and ending with }:\n{"summary":"2-3 honest sentences from student perspective","pros":["specific pro 1","specific pro 2","specific pro 3"],"cons":["specific con 1","specific con 2","specific con 3"],"voices":[{"quote":"realistic student quote","source":"Reddit r/india"},{"quote":"realistic student quote","source":"Quora"},{"quote":"realistic student quote","source":"Reddit r/indianstudents"}]}`;
+  try {
+const res = await fetch('/api/groq', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: chatHistory, temperature: 0.7, max_tokens: 500 }) });    const data = await res.json();
+    if (data.error) { showReviewError(data.error.message); return; }
+    const raw = data.choices[0].message.content;
+    const clean = raw.substring(raw.indexOf('{'), raw.lastIndexOf('}') + 1);
+    const parsed = JSON.parse(clean); reviewCache[college.name] = parsed; renderReview(parsed);
+  } catch (err) { console.error(err); showReviewError(err.message); }
+}
+function renderReview(d) {
+  document.getElementById('ai-review').innerHTML = `<p class="summary">${d.summary}</p><div class="section-label pro">↑ Strengths</div><div class="items">${d.pros.map(p=>`<div class="item pro">${p}</div>`).join('')}</div><div class="section-label con">↓ Watch Out</div><div class="items">${d.cons.map(c=>`<div class="item con">${c}</div>`).join('')}</div>`;
+  document.getElementById('voices').innerHTML = d.voices.map(v=>`<div class="voice">"${v.quote}"<div class="voice-src">— ${v.source}</div></div>`).join('');
+}
+function showReviewError(msg) {
+  document.getElementById('ai-review').innerHTML = `<div class="nf"><div class="nf-icon">⚠️</div><div class="nf-text">API error.<br><small style="color:var(--light)">${msg||'Check your Groq key.'}</small></div></div>`;
+  document.getElementById('voices').innerHTML = `<div class="nf"><div class="nf-text">Unavailable due to API error.</div></div>`;
+}
+
+// ═══ AI CHATBOT ══════════════════════════
+let chatHistory = [ { role: 'system', content: `You are Collex AI, a friendly and knowledgeable assistant about Indian colleges. You know about IITs, NITs, IIMs, BITS, AIIMS, IISc, and many more. Give concise, helpful answers. Use data when possible. If you don't know, say so honestly. Keep answers short — max 3-4 sentences unless asked for detail. You can reference college scores, fees, placements. Be conversational and use emojis sparingly.` } ];
+function toggleChat() { const win = document.getElementById('chat-window'); const fab = document.getElementById('chat-fab'); win.classList.toggle('show'); fab.style.display = win.classList.contains('show') ? 'none' : 'flex'; }
+document.getElementById('chat-input').addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatSend(); } });
+async function chatSend(text) {
+  const input = document.getElementById('chat-input'); const msg = text || input.value.trim(); if (!msg) return; input.value = '';
+  document.getElementById('chat-suggestions').style.display = 'none';
+  const messages = document.getElementById('chat-messages');
+  const userDiv = document.createElement('div'); userDiv.className = 'chat-msg user'; userDiv.textContent = msg; messages.appendChild(userDiv);
+  const typingDiv = document.createElement('div'); typingDiv.className = 'chat-msg typing'; typingDiv.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>'; messages.appendChild(typingDiv); messages.scrollTop = messages.scrollHeight;
+  let dbContext = ''; const lowerMsg = msg.toLowerCase();
+  for (const key in DB) { if (lowerMsg.includes(key) || lowerMsg.includes(DB[key].name.toLowerCase())) { const c = DB[key]; dbContext += `\n[${c.name}]: Score ${c.score}/10, ${c.location}, Fees: ${c.fees}, Placement: ${c.placement}, Verdict: ${c.verdict}`; } }
+  chatHistory.push({ role: 'user', content: msg + (dbContext ? '\n\nRelevant college data from our database:' + dbContext : '') });
+  try {
+const res = await fetch('/api/groq', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: chatHistory, temperature: 0.7, max_tokens: 500 }) });
+    const data = await res.json(); typingDiv.remove();
+    if (data.error) { const errDiv = document.createElement('div'); errDiv.className = 'chat-msg bot'; errDiv.textContent = '⚠️ API error: ' + (data.error.message || 'Try again later'); messages.appendChild(errDiv); }
+    else { const reply = data.choices[0].message.content; chatHistory.push({ role: 'assistant', content: reply }); const botDiv = document.createElement('div'); botDiv.className = 'chat-msg bot'; botDiv.textContent = reply; messages.appendChild(botDiv); }
+  } catch (err) { typingDiv.remove(); const errDiv = document.createElement('div'); errDiv.className = 'chat-msg bot'; errDiv.textContent = '⚠️ Connection error. Please try again.'; messages.appendChild(errDiv); }
+  messages.scrollTop = messages.scrollHeight;
+}
+
+// ═══ SLIDESHOW ═══════════════════════════
+try {
+(function() {
+  const SLIDES = [
+    { key:"iit bombay", colors:["#1a1a2e","#16213e","#0f3460","#e2d1c3"], emoji:"🏛️" },
+    { key:"iit madras", colors:["#2d3436","#6c757d","#adb5bd","#f8f9fa"], emoji:"🌿" },
+    { key:"iisc bangalore", colors:["#134E5E","#3a7c6e","#71B280","#d4ebd0"], emoji:"🔬" },
+    { key:"iit delhi", colors:["#2C3E50","#3d6074","#4CA1AF","#bde0e8"], emoji:"🏗️" },
+    { key:"bits pilani", colors:["#6d4c2a","#C17E4A","#E8D5B7","#faf4ed"], emoji:"⚡" },
+    { key:"iim ahmedabad", colors:["#5B1A1A","#8B3A3A","#C0392B","#f5d5d5"], emoji:"📊" },
+    { key:"aiims delhi", colors:["#0c2461","#1e3799","#4a69bd","#d5deff"], emoji:"🏥" },
+    { key:"iit kharagpur", colors:["#1a3a28","#2d5a3f","#4A7C59","#c8e2d0"], emoji:"🎓" },
+    { key:"nit trichy", colors:["#1B2838","#2c3e50","#3498db","#d6eaf8"], emoji:"🌊" },
+    { key:"nlsiu bangalore", colors:["#4a1a6b","#6c3483","#a569bd","#e8d5f5"], emoji:"⚖️" },
+    { key:"iiser pune", colors:["#1a3c4a","#1B7A4A","#27AE60","#d1f2dc"], emoji:"🧪" },
+    { key:"jnu", colors:["#1B1464","#283593","#5C6BC0","#d1d4f0"], emoji:"📚" },
+  ];
+  const container = document.getElementById('slideshow'); const dotsBox = document.getElementById('slide-dots'); const counter = document.getElementById('slide-counter'); const prevBtn = document.getElementById('slide-prev'); const nextBtn = document.getElementById('slide-next');
+  if (!container) return; const built = [];
+  function getSlideScoreColors(score) { const s = parseFloat(score); if (s >= 8.5) return { bg: '#1a5c32', text: '#fff', den: 'rgba(255,255,255,0.5)' }; if (s >= 7.5) return { bg: '#1e5d52', text: '#fff', den: 'rgba(255,255,255,0.5)' }; if (s >= 6.5) return { bg: '#7a5c1a', text: '#fff', den: 'rgba(255,255,255,0.5)' }; if (s >= 5.5) return { bg: '#8a5530', text: '#fff', den: 'rgba(255,255,255,0.5)' }; return { bg: '#8a3535', text: '#fff', den: 'rgba(255,255,255,0.5)' }; }
+  function extractPlacementShort(p) { const m = p.match(/avg\s*₹?([\d.]+[–\-]?[\d.]*)\s*LPA/i) || p.match(/₹?([\d.]+[–\-]?[\d.]*)\s*LPA\s*avg/i); if (m) return '₹' + m[1] + ' LPA avg'; const m2 = p.match(/₹?([\d.]+)\s*LPA/i); return m2 ? '₹' + m2[1] + ' LPA' : null; }
+  function extractFeesShort(f) { const m = f.match(/₹[\d,]+[–\-]?₹?[\d,]*[KL]?\/year/i) || f.match(/₹[\d,]+[–\-]₹?[\d,]+\s*(total|\/year)/i); if (m) return m[0].substring(0, 24); const m2 = f.match(/₹[\d,.]+[–\-]?₹?[\d,.]*[KL]?/); return m2 ? m2[0].substring(0, 20) : null; }
+  function buildMeshSVG(colors) { return `<svg class="slide-mesh" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="g1_${colors[0].replace('#','')}" cx="20%" cy="30%" r="60%"><stop offset="0%" stop-color="${colors[0]}"/><stop offset="100%" stop-color="${colors[1]}" stop-opacity="0.6"/></radialGradient><radialGradient id="g2_${colors[0].replace('#','')}" cx="75%" cy="70%" r="55%"><stop offset="0%" stop-color="${colors[2]}"/><stop offset="100%" stop-color="${colors[1]}" stop-opacity="0.4"/></radialGradient><radialGradient id="g3_${colors[0].replace('#','')}" cx="50%" cy="10%" r="70%"><stop offset="0%" stop-color="${colors[3]}" stop-opacity="0.5"/><stop offset="100%" stop-color="${colors[0]}" stop-opacity="0"/></radialGradient></defs><rect fill="${colors[0]}" width="800" height="600"/><ellipse fill="url(#g1_${colors[0].replace('#','')})" cx="160" cy="180" rx="400" ry="300" opacity="0.9"/><ellipse fill="url(#g2_${colors[0].replace('#','')})" cx="600" cy="420" rx="350" ry="280" opacity="0.8"/><ellipse fill="url(#g3_${colors[0].replace('#','')})" cx="400" cy="60" rx="500" ry="200" opacity="0.6"/></svg>`; }
+  SLIDES.forEach((s, i) => {
+    const c = DB[s.key]; if (!c) return;
+    const placementStr = extractPlacementShort(c.placement); const feesStr = extractFeesShort(c.fees); const sc = getSlideScoreColors(c.score);
+    const div = document.createElement('div'); div.className = 'slide'; div.onclick = () => search(c.name);
+    div.innerHTML = `${buildMeshSVG(s.colors)}<div class="slide-fog"></div><div class="slide-est">${s.emoji} Est. ${c.est.split('(')[0].trim()}</div><div class="slide-glass"><div class="slide-glass-top"><div><div class="slide-type">${c.type.split('—')[0].split('(')[0].trim()}</div><div class="slide-title">${c.name}</div><div class="slide-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${c.location}</div></div><div class="slide-score-circle" style="background:${sc.bg}"><div class="slide-score-num" style="color:${sc.text}">${c.score}</div><div class="slide-score-den" style="color:${sc.den}">/10</div></div></div><div class="slide-pills">${placementStr ? `<div class="slide-pill green"><strong>${placementStr}</strong></div>` : ''}${feesStr ? `<div class="slide-pill"><strong>${feesStr}</strong></div>` : ''}<div class="slide-pill amber"><strong>${c.metrics[0]?.v || '—'}</strong>/10 Budget</div></div><div class="slide-verdict">${c.verdict}</div></div>`;
+    container.appendChild(div); built.push(div);
+    const dot = document.createElement('button'); dot.className = 'slide-dot'; dot.onclick = (e) => { e.stopPropagation(); go(built.indexOf(div)); }; dotsBox.appendChild(dot);
+  });
+  if (built.length === 0) return; let idx = 0, timer;
+  function go(i) { idx = ((i % built.length) + built.length) % built.length; built.forEach((s,j) => s.classList.toggle('active', j === idx)); dotsBox.querySelectorAll('.slide-dot').forEach((d,j) => d.classList.toggle('active', j === idx)); if (counter) counter.textContent = `${idx + 1} / ${built.length}`; clearInterval(timer); timer = setInterval(() => go(idx + 1), 5000); }
+  if (prevBtn) prevBtn.onclick = () => go(idx - 1); if (nextBtn) nextBtn.onclick = () => go(idx + 1);
+  container.addEventListener('mouseenter', () => clearInterval(timer)); container.addEventListener('mouseleave', () => { clearInterval(timer); timer = setInterval(() => go(idx + 1), 5000); });
+  let touchX = 0; container.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, {passive:true}); container.addEventListener('touchend', e => { const diff = touchX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) go(diff > 0 ? idx + 1 : idx - 1); }, {passive:true});
+  go(0);
+})();
+} catch(e) { console.warn('Slideshow error:', e); }
+
+try { const hero = document.getElementById('page-hero'); if (hero) { hero.addEventListener('mousemove', (e) => { const rect = hero.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; hero.style.setProperty('--mx', `${x * 30}px`); hero.style.setProperty('--my', `${y * 20}px`); }); } } catch(e) {}
+</script>
+</body>
+</html>
