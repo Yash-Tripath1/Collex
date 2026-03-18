@@ -76,7 +76,6 @@
     h1 em { font-style: italic; color: var(--accent); }
     .subtitle { font-size: 17px; color: var(--muted); font-weight: 300; line-height: 1.7; max-width: 460px; margin-bottom: 44px; }
 
-    /* ═══ SEARCH WRAP — HIGH Z-INDEX TO FIX DROPDOWN ═══ */
     .search-wrap { width: 100%; max-width: 560px; position: relative; margin-bottom: 8px; z-index: 50; }
     .search-wrap input { width: 100%; padding: 17px 60px 17px 22px; font-family: 'DM Sans', sans-serif; font-size: 15px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 50px; outline: none; color: var(--text); box-shadow: var(--shadow); transition: border-color 0.2s, box-shadow 0.2s; }
     .search-wrap input::placeholder { color: var(--light); }
@@ -89,14 +88,63 @@
     .autocomplete-item:hover { background: var(--accent-bg); }
     .autocomplete-item .ac-type { font-size: 11px; color: var(--muted); margin-left: auto; }
 
-    /* ═══ CHIPS & BELOW — LOW Z-INDEX SO DROPDOWN COVERS THEM ═══ */
     .chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 16px; margin-bottom: 56px; position: relative; z-index: 1; }
     .chip { padding: 6px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; font-size: 13px; color: var(--muted); cursor: pointer; transition: all 0.15s; }
     .chip:hover { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
     .slideshow-section { width: 100%; max-width: 680px; margin-bottom: 52px; position: relative; z-index: 1; }
-    .stats { display: flex; gap: 48px; padding-top: 36px; border-top: 1px solid var(--border); position: relative; z-index: 1; }
-    .stat-num { font-family: 'DM Serif Display', serif; font-size: 26px; display: block; }
-    .stat-label { font-size: 12px; color: var(--muted); }
+
+    /* ═══ STATS — REDESIGNED ═══ */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; padding-top: 36px; border-top: 1px solid var(--border); position: relative; z-index: 1; width: 100%; max-width: 560px; }
+    .stat-item { display: flex; flex-direction: column; align-items: center; padding: 20px 16px; position: relative; cursor: default; }
+    .stat-item:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px; background: var(--border); }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1; display: block; color: var(--text); transition: color 0.3s; }
+    .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.5px; margin-top: 4px; font-weight: 500; }
+    .stat-accent { color: var(--accent); }
+    .stat-item:hover .stat-num { color: var(--accent); transform: scale(1.05); }
+
+    /* ═══ REQUEST COLLEGE BUTTON ═══ */
+    .request-section { display: flex; align-items: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; }
+    .request-btn { display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--text); color: #fff; border: none; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+    .request-btn:hover { transform: translateY(-2px) scale(1.03); background: var(--accent); box-shadow: 0 6px 20px rgba(193,126,74,0.3); }
+    body.dark .request-btn { background: var(--surface); color: var(--text); border: 1.5px solid var(--border); }
+    body.dark .request-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .contact-link { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 5px; text-decoration: none; transition: color 0.2s; }
+    .contact-link:hover { color: var(--accent); }
+    .contact-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+
+    /* ═══ REQUEST MODAL ═══ */
+    .req-modal-overlay { position: fixed; inset: 0; z-index: 600; background: rgba(26,23,20,0.5); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 20px; }
+    .req-modal-overlay.show { display: flex; animation: fadeIn 0.25s; }
+    .req-modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; max-width: 480px; width: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.15); animation: modalIn 0.35s cubic-bezier(0.16,1,0.3,1); overflow: hidden; }
+    .req-modal-head { padding: 24px 28px 0; }
+    .req-modal-title { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 6px; }
+    .req-modal-sub { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .req-modal-body { padding: 20px 28px 28px; }
+    .req-field { margin-bottom: 16px; }
+    .req-field label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .req-field input, .req-field textarea { width: 100%; padding: 11px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; outline: none; color: var(--text); transition: border-color 0.2s; resize: none; }
+    .req-field input:focus, .req-field textarea:focus { border-color: var(--accent); }
+    .req-field input::placeholder, .req-field textarea::placeholder { color: var(--light); }
+    .req-notice { font-size: 12px; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; line-height: 1.5; }
+    .req-notice a { color: var(--accent); text-decoration: none; }
+    .req-notice a:hover { text-decoration: underline; }
+    .req-actions { display: flex; gap: 10px; }
+    .req-submit { flex: 1; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .req-submit:hover { background: #a86b3a; transform: translateY(-1px); }
+    .req-cancel { padding: 12px 18px; background: var(--surface2); color: var(--muted); border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+    .req-cancel:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+
+    /* ═══ FOOTER ═══ */
+    .site-footer { border-top: 1px solid var(--border); padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: var(--surface2); }
+    .footer-left { font-family: 'DM Serif Display', serif; font-size: 16px; display: flex; align-items: center; gap: 6px; }
+    .footer-left span { color: var(--accent); }
+    .footer-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .footer-link { font-size: 12px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.2s; }
+    .footer-link:hover { color: var(--accent); }
+    .footer-email { font-size: 12px; color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; text-decoration: none; transition: all 0.2s; }
+    .footer-email:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+    @media (max-width: 560px) { .site-footer { flex-direction: column; align-items: flex-start; padding: 20px; } }
+
     #page-results { display: none; padding: 78px 0 60px; min-height: 100vh; }
     .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
     .topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
@@ -115,23 +163,8 @@
     .college-loc { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
     .college-loc svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-    .score-card {
-      border-radius: 14px;
-      padding: 22px 26px;
-      text-align: center;
-      min-width: 140px;
-      flex-shrink: 0;
-      transition: background 0.5s, box-shadow 0.5s, transform 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .score-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 60%);
-      pointer-events: none;
-    }
+    .score-card { border-radius: 14px; padding: 22px 26px; text-align: center; min-width: 140px; flex-shrink: 0; transition: background 0.5s, box-shadow 0.5s, transform 0.3s; position: relative; overflow: hidden; }
+    .score-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 60%); pointer-events: none; }
     .score-label { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; position: relative; }
     .score-num { font-family: 'DM Serif Display', serif; font-size: 46px; line-height: 1; position: relative; }
     .score-denom { font-size: 15px; }
@@ -255,14 +288,12 @@
     .bookmark-btn { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 17px; transition: all 0.25s; }
     .bookmark-btn:hover { border-color: var(--red); background: var(--red-bg); }
     .bookmark-btn.active { background: var(--red-bg); border-color: var(--red); }
-    .bookmark-btn.active::after { content: ''; }
-    .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); z-index: 600; background: var(--text); color: #fff; padding: 12px 24px; border-radius: 50px; font-size: 13px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s; opacity: 0; pointer-events: none; white-space: nowrap; }
+    .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); z-index: 700; background: var(--text); color: #fff; padding: 12px 24px; border-radius: 50px; font-size: 13px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s; opacity: 0; pointer-events: none; white-space: nowrap; }
     .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
     body.dark .toast { background: #EDE8E0; color: #1A1714; }
 
     .chat-fab { position: fixed; bottom: 24px; right: 24px; z-index: 300; width: 54px; height: 54px; border-radius: 50%; background: var(--text); color: #fff; border: none; cursor: pointer; box-shadow: 0 6px 24px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; transition: all 0.3s; }
     .chat-fab:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-    
     body.dark .chat-fab { background: #EDE8E0; color: #1A1714; }
     .chat-window { position: fixed; bottom: 90px; right: 24px; z-index: 350; width: 380px; max-width: calc(100vw - 48px); height: 500px; max-height: calc(100vh - 120px); background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 16px 48px rgba(0,0,0,0.15); display: none; flex-direction: column; overflow: hidden; }
     .chat-window.show { display: flex; animation: modalIn 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -297,7 +328,7 @@
     @media (max-width: 720px) {
       .grid { grid-template-columns: 1fr; }
       .college-header { flex-direction: column; }
-      .stats { gap: 28px; }
+      .stats { max-width: 100%; }
       nav { padding: 0 16px; }
       .nav-pill { display: none; }
       .chat-window { right: 8px; left: 8px; width: auto; bottom: 86px; }
@@ -349,7 +380,7 @@
     }
 
     /* ═══ ANIMATIONS ═══ */
-    #page-hero .eyebrow, #page-hero h1, #page-hero .subtitle, #page-hero .search-wrap, #page-hero .chips, #page-hero .slideshow-section, #page-hero .stats { opacity: 0; transform: translateY(24px); animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
+    #page-hero .eyebrow, #page-hero h1, #page-hero .subtitle, #page-hero .search-wrap, #page-hero .chips, #page-hero .slideshow-section, #page-hero .stats, #page-hero .request-section { opacity: 0; transform: translateY(24px); animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
     #page-hero .eyebrow { animation-delay: 0.1s; }
     #page-hero h1 { animation-delay: 0.2s; }
     #page-hero .subtitle { animation-delay: 0.35s; }
@@ -357,6 +388,7 @@
     #page-hero .chips { animation-delay: 0.55s; }
     #page-hero .slideshow-section { animation-delay: 0.6s; }
     #page-hero .stats { animation-delay: 0.7s; }
+    #page-hero .request-section { animation-delay: 0.8s; }
     @keyframes fadeSlideUp { to { opacity: 1; transform: translateY(0); } }
     .logo { transition: transform 0.2s; }
     .logo:hover { transform: scale(1.04); }
@@ -364,20 +396,12 @@
     .logo:hover span { transform: rotate(-8deg) scale(1.15); }
     nav { animation: navSlide 0.5s cubic-bezier(0.16,1,0.3,1) both; }
     @keyframes navSlide { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    .search-wrap input { transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s; }
     .search-wrap input:focus { transform: scale(1.01); box-shadow: 0 0 0 4px rgba(193,126,74,0.1), 0 8px 32px rgba(193,126,74,0.08); }
-    .search-wrap button { transition: background 0.15s, transform 0.15s, box-shadow 0.15s; }
-    .search-wrap button:hover { transform: translateY(-50%) scale(1.08); box-shadow: 0 4px 16px rgba(193,126,74,0.3); }
-    .search-wrap button:active { transform: translateY(-50%) scale(0.95); }
     .chip { transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1); }
     .chip:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 4px 12px rgba(193,126,74,0.12); }
-    .chip:active { transform: translateY(0) scale(0.97); }
-    .stat-num { display: inline-block; transition: transform 0.3s; }
-    .stats > div:hover .stat-num { transform: scale(1.08); color: var(--accent); }
-    .autocomplete { transform-origin: top center; }
+    .stat-num { display: inline-block; transition: transform 0.3s, color 0.3s; }
     .autocomplete.visible { animation: dropIn 0.25s cubic-bezier(0.16,1,0.3,1) both; }
     @keyframes dropIn { from { opacity: 0; transform: scaleY(0.9) translateY(-4px); } to { opacity: 1; transform: scaleY(1) translateY(0); } }
-    .autocomplete-item { transition: background 0.15s, padding-left 0.2s; }
     .autocomplete-item:hover { padding-left: 26px; }
     #page-results { animation: pageEnter 0.5s cubic-bezier(0.16,1,0.3,1) both; }
     @keyframes pageEnter { from { opacity: 0; } to { opacity: 1; } }
@@ -399,56 +423,26 @@
     .bar-fill { position: relative; overflow: hidden; }
     .bar-fill::after { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 60px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: barShimmer 2s ease-in-out 1s; }
     @keyframes barShimmer { from { transform: translateX(-60px); } to { transform: translateX(400px); } }
-    .metric { transition: transform 0.2s; }
     .metric:hover { transform: translateX(3px); }
-    tr { transition: background 0.15s; }
     tr:hover { background: rgba(193,126,74,0.03); }
-    .item { transition: transform 0.2s, box-shadow 0.2s; }
     .item:hover { transform: translateX(4px); box-shadow: -3px 0 0 var(--accent); }
     .item.pro:hover { box-shadow: -3px 0 0 var(--green); }
     .item.con:hover { box-shadow: -3px 0 0 var(--red); }
-    .voice { transition: transform 0.2s, box-shadow 0.2s; }
-    .voice:hover { transform: translateX(4px); }
-    .back { transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1); }
     .back:hover { transform: scale(1.1) rotate(-4deg); border-color: var(--accent); }
-    .college-badge { position: relative; overflow: hidden; }
-    .college-badge::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: badgeShimmer 3s ease-in-out 1s; }
-    @keyframes badgeShimmer { to { left: 200%; } }
-    .eyebrow { position: relative; overflow: hidden; }
-    .eyebrow::after { content: '✦'; position: absolute; right: -2px; top: 50%; transform: translateY(-50%); font-size: 8px; opacity: 0; animation: sparkle 3s ease-in-out 1.5s infinite; }
-    @keyframes sparkle { 0%, 100% { opacity: 0; transform: translateY(-50%) scale(0.5) rotate(0deg); } 50% { opacity: 1; transform: translateY(-50%) scale(1) rotate(180deg); } }
-    .nav-pill { transition: all 0.2s; cursor: default; }
-    .nav-pill:hover { background: var(--accent-bg); color: var(--accent); border-color: rgba(193,126,74,0.3); }
-    .college-name { animation: nameReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
-    @keyframes nameReveal { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; transform: translateX(0); } }
-    .nf-icon { animation: nfBounce 0.6s cubic-bezier(0.34,1.56,0.64,1); }
-    @keyframes nfBounce { from { transform: scale(0) rotate(-10deg); } to { transform: scale(1) rotate(0deg); } }
     .ai-tag { animation: aiPulse 2.5s ease-in-out infinite; }
     @keyframes aiPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
-    .summary { animation: textFade 0.6s ease 0.1s both; }
-    @keyframes textFade { from { opacity: 0; } to { opacity: 1; } }
-    .section-label { animation: textFade 0.5s ease 0.2s both; }
-    .items .item:nth-child(1) { animation: cardEnter 0.4s ease 0.25s both; }
-    .items .item:nth-child(2) { animation: cardEnter 0.4s ease 0.35s both; }
-    .items .item:nth-child(3) { animation: cardEnter 0.4s ease 0.45s both; }
-    .voice:nth-child(1) { animation: cardEnter 0.4s ease 0.1s both; }
-    .voice:nth-child(2) { animation: cardEnter 0.4s ease 0.2s both; }
-    .voice:nth-child(3) { animation: cardEnter 0.4s ease 0.3s both; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--light); }
     ::selection { background: var(--accent-bg); color: var(--accent); }
 
-    /* ═══ HERO BACKGROUND ORBS ═══ */
     #page-hero { position: relative; overflow: hidden; }
     #page-hero::before, #page-hero::after { content: ''; position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.08; pointer-events: none; z-index: 0; }
     #page-hero::before { width: 500px; height: 500px; background: var(--accent); top: -100px; left: -100px; animation: orbFloat 20s ease-in-out infinite alternate; }
     #page-hero::after { width: 400px; height: 400px; background: var(--green); bottom: -50px; right: -80px; animation: orbFloat2 18s ease-in-out infinite alternate; }
     @keyframes orbFloat { from { transform: translate(0,0); } to { transform: translate(80px,60px); } }
     @keyframes orbFloat2 { from { transform: translate(0,0); } to { transform: translate(-60px,-50px); } }
-
-    /* ═══ THE FIX: search-wrap gets higher z-index than siblings ═══ */
     #page-hero > * { position: relative; z-index: 1; }
     #page-hero > .search-wrap { z-index: 50; }
   </style>
@@ -456,7 +450,7 @@
 <body>
 
 <nav>
-  <div class="logo" onclick="goHome()">Collex<span>.</span></div>
+  <div class="logo" onclick="goHome()">Collex<span></span></div>
   <div class="nav-right">
     <div class="nav-pill">India College Intelligence</div>
     <button class="nav-btn" id="bookmarks-btn" onclick="toggleBookmarks()" title="Watchlist">
@@ -483,6 +477,37 @@
       <button class="modal-close" onclick="closeCompare()">✕</button>
     </div>
     <div class="modal-body" id="compare-body"></div>
+  </div>
+</div>
+
+<!-- REQUEST COLLEGE MODAL -->
+<div class="req-modal-overlay" id="req-modal" onclick="if(event.target===this)closeRequestModal()">
+  <div class="req-modal">
+    <div class="req-modal-head">
+      <div class="req-modal-title">Request a College ✦</div>
+      <div class="req-modal-sub">Can't find your college? Tell us and we'll add it to the database.</div>
+    </div>
+    <div class="req-modal-body">
+      <div class="req-field">
+        <label>College Name</label>
+        <input type="text" id="req-college-name" placeholder="e.g. RVCE Bangalore, COEP Pune…" autocomplete="off"/>
+      </div>
+      <div class="req-field">
+        <label>Your Email (optional)</label>
+        <input type="email" id="req-email" placeholder="We'll notify you when it's added" autocomplete="off"/>
+      </div>
+      <div class="req-field">
+        <label>Anything else?</label>
+        <textarea id="req-note" rows="2" placeholder="Branch you're interested in, why you want it added…"></textarea>
+      </div>
+      <div class="req-notice">
+        Requests are reviewed manually. We typically add colleges within 3–5 days. For urgent queries, reach us at <a href="mailto:collex.business@gmail.com">collex.business@gmail.com</a>
+      </div>
+      <div class="req-actions">
+        <button class="req-cancel" onclick="closeRequestModal()">Cancel</button>
+        <button class="req-submit" onclick="submitRequest()">Send Request →</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -528,10 +553,31 @@
     </div>
   </div>
 
+  <!-- REDESIGNED STATS -->
   <div class="stats">
-    <div><span class="stat-num" id="college-count">200+</span><span class="stat-label">Verified Colleges</span></div>
-    <div><span class="stat-num">10</span><span class="stat-label">Metrics Tracked</span></div>
-    <div><span class="stat-num">Real</span><span class="stat-label">Student Voices</span></div>
+    <div class="stat-item">
+      <span class="stat-num" id="college-count">240+</span>
+      <span class="stat-label">Verified Colleges</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">10</span>
+      <span class="stat-label">Metrics Tracked</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num stat-accent">AI</span>
+      <span class="stat-label">Powered Insights</span>
+    </div>
+  </div>
+
+  <!-- REQUEST + CONTACT -->
+  <div class="request-section">
+    <button class="request-btn" onclick="openRequestModal()">
+      ✦ Request a College
+    </button>
+    <div class="contact-dot"></div>
+    <a href="mailto:collex.business@gmail.com" class="contact-link">
+      collex.business@gmail.com
+    </a>
   </div>
 </section>
 
@@ -606,6 +652,17 @@
   </div>
 </div>
 
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-left">Collex<span></span></div>
+  <div class="footer-right">
+    <button class="footer-link" onclick="openRequestModal()" style="background:none;border:none;cursor:pointer;font-family:inherit;">
+      ✦ Request a College
+    </button>
+    <a href="mailto:collex.business@gmail.com" class="footer-email">collex.business@gmail.com</a>
+  </div>
+</footer>
+
 <button class="chat-fab" id="chat-fab" onclick="toggleChat()">✦</button>
 <div class="chat-window" id="chat-window">
   <div class="chat-head">
@@ -629,27 +686,44 @@
 </div>
 
 <script>
-
 const reviewCache = {};
 let currentCollege = null;
 
-document.getElementById('college-count').textContent = Object.keys(DB).length + '+';
+// ═══ REQUEST MODAL ════════════════════════
+function openRequestModal() {
+  document.getElementById('req-modal').classList.add('show');
+}
+function closeRequestModal() {
+  document.getElementById('req-modal').classList.remove('show');
+}
+function submitRequest() {
+  const name = document.getElementById('req-college-name').value.trim();
+  if (!name) { showToast('Please enter a college name'); return; }
+  const email = document.getElementById('req-email').value.trim();
+  const note = document.getElementById('req-note').value.trim();
+  const subject = encodeURIComponent('College Request: ' + name);
+  const body = encodeURIComponent(
+    'College Name: ' + name + '\n' +
+    (email ? 'Requester Email: ' + email + '\n' : '') +
+    (note ? 'Notes: ' + note : '')
+  );
+  window.location.href = 'mailto:collex.business@gmail.com?subject=' + subject + '&body=' + body;
+  closeRequestModal();
+  showToast('✦ Opening your email app…');
+  document.getElementById('req-college-name').value = '';
+  document.getElementById('req-email').value = '';
+  document.getElementById('req-note').value = '';
+}
 
 // ═══ SCORE COLOR SYSTEM ══════════════════
 function getScoreColors(score) {
   const s = parseFloat(score);
   const isDark = document.body.classList.contains('dark');
-  if (s >= 8.5) {
-    return { bg: isDark ? 'linear-gradient(135deg, #1a4a2e 0%, #245e3a 50%, #2d7048 100%)' : 'linear-gradient(135deg, #1a5c32 0%, #2d7a48 50%, #3d8b5e 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(45,112,72,0.4)' : 'rgba(45,112,72,0.2)' };
-  } else if (s >= 7.5) {
-    return { bg: isDark ? 'linear-gradient(135deg, #1a3d3a 0%, #24584e 50%, #2e7068 100%)' : 'linear-gradient(135deg, #1e5d52 0%, #2a7a6e 50%, #3a9485 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(46,112,104,0.35)' : 'rgba(46,112,104,0.18)' };
-  } else if (s >= 6.5) {
-    return { bg: isDark ? 'linear-gradient(135deg, #3a2e10 0%, #5a4518 50%, #7a5c22 100%)' : 'linear-gradient(135deg, #7a5c1a 0%, #9a7825 50%, #b8932e 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(122,92,34,0.4)' : 'rgba(184,147,46,0.2)' };
-  } else if (s >= 5.5) {
-    return { bg: isDark ? 'linear-gradient(135deg, #3a2415 0%, #5a3520 50%, #7a4828 100%)' : 'linear-gradient(135deg, #8a5530 0%, #a86b3a 50%, #c07e45 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(122,72,40,0.4)' : 'rgba(168,107,58,0.2)' };
-  } else {
-    return { bg: isDark ? 'linear-gradient(135deg, #3a1818 0%, #5a2828 50%, #7a3535 100%)' : 'linear-gradient(135deg, #8a3535 0%, #a84848 50%, #c05555 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(122,53,53,0.4)' : 'rgba(192,74,74,0.2)' };
-  }
+  if (s >= 8.5) { return { bg: isDark ? 'linear-gradient(135deg, #1a4a2e 0%, #245e3a 50%, #2d7048 100%)' : 'linear-gradient(135deg, #1a5c32 0%, #2d7a48 50%, #3d8b5e 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(45,112,72,0.4)' : 'rgba(45,112,72,0.2)' }; }
+  else if (s >= 7.5) { return { bg: isDark ? 'linear-gradient(135deg, #1a3d3a 0%, #24584e 50%, #2e7068 100%)' : 'linear-gradient(135deg, #1e5d52 0%, #2a7a6e 50%, #3a9485 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(46,112,104,0.35)' : 'rgba(46,112,104,0.18)' }; }
+  else if (s >= 6.5) { return { bg: isDark ? 'linear-gradient(135deg, #3a2e10 0%, #5a4518 50%, #7a5c22 100%)' : 'linear-gradient(135deg, #7a5c1a 0%, #9a7825 50%, #b8932e 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(122,92,34,0.4)' : 'rgba(184,147,46,0.2)' }; }
+  else if (s >= 5.5) { return { bg: isDark ? 'linear-gradient(135deg, #3a2415 0%, #5a3520 50%, #7a4828 100%)' : 'linear-gradient(135deg, #8a5530 0%, #a86b3a 50%, #c07e45 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(122,72,40,0.4)' : 'rgba(168,107,58,0.2)' }; }
+  else { return { bg: isDark ? 'linear-gradient(135deg, #3a1818 0%, #5a2828 50%, #7a3535 100%)' : 'linear-gradient(135deg, #8a3535 0%, #a84848 50%, #c05555 100%)', text: '#FFFFFF', denom: 'rgba(255,255,255,0.5)', label: 'rgba(255,255,255,0.7)', verdict: 'rgba(255,255,255,0.65)', glow: isDark ? 'rgba(122,53,53,0.4)' : 'rgba(192,74,74,0.2)' }; }
 }
 
 function applyScoreColors(score) {
@@ -821,13 +895,14 @@ function showNotFound(query) {
   card.style.background = document.body.classList.contains('dark') ? '#333028' : '#1A1714';
   card.style.boxShadow = 'var(--shadow)';
   ['d-programs','d-fees','d-campuses','d-sports','d-extra','d-placement','d-est'].forEach(id => { document.getElementById(id).textContent = 'Not in database yet.'; });
-  document.getElementById('metrics-list').innerHTML = '<div class="nf"><div class="nf-icon">🏫</div><div class="nf-text">Not in database yet.<br>Adding 100+ colleges soon.</div></div>';
+  document.getElementById('metrics-list').innerHTML = '<div class="nf"><div class="nf-icon">🏫</div><div class="nf-text">Not in database yet.<br><button onclick="openRequestModal()" style="background:none;border:none;cursor:pointer;color:var(--accent);font-size:13px;font-family:inherit;padding:0;margin-top:4px;text-decoration:underline">Request this college →</button></div></div>';
   document.getElementById('ai-review').innerHTML = '<div class="nf"><div class="nf-text">No data to generate review.</div></div>';
   document.getElementById('voices').innerHTML = '<div class="nf"><div class="nf-text">No voices yet.</div></div>';
   document.getElementById('result-bookmark').textContent = '🤍'; document.getElementById('result-bookmark').classList.remove('active');
   document.getElementById('compare-toggle').checked = false;
 }
 
+// ═══ GROQ API ════════════════════════════
 async function fetchReview(college) {
   if (reviewCache[college.name]) { renderReview(reviewCache[college.name]); return; }
   const prompt = `You are Collex, an honest India college research assistant. Based on verified data about ${college.name}, generate student sentiment analysis.\nData: fees=${college.fees}, placement=${college.placement}, score=${college.score}/10, verdict=${college.verdict}\nRespond with ONLY a raw JSON object. No markdown. No backticks. No explanation. Just the JSON starting with { and ending with }:\n{"summary":"2-3 honest sentences from student perspective","pros":["specific pro 1","specific pro 2","specific pro 3"],"cons":["specific con 1","specific con 2","specific con 3"],"voices":[{"quote":"realistic student quote","source":"Reddit r/india"},{"quote":"realistic student quote","source":"Quora"},{"quote":"realistic student quote","source":"Reddit r/indianstudents"}]}`;
@@ -873,7 +948,7 @@ async function chatSend(text) {
   for (const key in DB) { if (lowerMsg.includes(key) || lowerMsg.includes(DB[key].name.toLowerCase())) { const c = DB[key]; dbContext += `\n[${c.name}]: Score ${c.score}/10, ${c.location}, Fees: ${c.fees}, Placement: ${c.placement}, Verdict: ${c.verdict}`; } }
   chatHistory.push({ role: 'user', content: msg + (dbContext ? '\n\nRelevant college data from our database:' + dbContext : '') });
   try {
-const res = await fetch('/api/groq', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: chatHistory, temperature: 0.7, max_tokens: 500 }) });
+    const res = await fetch('/api/groq', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: chatHistory, temperature: 0.7, max_tokens: 500 }) });
     const data = await res.json(); typingDiv.remove();
     if (data.error) { const errDiv = document.createElement('div'); errDiv.className = 'chat-msg bot'; errDiv.textContent = '⚠️ API error: ' + (data.error.message || 'Try again later'); messages.appendChild(errDiv); }
     else { const reply = data.choices[0].message.content; chatHistory.push({ role: 'assistant', content: reply }); const botDiv = document.createElement('div'); botDiv.className = 'chat-msg bot'; botDiv.textContent = reply; messages.appendChild(botDiv); }
