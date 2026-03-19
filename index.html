@@ -70,6 +70,261 @@
     .share-btn { width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.2s; }
     .share-btn:hover { background: var(--accent-bg); border-color: var(--accent); }
 
+    /* ═══ USER AUTH NAV STYLES ═══ */
+    .nav-user-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      max-width: 160px;
+    }
+    .nav-user-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-bg);
+      color: var(--accent);
+    }
+    .nav-user-btn .user-email-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100px;
+    }
+    .nav-user-btn .user-arrow {
+      font-size: 10px;
+      transition: transform 0.2s;
+    }
+    .nav-user-btn.open .user-arrow {
+      transform: rotate(180deg);
+    }
+    .user-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(26,23,20,0.15);
+      min-width: 220px;
+      z-index: 200;
+      display: none;
+      overflow: hidden;
+      animation: dropIn 0.25s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .user-dropdown.show {
+      display: block;
+    }
+    .user-dropdown-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      word-break: break-all;
+    }
+    .user-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 18px;
+      font-size: 13px;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .user-dropdown-item:hover {
+      background: var(--accent-bg);
+    }
+    .user-dropdown-item .ud-icon {
+      font-size: 15px;
+      width: 20px;
+      text-align: center;
+    }
+    .user-dropdown-item .ud-count {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--surface2);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .user-dropdown-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4px 0;
+    }
+    .user-dropdown-item.logout {
+      color: var(--red);
+    }
+    .user-dropdown-item.logout:hover {
+      background: var(--red-bg);
+    }
+    .nav-login-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: var(--accent);
+      border: none;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-login-btn:hover {
+      background: #a86b3a;
+      transform: translateY(-1px);
+    }
+
+    /* ═══ LOGIN MODAL ═══ */
+    .login-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 700;
+      background: rgba(26,23,20,0.5);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .login-modal-overlay.show {
+      display: flex;
+      animation: fadeIn 0.25s;
+    }
+    .login-modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+      animation: modalIn 0.35s cubic-bezier(0.16,1,0.3,1);
+      overflow: hidden;
+    }
+    .login-modal-head {
+      padding: 32px 28px 0;
+      text-align: center;
+    }
+    .login-modal-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+    .login-modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+    .login-modal-sub {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .login-modal-body {
+      padding: 24px 28px 28px;
+    }
+    .login-field {
+      margin-bottom: 16px;
+    }
+    .login-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .login-field input {
+      width: 100%;
+      padding: 13px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      background: var(--surface2);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .login-field input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(193,126,74,0.12);
+    }
+    .login-field input::placeholder {
+      color: var(--light);
+    }
+    .login-error {
+      font-size: 12px;
+      color: var(--red);
+      margin-top: 6px;
+      display: none;
+    }
+    .login-error.show {
+      display: block;
+    }
+    .login-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .login-cancel {
+      padding: 12px 18px;
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .login-cancel:hover {
+      border-color: var(--red);
+      color: var(--red);
+      background: var(--red-bg);
+    }
+    .login-submit {
+      flex: 1;
+      padding: 12px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .login-submit:hover {
+      background: #a86b3a;
+      transform: translateY(-1px);
+    }
+    .login-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .login-privacy {
+      font-size: 11px;
+      color: var(--light);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
     #page-hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 24px 60px; text-align: center; }
     .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: var(--accent-bg); border: 1px solid rgba(193,126,74,0.25); padding: 5px 14px; border-radius: 20px; display: inline-block; margin-bottom: 24px; }
     h1 { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 6vw, 68px); line-height: 1.08; letter-spacing: -1.5px; max-width: 680px; margin-bottom: 18px; }
@@ -288,121 +543,25 @@
     .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
     body.dark .toast { background: #EDE8E0; color: #1A1714; }
 
-    /* ═══ CHAT FAB — HIGHLIGHTED ═══ */
     .chat-fab {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 300;
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent) 0%, #a86b3a 100%);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 6px 24px rgba(193,126,74,0.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      transition: all 0.3s;
-      animation: fabAttention 3s ease-in-out infinite;
+      position: fixed; bottom: 24px; right: 24px; z-index: 300; width: 54px; height: 54px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, #a86b3a 100%); color: #fff; border: none; cursor: pointer;
+      box-shadow: 0 6px 24px rgba(193,126,74,0.35); display: flex; align-items: center; justify-content: center;
+      font-size: 22px; transition: all 0.3s; animation: fabAttention 3s ease-in-out infinite;
     }
-    .chat-fab::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(193,126,74,0.4) 0%, transparent 70%);
-      animation: fabRing 3s ease-in-out infinite;
-      pointer-events: none;
-    }
-    .chat-fab::after {
-      content: '';
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      border: 2px solid rgba(193,126,74,0.25);
-      animation: fabRipple 3s ease-in-out infinite;
-      pointer-events: none;
-    }
-    .chat-fab:hover {
-      transform: scale(1.12);
-      box-shadow: 0 8px 32px rgba(193,126,74,0.5);
-      animation: none;
-    }
-    .chat-fab:hover::before,
-    .chat-fab:hover::after {
-      animation: none;
-      opacity: 0;
-    }
-    body.dark .chat-fab {
-      background: linear-gradient(135deg, var(--accent) 0%, #b87a3a 100%);
-      box-shadow: 0 6px 24px rgba(217,154,91,0.35);
-    }
-
-    @keyframes fabAttention {
-      0%, 100% { transform: scale(1); box-shadow: 0 6px 24px rgba(193,126,74,0.35); }
-      50% { transform: scale(1.06); box-shadow: 0 8px 28px rgba(193,126,74,0.45); }
-    }
-    @keyframes fabRing {
-      0%, 100% { transform: scale(1); opacity: 0.6; }
-      50% { transform: scale(1.15); opacity: 0; }
-    }
-    @keyframes fabRipple {
-      0%, 100% { transform: scale(1); opacity: 0.4; }
-      50% { transform: scale(1.35); opacity: 0; }
-    }
-
-    /* Tooltip hint */
-    .chat-fab-hint {
-      position: fixed;
-      bottom: 42px;
-      right: 86px;
-      z-index: 301;
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 10px 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text);
-      white-space: nowrap;
-      display: none;
-      align-items: center;
-      gap: 6px;
-      animation: hintIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
-      pointer-events: none;
-    }
-    .chat-fab-hint.show {
-      display: flex;
-    }
-    .chat-fab-hint::after {
-      content: '';
-      position: absolute;
-      right: -6px;
-      top: 50%;
-      transform: translateY(-50%) rotate(45deg);
-      width: 10px;
-      height: 10px;
-      background: var(--surface);
-      border-right: 1.5px solid var(--border);
-      border-bottom: 1.5px solid var(--border);
-    }
-    .chat-fab-hint .hint-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse 2s infinite;
-      flex-shrink: 0;
-    }
-    @keyframes hintIn {
-      from { opacity: 0; transform: translateX(12px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
+    .chat-fab::before { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: radial-gradient(circle, rgba(193,126,74,0.4) 0%, transparent 70%); animation: fabRing 3s ease-in-out infinite; pointer-events: none; }
+    .chat-fab::after { content: ''; position: absolute; inset: -8px; border-radius: 50%; border: 2px solid rgba(193,126,74,0.25); animation: fabRipple 3s ease-in-out infinite; pointer-events: none; }
+    .chat-fab:hover { transform: scale(1.12); box-shadow: 0 8px 32px rgba(193,126,74,0.5); animation: none; }
+    .chat-fab:hover::before, .chat-fab:hover::after { animation: none; opacity: 0; }
+    body.dark .chat-fab { background: linear-gradient(135deg, var(--accent) 0%, #b87a3a 100%); box-shadow: 0 6px 24px rgba(217,154,91,0.35); }
+    @keyframes fabAttention { 0%, 100% { transform: scale(1); box-shadow: 0 6px 24px rgba(193,126,74,0.35); } 50% { transform: scale(1.06); box-shadow: 0 8px 28px rgba(193,126,74,0.45); } }
+    @keyframes fabRing { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.15); opacity: 0; } }
+    @keyframes fabRipple { 0%, 100% { transform: scale(1); opacity: 0.4; } 50% { transform: scale(1.35); opacity: 0; } }
+    .chat-fab-hint { position: fixed; bottom: 42px; right: 86px; z-index: 301; background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px; padding: 10px 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); font-size: 12px; font-weight: 500; color: var(--text); white-space: nowrap; display: none; align-items: center; gap: 6px; animation: hintIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both; pointer-events: none; }
+    .chat-fab-hint.show { display: flex; }
+    .chat-fab-hint::after { content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%) rotate(45deg); width: 10px; height: 10px; background: var(--surface); border-right: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border); }
+    .chat-fab-hint .hint-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; flex-shrink: 0; }
+    @keyframes hintIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
 
     .chat-window { position: fixed; bottom: 90px; right: 24px; z-index: 350; width: 380px; max-width: calc(100vw - 48px); height: 500px; max-height: calc(100vh - 120px); background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 16px 48px rgba(0,0,0,0.15); display: none; flex-direction: column; overflow: hidden; }
     .chat-window.show { display: flex; animation: modalIn 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -442,13 +601,9 @@
       .nav-pill { display: none; }
       .chat-window { right: 8px; left: 8px; width: auto; bottom: 86px; }
       .compare-fab { bottom: 86px; right: 16px; }
-      .chat-fab-hint {
-        bottom: 86px;
-        right: 16px;
-      }
-      .chat-fab-hint::after {
-        display: none;
-      }
+      .chat-fab-hint { bottom: 86px; right: 16px; }
+      .chat-fab-hint::after { display: none; }
+      .nav-user-btn .user-email-text { max-width: 60px; }
     }
 
     .slideshow-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--light); margin-bottom: 16px; text-align: center; }
@@ -495,7 +650,6 @@
       .slide-score-num { font-size: 18px; }
     }
 
-    /* ═══ ANIMATIONS ═══ */
     #page-hero .eyebrow, #page-hero h1, #page-hero .subtitle, #page-hero .search-wrap, #page-hero .chips, #page-hero .filter-section, #page-hero .slideshow-section, #page-hero .stats, #page-hero .request-section { opacity: 0; transform: translateY(24px); animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
     #page-hero .eyebrow { animation-delay: 0.1s; }
     #page-hero h1 { animation-delay: 0.2s; }
@@ -563,424 +717,62 @@
     #page-hero > * { position: relative; z-index: 1; }
     #page-hero > .search-wrap { z-index: 50; }
 
-    /* ═══ FILTER SYSTEM ═══ */
-    .filter-section {
-      width: 100%;
-      max-width: 560px;
-      margin-top: 4px;
-      margin-bottom: 20px;
-      position: relative;
-      z-index: 40;
-    }
-
-    .filter-toggle-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 0 auto;
-      padding: 8px 18px;
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 50px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-
-    .filter-toggle-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-bg);
-    }
-
-    .filter-toggle-btn.active {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-bg);
-    }
-
-    .filter-toggle-btn .filter-icon {
-      font-size: 14px;
-      transition: transform 0.3s;
-    }
-
-    .filter-toggle-btn.active .filter-icon {
-      transform: rotate(180deg);
-    }
-
-    .filter-active-count {
-      background: var(--accent);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      min-width: 18px;
-      height: 18px;
-      border-radius: 9px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 0 5px;
-    }
-
-    .filter-active-count.show {
-      display: flex;
-    }
-
-    .filter-panel {
-      margin-top: 12px;
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                  opacity 0.3s,
-                  padding 0.3s;
-      padding: 0 20px;
-    }
-
-    .filter-panel.open {
-      max-height: 600px;
-      opacity: 1;
-      padding: 20px;
-    }
-
-    .filter-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    .filter-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .filter-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .filter-select {
-      width: 100%;
-      padding: 9px 32px 9px 12px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      background: var(--surface2);
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      outline: none;
-      color: var(--text);
-      cursor: pointer;
-      transition: border-color 0.2s;
-      appearance: none;
-      -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7570' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-    }
-
-    .filter-select:focus {
-      border-color: var(--accent);
-    }
-
-    .filter-range-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .filter-range {
-      flex: 1;
-      -webkit-appearance: none;
-      appearance: none;
-      height: 4px;
-      background: var(--surface2);
-      border-radius: 2px;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .filter-range::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--accent);
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(193, 126, 74, 0.3);
-      transition: transform 0.15s;
-    }
-
-    .filter-range::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
-    }
-
-    .filter-range::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--accent);
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 2px 6px rgba(193, 126, 74, 0.3);
-    }
-
-    .filter-range-val {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-      min-width: 32px;
-      text-align: center;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .filter-actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    .filter-results-count {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .filter-results-count strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .filter-btns {
-      display: flex;
-      gap: 8px;
-    }
-
-    .filter-clear-btn {
-      padding: 7px 16px;
-      background: var(--surface2);
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .filter-clear-btn:hover {
-      border-color: var(--red);
-      color: var(--red);
-      background: var(--red-bg);
-    }
-
-    .filter-apply-btn {
-      padding: 7px 18px;
-      background: var(--accent);
-      border: none;
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .filter-apply-btn:hover {
-      background: #a86b3a;
-      transform: translateY(-1px);
-    }
-
-    .filter-results-dropdown {
-      width: 100%;
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(26, 23, 20, 0.12);
-      margin-top: 12px;
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
-    }
-
-    .filter-results-dropdown.open {
-      max-height: 420px;
-      opacity: 1;
-      overflow-y: auto;
-    }
-
-    .filter-results-header {
-      position: sticky;
-      top: 0;
-      background: var(--surface);
-      padding: 14px 18px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 2;
-    }
-
-    .filter-results-title {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
-    .filter-results-close {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--surface2);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      color: var(--muted);
-      transition: all 0.2s;
-    }
-
-    .filter-results-close:hover {
-      background: var(--red-bg);
-      border-color: var(--red);
-      color: var(--red);
-    }
-
-    .filter-result-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 18px;
-      cursor: pointer;
-      transition: background 0.15s, padding-left 0.15s;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .filter-result-item:last-child {
-      border-bottom: none;
-    }
-
-    .filter-result-item:hover {
-      background: var(--accent-bg);
-      padding-left: 22px;
-    }
-
-    .filter-result-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .filter-result-name {
-      font-weight: 600;
-      font-size: 14px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .filter-result-meta {
-      font-size: 11px;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 2px;
-      flex-wrap: wrap;
-    }
-
-    .filter-result-meta .meta-sep {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--light);
-      flex-shrink: 0;
-    }
-
-    .filter-result-score {
-      font-family: 'DM Serif Display', serif;
-      font-size: 20px;
-      flex-shrink: 0;
-      min-width: 36px;
-      text-align: right;
-    }
-
+    .filter-section { width: 100%; max-width: 560px; margin-top: 4px; margin-bottom: 20px; position: relative; z-index: 40; }
+    .filter-toggle-btn { display: flex; align-items: center; gap: 8px; margin: 0 auto; padding: 8px 18px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted); cursor: pointer; transition: all 0.25s; }
+    .filter-toggle-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+    .filter-toggle-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+    .filter-toggle-btn .filter-icon { font-size: 14px; transition: transform 0.3s; }
+    .filter-toggle-btn.active .filter-icon { transform: rotate(180deg); }
+    .filter-active-count { background: var(--accent); color: #fff; font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; border-radius: 9px; display: none; align-items: center; justify-content: center; padding: 0 5px; }
+    .filter-active-count.show { display: flex; }
+    .filter-panel { margin-top: 12px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s, padding 0.3s; padding: 0 20px; }
+    .filter-panel.open { max-height: 600px; opacity: 1; padding: 20px; }
+    .filter-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px; }
+    .filter-group { display: flex; flex-direction: column; gap: 6px; }
+    .filter-label { font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+    .filter-select { width: 100%; padding: 9px 32px 9px 12px; font-family: 'DM Sans', sans-serif; font-size: 13px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; outline: none; color: var(--text); cursor: pointer; transition: border-color 0.2s; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7570' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+    .filter-select:focus { border-color: var(--accent); }
+    .filter-range-wrap { display: flex; align-items: center; gap: 10px; }
+    .filter-range { flex: 1; -webkit-appearance: none; appearance: none; height: 4px; background: var(--surface2); border-radius: 2px; outline: none; cursor: pointer; }
+    .filter-range::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); cursor: pointer; box-shadow: 0 2px 6px rgba(193, 126, 74, 0.3); transition: transform 0.15s; }
+    .filter-range::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .filter-range::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--accent); cursor: pointer; border: none; box-shadow: 0 2px 6px rgba(193, 126, 74, 0.3); }
+    .filter-range-val { font-size: 13px; font-weight: 600; color: var(--accent); min-width: 32px; text-align: center; font-variant-numeric: tabular-nums; }
+    .filter-actions { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--border); }
+    .filter-results-count { font-size: 12px; color: var(--muted); }
+    .filter-results-count strong { color: var(--accent); font-weight: 600; }
+    .filter-btns { display: flex; gap: 8px; }
+    .filter-clear-btn { padding: 7px 16px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--muted); cursor: pointer; transition: all 0.2s; }
+    .filter-clear-btn:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+    .filter-apply-btn { padding: 7px 18px; background: var(--accent); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: #fff; cursor: pointer; transition: all 0.2s; }
+    .filter-apply-btn:hover { background: #a86b3a; transform: translateY(-1px); }
+    .filter-results-dropdown { width: 100%; background: var(--surface); border: 1.5px solid var(--border); border-radius: 16px; box-shadow: 0 8px 32px rgba(26, 23, 20, 0.12); margin-top: 12px; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s; }
+    .filter-results-dropdown.open { max-height: 420px; opacity: 1; overflow-y: auto; }
+    .filter-results-header { position: sticky; top: 0; background: var(--surface); padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; z-index: 2; }
+    .filter-results-title { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+    .filter-results-close { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface2); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--muted); transition: all 0.2s; }
+    .filter-results-close:hover { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+    .filter-result-item { display: flex; align-items: center; gap: 14px; padding: 12px 18px; cursor: pointer; transition: background 0.15s, padding-left 0.15s; border-bottom: 1px solid var(--border); }
+    .filter-result-item:last-child { border-bottom: none; }
+    .filter-result-item:hover { background: var(--accent-bg); padding-left: 22px; }
+    .filter-result-info { flex: 1; min-width: 0; }
+    .filter-result-name { font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .filter-result-meta { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 8px; margin-top: 2px; flex-wrap: wrap; }
+    .filter-result-meta .meta-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--light); flex-shrink: 0; }
+    .filter-result-score { font-family: 'DM Serif Display', serif; font-size: 20px; flex-shrink: 0; min-width: 36px; text-align: right; }
     .filter-result-score.score-high { color: var(--green); }
     .filter-result-score.score-mid { color: var(--amber); }
     .filter-result-score.score-low { color: var(--red); }
-
-    .filter-result-arrow {
-      font-size: 14px;
-      color: var(--light);
-      flex-shrink: 0;
-      transition: transform 0.2s, color 0.2s;
-    }
-
-    .filter-result-item:hover .filter-result-arrow {
-      transform: translateX(3px);
-      color: var(--accent);
-    }
-
-    .filter-no-results {
-      text-align: center;
-      padding: 32px 20px;
-      color: var(--muted);
-    }
-
-    .filter-no-results-icon {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-
-    .filter-sort-select {
-      padding: 5px 24px 5px 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      outline: none;
-      color: var(--text);
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%237A7570' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 6px center;
-    }
-
+    .filter-result-arrow { font-size: 14px; color: var(--light); flex-shrink: 0; transition: transform 0.2s, color 0.2s; }
+    .filter-result-item:hover .filter-result-arrow { transform: translateX(3px); color: var(--accent); }
+    .filter-no-results { text-align: center; padding: 32px 20px; color: var(--muted); }
+    .filter-no-results-icon { font-size: 28px; margin-bottom: 8px; }
+    .filter-sort-select { padding: 5px 24px 5px 8px; font-family: 'DM Sans', sans-serif; font-size: 11px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; outline: none; color: var(--text); cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%237A7570' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 6px center; }
     @media (max-width: 720px) {
-      .filter-row {
-        grid-template-columns: 1fr;
-      }
-      .filter-actions {
-        flex-direction: column;
-        gap: 10px;
-        align-items: stretch;
-      }
-      .filter-btns {
-        justify-content: stretch;
-      }
-      .filter-apply-btn, .filter-clear-btn {
-        flex: 1;
-        text-align: center;
-      }
+      .filter-row { grid-template-columns: 1fr; }
+      .filter-actions { flex-direction: column; gap: 10px; align-items: stretch; }
+      .filter-btns { justify-content: stretch; }
+      .filter-apply-btn, .filter-clear-btn { flex: 1; text-align: center; }
     }
   </style>
 </head>
@@ -990,13 +782,42 @@
   <div class="logo" onclick="goHome()">Collex<span></span></div>
   <div class="nav-right">
     <div class="nav-pill">India College Intelligence</div>
-    <button class="nav-btn" id="bookmarks-btn" onclick="toggleBookmarks()" title="Watchlist">
+    <button class="nav-btn" id="bookmarks-btn" onclick="handleProtectedAction('watchlist', toggleBookmarks)" title="Watchlist">
       🔖
       <span class="badge" id="bm-badge" style="display:none">0</span>
     </button>
+
+    <!-- User Auth Area -->
+    <div id="nav-auth-area">
+      <!-- Will be populated by JS: login button or user dropdown -->
+    </div>
+
     <button class="dm-toggle" id="dm-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙</button>
   </div>
 </nav>
+
+<!-- ═══ LOGIN MODAL ═══ -->
+<div class="login-modal-overlay" id="login-modal" onclick="if(event.target===this)closeLoginModal()">
+  <div class="login-modal">
+    <div class="login-modal-head">
+      <div class="login-modal-icon">✦</div>
+      <div class="login-modal-title">Welcome to Collex</div>
+      <div class="login-modal-sub">Enter your email to continue. We'll save your watchlist, comparisons, and preferences.</div>
+    </div>
+    <div class="login-modal-body">
+      <div class="login-field">
+        <label>Email Address</label>
+        <input type="email" id="login-email-input" placeholder="you@example.com" autocomplete="email"/>
+        <div class="login-error" id="login-error">Please enter a valid email address.</div>
+      </div>
+      <div class="login-actions">
+        <button class="login-cancel" onclick="closeLoginModal()">Cancel</button>
+        <button class="login-submit" id="login-submit-btn" onclick="handleLoginSubmit()">Continue →</button>
+      </div>
+      <div class="login-privacy">🔒 We only use your email to save your data. No spam, ever.</div>
+    </div>
+  </div>
+</div>
 
 <div class="bookmarks-overlay" id="bm-overlay" onclick="toggleBookmarks()"></div>
 <div class="bookmarks-panel" id="bm-panel">
@@ -1076,7 +897,7 @@
 
   <!-- FILTER SYSTEM -->
   <div class="filter-section">
-    <button class="filter-toggle-btn" id="filter-toggle" onclick="toggleFilterPanel()">
+    <button class="filter-toggle-btn" id="filter-toggle" onclick="handleProtectedAction('filter', toggleFilterPanel)">
       <span class="filter-icon">⚙️</span>
       Filter Colleges
       <span class="filter-active-count" id="filter-active-count">0</span>
@@ -1202,10 +1023,10 @@
         </button>
       </div>
       <div class="topbar-actions">
-        <button class="bookmark-btn" id="result-bookmark" onclick="toggleBookmarkCurrent()" title="Add to watchlist">🤍</button>
+        <button class="bookmark-btn" id="result-bookmark" onclick="handleProtectedAction('watchlist', toggleBookmarkCurrent)" title="Add to watchlist">🤍</button>
         <button class="share-btn" onclick="shareCollege()" title="Copy share link">🔗</button>
         <label class="compare-check" title="Add to comparison">
-          <input type="checkbox" id="compare-toggle" onchange="toggleCompare()"/>
+          <input type="checkbox" id="compare-toggle" onchange="handleProtectedAction('compare', toggleCompare)"/>
           Compare
         </label>
       </div>
@@ -1296,11 +1117,356 @@
   </div>
 </div>
 
+<!-- ═══ FIREBASE SDK ═══ -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
 <script>
+// ═══════════════════════════════════════════════
+// ═══ FIREBASE INITIALIZATION & AUTH SYSTEM ═══
+// ═══════════════════════════════════════════════
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBZ4bmyR1pOjA0cBygkiz3jft0vIVCGhSY",
+  authDomain: "collex-e6e42.firebaseapp.com",
+  projectId: "collex-e6e42",
+  storageBucket: "collex-e6e42.firebasestorage.app",
+  messagingSenderId: "473134628536",
+  appId: "1:473134628536:web:af85a710059420bf01be4d",
+  measurementId: "G-PW4QDG7DJ2"
+};
+
+firebase.initializeApp(firebaseConfig);
+const fireDb = firebase.firestore();
+
+// ═══ USER AUTH STATE ═══
+let collexUser = {
+  email: null,
+  isLoggedIn: false,
+  data: null
+};
+
+// Pending action after login
+let pendingAction = null;
+let pendingActionType = null;
+
+// ═══ INITIALIZE AUTH FROM LOCALSTORAGE ═══
+function initAuth() {
+  const savedEmail = localStorage.getItem('collex-currentUser');
+  if (savedEmail) {
+    collexUser.email = savedEmail;
+    collexUser.isLoggedIn = true;
+    loadUserFromFirebase(savedEmail);
+    trackVisit();
+  }
+  renderAuthUI();
+}
+
+// ═══ RENDER NAV AUTH AREA ═══
+function renderAuthUI() {
+  const area = document.getElementById('nav-auth-area');
+  if (!area) return;
+
+  if (collexUser.isLoggedIn && collexUser.email) {
+    const truncated = truncateEmail(collexUser.email);
+    area.innerHTML = `
+      <div class="nav-user-btn" id="nav-user-btn" onclick="toggleUserDropdown(event)">
+        <span class="user-email-text">${truncated}</span>
+        <span class="user-arrow">▼</span>
+        <div class="user-dropdown" id="user-dropdown">
+          <div class="user-dropdown-header">${collexUser.email}</div>
+          <div class="user-dropdown-item" onclick="event.stopPropagation(); toggleBookmarks();">
+            <span class="ud-icon">📚</span>
+            Watchlist
+            <span class="ud-count" id="ud-watchlist-count">${getBookmarks().length}</span>
+          </div>
+          <div class="user-dropdown-item" onclick="event.stopPropagation(); showUserStat('filters');">
+            <span class="ud-icon">🔍</span>
+            Filters Used
+            <span class="ud-count" id="ud-filters-count">${getUserStat('filtersUsed')}</span>
+          </div>
+          <div class="user-dropdown-item" onclick="event.stopPropagation(); showUserStat('comparisons');">
+            <span class="ud-icon">⚖️</span>
+            Comparisons
+            <span class="ud-count" id="ud-compare-count">${getUserStat('comparisonsMade')}</span>
+          </div>
+          <div class="user-dropdown-divider"></div>
+          <div class="user-dropdown-item logout" onclick="event.stopPropagation(); logoutUser();">
+            <span class="ud-icon">🚪</span>
+            Logout
+          </div>
+        </div>
+      </div>`;
+  } else {
+    area.innerHTML = `
+      <button class="nav-login-btn" onclick="openLoginModal()">
+        ✦ Login
+      </button>`;
+  }
+}
+
+function truncateEmail(email) {
+  if (!email) return '';
+  const parts = email.split('@');
+  const local = parts[0];
+  const domain = parts[1] || '';
+  if (local.length <= 6) return local + '@…';
+  return local.substring(0, 6) + '…@' + domain.substring(0, 3) + '…';
+}
+
+function toggleUserDropdown(event) {
+  event.stopPropagation();
+  const btn = document.getElementById('nav-user-btn');
+  const dropdown = document.getElementById('user-dropdown');
+  if (!btn || !dropdown) return;
+
+  const isOpen = dropdown.classList.contains('show');
+  if (isOpen) {
+    dropdown.classList.remove('show');
+    btn.classList.remove('open');
+  } else {
+    // Update counts before showing
+    const udWatchlist = document.getElementById('ud-watchlist-count');
+    const udFilters = document.getElementById('ud-filters-count');
+    const udCompare = document.getElementById('ud-compare-count');
+    if (udWatchlist) udWatchlist.textContent = getBookmarks().length;
+    if (udFilters) udFilters.textContent = getUserStat('filtersUsed');
+    if (udCompare) udCompare.textContent = getUserStat('comparisonsMade');
+
+    dropdown.classList.add('show');
+    btn.classList.add('open');
+  }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#nav-user-btn')) {
+    const dropdown = document.getElementById('user-dropdown');
+    const btn = document.getElementById('nav-user-btn');
+    if (dropdown) dropdown.classList.remove('show');
+    if (btn) btn.classList.remove('open');
+  }
+});
+
+function showUserStat(type) {
+  const dropdown = document.getElementById('user-dropdown');
+  if (dropdown) dropdown.classList.remove('show');
+  const btn = document.getElementById('nav-user-btn');
+  if (btn) btn.classList.remove('open');
+
+  if (type === 'filters') {
+    showToast(`🔍 You've used filters ${getUserStat('filtersUsed')} times`);
+  } else if (type === 'comparisons') {
+    showToast(`⚖️ You've made ${getUserStat('comparisonsMade')} comparisons`);
+  }
+}
+
+// ═══ LOGIN MODAL ═══
+function openLoginModal(actionType, actionFn) {
+  if (actionType) {
+    pendingActionType = actionType;
+    pendingAction = actionFn;
+  }
+  document.getElementById('login-modal').classList.add('show');
+  document.getElementById('login-error').classList.remove('show');
+  document.getElementById('login-email-input').value = '';
+  setTimeout(() => document.getElementById('login-email-input').focus(), 300);
+}
+
+function closeLoginModal() {
+  document.getElementById('login-modal').classList.remove('show');
+  pendingAction = null;
+  pendingActionType = null;
+}
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+async function handleLoginSubmit() {
+  const input = document.getElementById('login-email-input');
+  const errorEl = document.getElementById('login-error');
+  const submitBtn = document.getElementById('login-submit-btn');
+  const email = input.value.trim().toLowerCase();
+
+  if (!validateEmail(email)) {
+    errorEl.textContent = 'Please enter a valid email address.';
+    errorEl.classList.add('show');
+    input.focus();
+    return;
+  }
+
+  errorEl.classList.remove('show');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Logging in…';
+
+  try {
+    // Save to localStorage
+    localStorage.setItem('collex-currentUser', email);
+    collexUser.email = email;
+    collexUser.isLoggedIn = true;
+
+    // Save/update user in Firebase
+    await saveUserToFirebase(email);
+    await loadUserFromFirebase(email);
+    await trackVisit();
+
+    renderAuthUI();
+    closeLoginModal();
+    showToast('✦ Welcome to Collex!');
+
+    // Execute pending action
+    if (pendingAction && typeof pendingAction === 'function') {
+      setTimeout(() => {
+        pendingAction();
+        pendingAction = null;
+        pendingActionType = null;
+      }, 300);
+    }
+  } catch (err) {
+    console.error('Login error:', err);
+    errorEl.textContent = 'Something went wrong. Please try again.';
+    errorEl.classList.add('show');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Continue →';
+  }
+}
+
+// Enter key in login
+document.addEventListener('DOMContentLoaded', () => {
+  const loginInput = document.getElementById('login-email-input');
+  if (loginInput) {
+    loginInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleLoginSubmit();
+      if (e.key === 'Escape') closeLoginModal();
+    });
+  }
+});
+
+function logoutUser() {
+  collexUser.email = null;
+  collexUser.isLoggedIn = false;
+  collexUser.data = null;
+  localStorage.removeItem('collex-currentUser');
+  renderAuthUI();
+  showToast('👋 Logged out successfully');
+
+  // Close dropdown
+  const dropdown = document.getElementById('user-dropdown');
+  if (dropdown) dropdown.classList.remove('show');
+}
+
+// ═══ PROTECTED ACTIONS GATE ═══
+function handleProtectedAction(featureType, actionFn) {
+  if (collexUser.isLoggedIn) {
+    actionFn();
+  } else {
+    openLoginModal(featureType, actionFn);
+  }
+}
+
+// ═══ FIREBASE USER OPERATIONS ═══
+async function saveUserToFirebase(email) {
+  const docId = emailToDocId(email);
+  const userRef = fireDb.collection('collex-users').doc(docId);
+  const doc = await userRef.get();
+
+  if (!doc.exists) {
+    await userRef.set({
+      email: email,
+      firstSeen: firebase.firestore.FieldValue.serverTimestamp(),
+      lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
+      visitCount: 1,
+      watchlistCount: 0,
+      filtersUsed: 0,
+      comparisonsMade: 0
+    });
+  } else {
+    await userRef.update({
+      lastSeen: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
+}
+
+async function loadUserFromFirebase(email) {
+  try {
+    const docId = emailToDocId(email);
+    const doc = await fireDb.collection('collex-users').doc(docId).get();
+    if (doc.exists) {
+      collexUser.data = doc.data();
+    }
+  } catch (err) {
+    console.warn('Could not load user data:', err);
+  }
+}
+
+async function trackVisit() {
+  if (!collexUser.isLoggedIn || !collexUser.email) return;
+  try {
+    const docId = emailToDocId(collexUser.email);
+    await fireDb.collection('collex-users').doc(docId).update({
+      lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
+      visitCount: firebase.firestore.FieldValue.increment(1)
+    });
+  } catch (err) {
+    console.warn('Visit track error:', err);
+  }
+}
+
+async function trackUserAction(field) {
+  if (!collexUser.isLoggedIn || !collexUser.email) return;
+  try {
+    const docId = emailToDocId(collexUser.email);
+    const updateData = {};
+    updateData[field] = firebase.firestore.FieldValue.increment(1);
+    updateData.lastSeen = firebase.firestore.FieldValue.serverTimestamp();
+    await fireDb.collection('collex-users').doc(docId).update(updateData);
+
+    // Update local data
+    if (collexUser.data) {
+      collexUser.data[field] = (collexUser.data[field] || 0) + 1;
+    }
+  } catch (err) {
+    console.warn('Track action error:', err);
+  }
+}
+
+async function updateWatchlistCount() {
+  if (!collexUser.isLoggedIn || !collexUser.email) return;
+  try {
+    const docId = emailToDocId(collexUser.email);
+    const count = getBookmarks().length;
+    await fireDb.collection('collex-users').doc(docId).update({
+      watchlistCount: count,
+      lastSeen: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    if (collexUser.data) collexUser.data.watchlistCount = count;
+  } catch (err) {
+    console.warn('Watchlist count error:', err);
+  }
+}
+
+function emailToDocId(email) {
+  return email.replace(/[.#$[\]]/g, '_');
+}
+
+function getUserStat(field) {
+  if (collexUser.data && collexUser.data[field] !== undefined) {
+    return collexUser.data[field];
+  }
+  return 0;
+}
+
+
+// ═══════════════════════════════════════
+// ═══ ORIGINAL COLLEX FUNCTIONALITY ═══
+// ═══════════════════════════════════════
+
 const reviewCache = {};
 let currentCollege = null;
 
-// ═══ REQUEST MODAL ════════════════════════
+// ═══ REQUEST MODAL ═══
 function openRequestModal() {
   document.getElementById('req-modal').classList.add('show');
 }
@@ -1326,7 +1492,7 @@ function submitRequest() {
   document.getElementById('req-note').value = '';
 }
 
-// ═══ SCORE COLOR SYSTEM ══════════════════
+// ═══ SCORE COLOR SYSTEM ═══
 function getScoreColors(score) {
   const s = parseFloat(score);
   const isDark = document.body.classList.contains('dark');
@@ -1352,7 +1518,7 @@ function getMetricTier(val) { const v = parseFloat(val); if (v >= 7.5) return 'h
 function getBarClass(val) { const v = parseFloat(val); if (v >= 7.5) return 'bar-high'; if (v >= 5) return 'bar-mid'; return 'bar-low'; }
 function getCompareScoreBg(score) { const s = parseFloat(score); if (s >= 8.5) return 'background:#2d7a48;color:#fff;'; if (s >= 7.5) return 'background:#2a7a6e;color:#fff;'; if (s >= 6.5) return 'background:#9a7825;color:#fff;'; if (s >= 5.5) return 'background:#a86b3a;color:#fff;'; return 'background:#a84848;color:#fff;'; }
 
-// ═══ DARK MODE ═══════════════════════════
+// ═══ DARK MODE ═══
 function toggleDarkMode() {
   document.body.classList.toggle('dark');
   const isDark = document.body.classList.contains('dark');
@@ -1365,7 +1531,7 @@ if (localStorage.getItem('collex-dark') === '1') {
   document.getElementById('dm-toggle').textContent = '☀️';
 }
 
-// ═══ DEEP LINKS ══════════════════════════
+// ═══ DEEP LINKS ═══
 function updateURL(collegeName) {
   const slug = collegeName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/,'');
   history.pushState({ college: collegeName }, '', '#' + slug);
@@ -1386,13 +1552,30 @@ function shareCollege() {
 }
 function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2800); }
 
-// ═══ BOOKMARKS ═══════════════════════════
+// ═══ BOOKMARKS (with Firebase tracking) ═══
 function getBookmarks() { try { return JSON.parse(localStorage.getItem('collex-bookmarks') || '[]'); } catch { return []; } }
-function saveBookmarks(arr) { localStorage.setItem('collex-bookmarks', JSON.stringify(arr)); updateBookmarkUI(); }
+function saveBookmarks(arr) { localStorage.setItem('collex-bookmarks', JSON.stringify(arr)); updateBookmarkUI(); updateWatchlistCount(); }
 function isBookmarked(name) { return getBookmarks().some(b => b.name === name); }
-function addBookmark(college) { const bms = getBookmarks(); if (!bms.some(b => b.name === college.name)) { bms.push({ name: college.name, location: college.location, score: college.score }); saveBookmarks(bms); showToast('🔖 Added to watchlist!'); } }
+function addBookmark(college) {
+  const bms = getBookmarks();
+  if (!bms.some(b => b.name === college.name)) {
+    bms.push({ name: college.name, location: college.location, score: college.score });
+    saveBookmarks(bms);
+    trackUserAction('watchlistCount');
+    showToast('🔖 Added to watchlist!');
+  }
+}
 function removeBookmark(name) { saveBookmarks(getBookmarks().filter(b => b.name !== name)); }
-function toggleBookmarkCurrent() { if (!currentCollege) return; if (isBookmarked(currentCollege.name)) { removeBookmark(currentCollege.name); showToast('Removed from watchlist'); } else { addBookmark(currentCollege); } updateResultBookmarkBtn(); }
+function toggleBookmarkCurrent() {
+  if (!currentCollege) return;
+  if (isBookmarked(currentCollege.name)) {
+    removeBookmark(currentCollege.name);
+    showToast('Removed from watchlist');
+  } else {
+    addBookmark(currentCollege);
+  }
+  updateResultBookmarkBtn();
+}
 function updateResultBookmarkBtn() { const btn = document.getElementById('result-bookmark'); if (!currentCollege) return; const active = isBookmarked(currentCollege.name); btn.textContent = active ? '❤️' : '🤍'; btn.classList.toggle('active', active); }
 function updateBookmarkUI() {
   const bms = getBookmarks(); const badge = document.getElementById('bm-badge'); const list = document.getElementById('bm-list');
@@ -1403,14 +1586,16 @@ function updateBookmarkUI() {
 function toggleBookmarks() { const overlay = document.getElementById('bm-overlay'); const panel = document.getElementById('bm-panel'); const isOpen = panel.classList.contains('show'); if (isOpen) { panel.classList.remove('show'); overlay.classList.remove('show'); } else { updateBookmarkUI(); panel.classList.add('show'); overlay.classList.add('show'); } }
 updateBookmarkUI();
 
-// ═══ COMPARE ═════════════════════════════
+// ═══ COMPARE (with Firebase tracking) ═══
 function getCompareList() { try { return JSON.parse(sessionStorage.getItem('collex-compare') || '[]'); } catch { return []; } }
 function saveCompareList(arr) { sessionStorage.setItem('collex-compare', JSON.stringify(arr)); updateCompareFab(); }
 function updateCompareFab() { const list = getCompareList(); const fab = document.getElementById('compare-fab'); const count = document.getElementById('fab-count'); if (list.length > 0) { fab.classList.add('show'); count.textContent = list.length; } else { fab.classList.remove('show'); } }
 function toggleCompare() {
   if (!currentCollege) return; const list = getCompareList(); const idx = list.findIndex(c => c.name === currentCollege.name);
   if (idx > -1) { list.splice(idx, 1); } else { if (list.length >= 3) { showToast('⚠️ Max 3 colleges to compare'); document.getElementById('compare-toggle').checked = false; return; }
-  list.push({ name: currentCollege.name, type: currentCollege.type, location: currentCollege.location, score: currentCollege.score, verdict: currentCollege.verdict, fees: currentCollege.fees, placement: currentCollege.placement, est: currentCollege.est, programs: currentCollege.programs, campuses: currentCollege.campuses, metrics: currentCollege.metrics }); }
+  list.push({ name: currentCollege.name, type: currentCollege.type, location: currentCollege.location, score: currentCollege.score, verdict: currentCollege.verdict, fees: currentCollege.fees, placement: currentCollege.placement, est: currentCollege.est, programs: currentCollege.programs, campuses: currentCollege.campuses, metrics: currentCollege.metrics });
+  trackUserAction('comparisonsMade');
+  }
   saveCompareList(list); document.getElementById('compare-toggle').checked = list.some(c => c.name === currentCollege.name);
 }
 function openCompare() {
@@ -1430,12 +1615,12 @@ function closeCompare() { document.getElementById('compare-modal').classList.rem
 function removeCompare(name) { const list = getCompareList().filter(c => c.name !== name); saveCompareList(list); openCompare(); if (currentCollege) document.getElementById('compare-toggle').checked = list.some(c => c.name === currentCollege.name); }
 updateCompareFab();
 
-// ═══ SKELETONS ═══════════════════════════
+// ═══ SKELETONS ═══
 function showSkeletonMetrics() { return `<div>${[1,2,3,4,5].map(() => `<div style="margin-bottom:16px"><div class="skel-row"><div class="skeleton skel-line w60"></div><div class="skeleton skel-line w40" style="margin-left:auto"></div></div><div class="skeleton skel-bar" style="width:100%"></div></div>`).join('')}</div>`; }
 function showSkeletonAI() { return `<div style="padding:4px 0"><div class="skeleton skel-line w90"></div><div class="skeleton skel-line w80"></div><div class="skeleton skel-line w60"></div><div style="height:16px"></div><div class="skeleton skel-block" style="border-radius:10px"></div><div class="skeleton skel-block" style="border-radius:10px"></div><div class="skeleton skel-block" style="border-radius:10px;width:80%"></div></div>`; }
 function showSkeletonVoices() { return `<div style="padding:4px 0">${[1,2,3].map(() => `<div class="skeleton skel-block" style="border-radius:10px;margin-bottom:10px;height:72px"></div>`).join('')}</div>`; }
 
-// ═══ SEARCH ══════════════════════════════
+// ═══ SEARCH ═══
 function findCollege(q) {
   q = q.toLowerCase().trim();
   if (ALIASES[q]) return DB[ALIASES[q]];
@@ -1514,7 +1699,7 @@ function showNotFound(query) {
   document.getElementById('compare-toggle').checked = false;
 }
 
-// ═══ GROQ API ════════════════════════════
+// ═══ GROQ API ═══
 async function fetchReview(college) {
   if (reviewCache[college.name]) { renderReview(reviewCache[college.name]); return; }
   const prompt = `You are Collex, an honest India college research assistant. Based on verified data about ${college.name}, generate student sentiment analysis.\nData: fees=${college.fees}, placement=${college.placement}, score=${college.score}/10, verdict=${college.verdict}\nRespond with ONLY a raw JSON object. No markdown. No backticks. No explanation. Just the JSON starting with { and ending with }:\n{"summary":"2-3 honest sentences from student perspective","pros":["specific pro 1","specific pro 2","specific pro 3"],"cons":["specific con 1","specific con 2","specific con 3"],"voices":[{"quote":"realistic student quote","source":"Reddit r/india"},{"quote":"realistic student quote","source":"Quora"},{"quote":"realistic student quote","source":"Reddit r/indianstudents"}]}`;
@@ -1546,7 +1731,7 @@ function showReviewError(msg) {
   document.getElementById('voices').innerHTML = `<div class="nf"><div class="nf-text">Unavailable due to API error.</div></div>`;
 }
 
-// ═══ AI CHATBOT ══════════════════════════
+// ═══ AI CHATBOT ═══
 let chatHistory = [ { role: 'system', content: `You are Collex AI, a friendly and knowledgeable assistant about Indian colleges. You know about IITs, NITs, IIMs, BITS, AIIMS, IISc, and many more. Give concise, helpful answers. Use data when possible. If you don't know, say so honestly. Keep answers short — max 3-4 sentences unless asked for detail. You can reference college scores, fees, placements. Be conversational and use emojis sparingly.` } ];
 
 function toggleChat() {
@@ -1559,7 +1744,6 @@ function toggleChat() {
   localStorage.setItem('collex-chat-seen', '1');
 }
 
-// Show hint tooltip after a delay for first-time visitors
 setTimeout(() => {
   if (!localStorage.getItem('collex-chat-seen')) {
     const hint = document.getElementById('chat-fab-hint');
@@ -1589,7 +1773,7 @@ async function chatSend(text) {
   messages.scrollTop = messages.scrollHeight;
 }
 
-// ═══ FILTER SYSTEM ══════════════════════════
+// ═══ FILTER SYSTEM (with Firebase tracking) ═══
 
 function populateFilterOptions() {
   const cities = new Set();
@@ -1715,6 +1899,9 @@ function updateFilterPreview() {
 }
 
 function applyFilters() {
+  // Track filter usage in Firebase
+  trackUserAction('filtersUsed');
+
   let results = getFilteredColleges();
   const sortVal = document.getElementById('filter-sort').value;
 
@@ -1804,7 +1991,7 @@ function initFilters() {
   }
 }
 
-// ═══ SLIDESHOW ═══════════════════════════
+// ═══ SLIDESHOW ═══
 try {
 (function() {
   const SLIDES = [
@@ -1846,9 +2033,15 @@ try {
 
 try { const hero = document.getElementById('page-hero'); if (hero) { hero.addEventListener('mousemove', (e) => { const rect = hero.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; hero.style.setProperty('--mx', `${x * 30}px`); hero.style.setProperty('--my', `${y * 20}px`); }); } } catch(e) {}
 
-// Initialize filters
-document.addEventListener('DOMContentLoaded', initFilters);
-if (document.readyState !== 'loading') { initFilters(); }
+// ═══ INITIALIZE EVERYTHING ═══
+document.addEventListener('DOMContentLoaded', () => {
+  initFilters();
+  initAuth();
+});
+if (document.readyState !== 'loading') {
+  initFilters();
+  initAuth();
+}
 </script>
 </body>
 </html>
