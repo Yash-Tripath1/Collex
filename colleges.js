@@ -4632,6 +4632,249 @@ const DB = {
     est:"1948",
     metrics:[{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:8.0,c:"g"}]
   },
+    // ══════════════════════════════════════════
+  //  INTERNATIONAL (US/UK/CANADA/Etc.)
+  // ══════════════════════════════════════════
+
+  "mit usa": {
+    name:"MIT (Massachusetts Institute of Technology)", type:"Private Research University", location:"Cambridge, MA, USA", score:10.0, verdict:"World's #1 University — The Dream",
+    programs:"Engineering, CS, Sciences, Economics, Management",
+    fees:"$60,000–$85,000/year (Need-blind aid available)",
+    campuses:"Urban campus along Charles River",
+    sports:"D1 athletics, sailing, rowing",
+    extra:"Hacking culture, infinite clubs, innovation focus",
+    placement:"Avg $120,000+; Google, Apple, Tesla, SpaceX",
+    est:"1861",
+    metrics:[{n:"Global Rank",v:10.0,c:"g"},{n:"Research",v:10.0,c:"g"},{n:"Innovation",v:10.0,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"ROI",v:9.8,c:"g"}]
+  },
+
+  "stanford usa": {
+    name:"Stanford University", type:"Private Research University", location:"Stanford, CA, USA", score:9.9, verdict:"Silicon Valley's Heart — Entrepreneurial",
+    programs:"CS, Engineering, Law, Business, Medicine",
+    fees:"$60,000–$85,000/year",
+    campuses:"Massive 8,000-acre campus (The Farm)",
+    sports:"Pac-12 dominance, football, swimming",
+    extra:"Startup incubators; alumni founded Google/Yahoo",
+    placement:"Avg $125,000+; Tech & VC hub",
+    est:"1885",
+    metrics:[{n:"Global Rank",v:9.9,c:"g"},{n:"Research",v:9.8,c:"g"},{n:"Startups",v:10.0,c:"g"},{n:"Campus",v:10.0,c:"g"},{n:"ROI",v:9.8,c:"g"}]
+  },
+
+  "harvard usa": {
+    name:"Harvard University", type:"Private Ivy League", location:"Cambridge, MA, USA", score:9.9, verdict:"Prestige & Power — Oldest in US",
+    programs:"Law, Business, Medicine, Liberal Arts, CS",
+    fees:"$55,000–$80,000/year",
+    campuses:"Historic Harvard Yard + Allston expansion",
+    sports:"Harvard-Yale rivalry; rowing, football",
+    extra:"The Crimson (newspaper), Hasty Pudding; elite societies",
+    placement:"Avg $110,000+; Consulting, Finance, Law, Tech",
+    est:"1636",
+    metrics:[{n:"Global Rank",v:9.9,c:"g"},{n:"Prestige",v:10.0,c:"g"},{n:"Alumni",v:10.0,c:"g"},{n:"Campus",v:9.5,c:"g"},{n:"ROI",v:9.5,c:"g"}]
+  },
+
+  "oxford uk": {
+    name:"University of Oxford", type:"Collegiate Research University", location:"Oxford, UK", score:9.8, verdict:"World's Oldest English Uni — Academic Holy Grail",
+    programs:"PPE, Law, Medicine, Sciences, Humanities",
+    fees:"£30,000–£45,000/year (International)",
+    campuses:"39 constituent colleges scattered across city",
+    sports:"Rowing (The Boat Race), cricket, rugby",
+    extra:"Oxford Union (debating), formal dinners",
+    placement:"Avg £50,000+; Academia, Law, Finance",
+    est:"1096",
+    metrics:[{n:"Global Rank",v:9.8,c:"g"},{n:"History",v:10.0,c:"g"},{n:"Tutorials",v:10.0,c:"g"},{n:"Campus",v:10.0,c:"g"},{n:"ROI",v:9.0,c:"g"}]
+  },
+
+  "cambridge uk": {
+    name:"University of Cambridge", type:"Collegiate Research University", location:"Cambridge, UK", score:9.8, verdict:"Science & Innovation Giant — Silicon Fen",
+    programs:"Mathematics, Natural Sciences, Engineering, CS",
+    fees:"£35,000–£50,000/year",
+    campuses:"31 colleges; River Cam punting",
+    sports:"Rowing, cricket, rugby",
+    extra:"Footlights (drama), research societies",
+    placement:"Avg £55,000+; Tech, Research, Finance",
+    est:"1209",
+    metrics:[{n:"Global Rank",v:9.8,c:"g"},{n:"Science",v:10.0,c:"g"},{n:"Innovation",v:9.8,c:"g"},{n:"Campus",v:9.8,c:"g"},{n:"ROI",v:9.2,c:"g"}]
+  },
+
+  "nus singapore": {
+    name:"NUS Singapore", type:"Public Autonomous", location:"Kent Ridge, Singapore", score:9.5, verdict:"Asia's #1 University — Gateway to SE Asia",
+    programs:"CS, Engineering, Business, Law",
+    fees:"S$30,000–S$40,000/year (with Tuition Grant bond)",
+    campuses:"Modern tropical campus, Utopia-town",
+    sports:"Swimming, dragon boat, tennis",
+    extra:"Overseas colleges program; vibrant student life",
+    placement:"Avg S$5,000–S$6,500/month; Tech & Finance in Asia",
+    est:"1905",
+    metrics:[{n:"Global Rank",v:9.2,c:"g"},{n:"Asia Rank",v:10.0,c:"g"},{n:"Safety",v:10.0,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"ROI",v:9.0,c:"g"}]
+  },
+
+  "ntu singapore": {
+    name:"NTU Singapore", type:"Public Autonomous", location:"Jurong West, Singapore", score:9.3, verdict:"Engineering & AI Powerhouse — Beautiful Campus",
+    programs:"Engineering, CS, Business, Science",
+    fees:"S$30,000–S$40,000/year (with bond)",
+    campuses:"Eco-campus; The Hive (dim sum basket building)",
+    sports:"Huge sports complex, running tracks",
+    extra:"Research focus; strong AI/Robotics labs",
+    placement:"Avg S$4,800–S$6,000/month; Tech & Engineering",
+    est:"1981",
+    metrics:[{n:"Global Rank",v:9.0,c:"g"},{n:"Tech",v:9.8,c:"g"},{n:"Campus",v:9.5,c:"g"},{n:"Placement",v:8.8,c:"g"},{n:"ROI",v:9.0,c:"g"}]
+  },
+
+  "toronto canada": {
+    name:"University of Toronto", type:"Public Research University", location:"Toronto, Canada", score:9.4, verdict:"Canada's Harvard — AI Research Hub",
+    programs:"CS (Hinton's lab), Engineering, Rotman Commerce",
+    fees:"CAD 60,000–80,000/year",
+    campuses:"St. George (Downtown) + Mississauga + Scarborough",
+    sports:"Varsity Blues; hockey, football",
+    extra:"Hart House; huge diversity",
+    placement:"Avg CAD 80,000+; Tech & Finance in NA",
+    est:"1827",
+    metrics:[{n:"Global Rank",v:9.2,c:"g"},{n:"AI Research",v:10.0,c:"g"},{n:"City Life",v:9.5,c:"g"},{n:"Diversity",v:9.8,c:"g"},{n:"ROI",v:8.5,c:"g"}]
+  },
+
+  "waterloo canada": {
+    name:"University of Waterloo", type:"Public Research University", location:"Waterloo, Ontario, Canada", score:9.2, verdict:"Co-op King — Silicon Valley Feeder",
+    programs:"CS, Software Engineering, Mathematics",
+    fees:"CAD 65,000–75,000/year",
+    campuses:"Modern, functional campus",
+    sports:"Warriors; ice hockey",
+    extra:"Velocity (incubator); 5-year degrees with 2 years work exp",
+    placement:"Avg CAD 90,000+; Massive hiring by Google/Facebook",
+    est:"1957",
+    metrics:[{n:"Global Rank",v:8.5,c:"g"},{n:"Co-op",v:10.0,c:"g"},{n:"Tech Jobs",v:9.8,c:"g"},{n:"Campus",v:7.0,c:"a"},{n:"ROI",v:9.5,c:"g"}]
+  },
+
+  "ubc canada": {
+    name:"University of British Columbia", type:"Public Research University", location:"Vancouver, Canada", score:9.3, verdict:"Most Beautiful Campus — West Coast Gem",
+    programs:"Sciences, Engineering, Sauder Business",
+    fees:"CAD 55,000–65,000/year",
+    campuses:"Ocean-side campus with beaches",
+    sports:"Thunderbirds; outdoor sports focus",
+    extra:"Sustainability focus; film shoots",
+    placement:"Avg CAD 75,000+; West Coast tech & business",
+    est:"1908",
+    metrics:[{n:"Global Rank",v:9.0,c:"g"},{n:"Scenery",v:10.0,c:"g"},{n:"Lifestyle",v:9.5,c:"g"},{n:"Campus",v:10.0,c:"g"},{n:"ROI",v:8.5,c:"g"}]
+  },
+
+  "imperial uk": {
+    name:"Imperial College London", type:"Public Research University", location:"South Kensington, London", score:9.6, verdict:"STEM Specialist — MIT of Europe",
+    programs:"Science, Engineering, Medicine, Business",
+    fees:"£35,000–£45,000/year",
+    campuses:"Central London (Museum district)",
+    sports:"Hyde Park usage, rowing",
+    extra:"Career focused; intense academics",
+    placement:"Avg £60,000+; Finance, Tech, Engineering",
+    est:"1907",
+    metrics:[{n:"Global Rank",v:9.5,c:"g"},{n:"STEM Focus",v:10.0,c:"g"},{n:"Location",v:9.8,c:"g"},{n:"Campus",v:8.0,c:"g"},{n:"ROI",v:9.2,c:"g"}]
+  },
+
+  "ucl uk": {
+    name:"UCL (University College London)", type:"Public Research University", location:"Bloomsbury, London", score:9.4, verdict:"London's Global University — Diverse",
+    programs:"Architecture (Bartlett), Law, Medicine, Humanities",
+    fees:"£25,000–£40,000/year",
+    campuses:"Central London blocks",
+    sports:"London varsity sports",
+    extra:"Cosmopolitan; Jeremy Bentham's auto-icon",
+    placement:"Avg £50,000+; Global opportunities",
+    est:"1826",
+    metrics:[{n:"Global Rank",v:9.2,c:"g"},{n:"Diversity",v:9.8,c:"g"},{n:"Location",v:9.8,c:"g"},{n:"Research",v:9.0,c:"g"},{n:"ROI",v:8.8,c:"g"}]
+  },
+
+  "unsw australia": {
+    name:"UNSW Sydney", type:"Public Research University", location:"Sydney, Australia", score:9.0, verdict:"Australia's Global University — Engineering",
+    programs:"Engineering (strongest in Aus), Business, Law",
+    fees:"AUD 45,000–55,000/year",
+    campuses:"Kensington campus near beaches",
+    sports:"Surfing, rugby, cricket",
+    extra:"Arc (student life); sun & sand lifestyle",
+    placement:"Avg AUD 80,000+; Strong industry ties",
+    est:"1949",
+    metrics:[{n:"Global Rank",v:8.8,c:"g"},{n:"Engg Rank",v:9.2,c:"g"},{n:"Lifestyle",v:9.5,c:"g"},{n:"Campus",v:8.5,c:"g"},{n:"ROI",v:8.0,c:"g"}]
+  },
+
+  "melbourne uni": {
+    name:"University of Melbourne", type:"Public Research University", location:"Melbourne, Australia", score:9.1, verdict:"Australia's #1 — Cultural Capital",
+    programs:"Biomedicine, Arts, Commerce, Science",
+    fees:"AUD 45,000–60,000/year",
+    campuses:"Parkville campus (city within a city)",
+    sports:"AFL, cricket, rowing",
+    extra:"Colleges system; arts & coffee culture",
+    placement:"Avg AUD 75,000+; Research & Corporate",
+    est:"1853",
+    metrics:[{n:"Global Rank",v:9.0,c:"g"},{n:"Culture",v:9.5,c:"g"},{n:"City Life",v:9.8,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"ROI",v:8.2,c:"g"}]
+  },
+
+  "eth zurich": {
+    name:"ETH Zurich", type:"Public Research University", location:"Zurich, Switzerland", score:9.5, verdict:"Einstein's Alma Mater — Low Fees",
+    programs:"Engineering, Physics, Architecture, CS",
+    fees:"CHF 1,500/year (Extremely Low Tuition)",
+    campuses:"Hillside campus + City campus",
+    sports:"Skiing, hiking, rowing",
+    extra:"Polyball; rigorous academics",
+    placement:"Avg CHF 100,000+; Google Zurich, Engineering",
+    est:"1855",
+    metrics:[{n:"Global Rank",v:9.5,c:"g"},{n:"Value",v:10.0,c:"g"},{n:"Research",v:9.8,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"Cost",v:10.0,c:"g"}]
+  },
+
+  "tum germany": {
+    name:"TUM (Technical University Munich)", type:"Public University", location:"Munich, Germany", score:9.2, verdict:"German Engineering Excellence — No Tuition",
+    programs:"Engineering, CS, Management (TUM-BWL)",
+    fees:"€0 (Only semester fee ~€150)",
+    campuses:"Munich + Garching (slide inside building!)",
+    sports:"Olympic park usage",
+    extra:"Oktoberfest vibe; strong industry link (BMW/Audi)",
+    placement:"Avg €55,000+; German manufacturing/tech",
+    est:"1868",
+    metrics:[{n:"Global Rank",v:8.8,c:"g"},{n:"Value",v:10.0,c:"g"},{n:"Industry",v:9.8,c:"g"},{n:"Campus",v:8.5,c:"g"},{n:"Cost",v:10.0,c:"g"}]
+  },
+
+  "georgia tech": {
+    name:"Georgia Tech", type:"Public Research University", location:"Atlanta, GA, USA", score:9.3, verdict:"Top Public Engineering — ROI Beast",
+    programs:"Aerospace, Industrial Engg (#1), CS",
+    fees:"$33,000/year (Out of state) — Affordable for US",
+    campuses:"Urban campus in Midtown Atlanta",
+    sports:"Yellow Jackets; football, swimming",
+    extra:"Invention studio; Coca-Cola HQ nearby",
+    placement:"Avg $100,000+; Engineering & Tech",
+    est:"1885",
+    metrics:[{n:"Global Rank",v:9.0,c:"g"},{n:"Engg Rank",v:9.8,c:"g"},{n:"Value",v:9.5,c:"g"},{n:"Campus",v:8.0,c:"g"},{n:"ROI",v:9.8,c:"g"}]
+  },
+
+  "cmu usa": {
+    name:"Carnegie Mellon University", type:"Private Research University", location:"Pittsburgh, PA, USA", score:9.4, verdict:"World's Best for CS & AI",
+    programs:"Computer Science, AI, Robotics, Drama",
+    fees:"$60,000–$80,000/year",
+    campuses:"Urban campus in Pittsburgh",
+    sports:"Tartans; buggy racing (tradition)",
+    extra:"Interdisciplinary (Arts + Tech)",
+    placement:"Avg $140,000+; Highest for CS grads",
+    est:"1900",
+    metrics:[{n:"CS Rank",v:10.0,c:"g"},{n:"AI Rank",v:10.0,c:"g"},{n:"Campus",v:7.5,c:"a"},{n:"Workload",v:6.0,c:"r"},{n:"ROI",v:9.5,c:"g"}]
+  },
+
+  "berkeley usa": {
+    name:"UC Berkeley", type:"Public Research University", location:"Berkeley, CA, USA", score:9.7, verdict:"Top Public Uni — Activism & Tech",
+    programs:"CS, Engineering, Economics, Chemistry",
+    fees:"$45,000–$65,000/year (Out of state)",
+    campuses:"Hillside campus overlooking SF Bay",
+    sports:"Golden Bears; huge Olympic history",
+    extra:"Free Speech Movement; proximity to SF",
+    placement:"Avg $120,000+; Silicon Valley feeder",
+    est:"1868",
+    metrics:[{n:"Global Rank",v:9.8,c:"g"},{n:"Research",v:10.0,c:"g"},{n:"Activism",v:9.5,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"ROI",v:9.5,c:"g"}]
+  },
+
+  "cornell usa": {
+    name:"Cornell University", type:"Private Ivy League", location:"Ithaca, NY, USA", score:9.5, verdict:"Ivy League Engineering — 'Any Person, Any Study'",
+    programs:"Engineering, CS, Hotel Administration, Architecture",
+    fees:"$60,000–$80,000/year",
+    campuses:"Gorges, waterfalls, rural huge campus",
+    sports:"Ice hockey, lacrosse",
+    extra:"Dragon Day; intense workload",
+    placement:"Avg $110,000+; Tech & Wall Street",
+    est:"1865",
+    metrics:[{n:"Global Rank",v:9.5,c:"g"},{n:"Campus",v:10.0,c:"g"},{n:"Ivy Tag",v:10.0,c:"g"},{n:"Food",v:10.0,c:"g"},{n:"ROI",v:9.2,c:"g"}]
+  },
   "iiser bhopal": {
     name:"IISER Bhopal", type:"Autonomous Public Research Institute (INI)", location:"Bhauri, Bhopal, Madhya Pradesh", score:8.8, verdict:"Strong Science Research — Growing Fast",
     programs:"BS-MS dual degree (5 years) in Biological, Chemical, Earth, Mathematical, Physical Sciences; MSc, PhD",
@@ -4960,6 +5203,26 @@ const ALIASES = {
   "nm":"nm college mumbai","nm college":"nm college mumbai",
   "xaviers mumbai":"st xaviers mumbai","st xaviers mumbai":"st xaviers mumbai",
   "xaviers kolkata":"st xaviers kolkata","st xaviers kolkata":"st xaviers kolkata",
-  "mount carmel":"mount carmel bangalore","mcc bangalore":"mount carmel bangalore"
-
+  "mount carmel":"mount carmel bangalore","mcc bangalore":"mount carmel bangalore",
+    // ── International Aliases ──
+  "mit":"mit usa","massachusetts institute":"mit usa",
+  "stanford":"stanford usa",
+  "harvard":"harvard usa",
+  "oxford":"oxford uk",
+  "cambridge":"cambridge uk",
+  "nus":"nus singapore","national university of singapore":"nus singapore",
+  "ntu":"ntu singapore","nanyang":"ntu singapore",
+  "toronto":"toronto canada","uoft":"toronto canada","u of t":"toronto canada",
+  "waterloo":"waterloo canada","uwaterloo":"waterloo canada",
+  "ubc":"ubc canada","british columbia":"ubc canada",
+  "imperial":"imperial uk","imperial college":"imperial uk",
+  "ucl":"ucl uk","university college london":"ucl uk",
+  "unsw":"unsw australia",
+  "melbourne":"melbourne uni","unimelb":"melbourne uni",
+  "eth":"eth zurich","eth z":"eth zurich",
+  "tum":"tum germany","munich technical":"tum germany",
+  "georgia tech":"georgia tech","gatech":"georgia tech",
+  "cmu":"cmu usa","carnegie mellon":"cmu usa",
+  "berkeley":"berkeley usa","ucb":"berkeley usa","cal":"berkeley usa",
+  "cornell":"cornell usa"
 };
