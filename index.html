@@ -774,6 +774,65 @@
       .filter-btns { justify-content: stretch; }
       .filter-apply-btn, .filter-clear-btn { flex: 1; text-align: center; }
     }
+    /* ═══ CHAT LIMIT STYLES ═══ */
+.chat-limit-msg {
+  text-align: center;
+  padding: 20px 16px;
+  animation: msgIn 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.chat-limit-msg .limit-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.chat-limit-msg .limit-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.chat-limit-msg .limit-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.chat-limit-msg .limit-email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+.chat-limit-msg .limit-email-btn:hover {
+  background: #a86b3a;
+  transform: translateY(-2px);
+}
+.chat-limit-msg .limit-counter {
+  font-size: 11px;
+  color: var(--light);
+  margin-top: 8px;
+}
+.chat-remaining {
+  font-size: 10px;
+  color: var(--light);
+  text-align: center;
+  padding: 4px 0 0;
+}
+.chat-remaining strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
   </style>
 </head>
 <body>
@@ -1829,6 +1888,20 @@ function toggleChat() {
   fab.style.display = win.classList.contains('show') ? 'none' : 'flex';
   if (hint) { hint.classList.remove('show'); hint.style.display = 'none'; }
   localStorage.setItem('collex-chat-seen', '1');
+  
+  // Show remaining counter and check if limit already reached when opening
+  if (win.classList.contains('show')) {
+    updateChatRemainingIndicator();
+    
+    if (getChatUsage() >= CHAT_LIMIT) {
+      const input = document.getElementById('chat-input');
+      input.disabled = true;
+      input.placeholder = 'Free limit reached — email us for premium access';
+      document.querySelector('.chat-send').disabled = true;
+      document.querySelector('.chat-send').style.opacity = '0.4';
+      document.querySelector('.chat-send').style.cursor = 'not-allowed';
+    }
+  }
 }
 
 setTimeout(() => {
@@ -1841,25 +1914,161 @@ setTimeout(() => {
   }
 }, 4000);
 
-document.getElementById('chat-input').addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatSend(); } });
-async function chatSend(text) {
-  const input = document.getElementById('chat-input'); const msg = text || input.value.trim(); if (!msg) return; input.value = '';
-  document.getElementById('chat-suggestions').style.display = 'none';
-  const messages = document.getElementById('chat-messages');
-  const userDiv = document.createElement('div'); userDiv.className = 'chat-msg user'; userDiv.textContent = msg; messages.appendChild(userDiv);
-  const typingDiv = document.createElement('div'); typingDiv.className = 'chat-msg typing'; typingDiv.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>'; messages.appendChild(typingDiv); messages.scrollTop = messages.scrollHeight;
-  let dbContext = ''; const lowerMsg = msg.toLowerCase();
-  for (const key in DB) { if (lowerMsg.includes(key) || lowerMsg.includes(DB[key].name.toLowerCase())) { const c = DB[key]; dbContext += `\n[${c.name}]: Score ${c.score}/10, ${c.location}, Fees: ${c.fees}, Placement: ${c.placement}, Verdict: ${c.verdict}`; } }
-  chatHistory.push({ role: 'user', content: msg + (dbContext ? '\n\nRelevant college data from our database:' + dbContext : '') });
-  try {
-    const res = await fetch('/api/groq', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: chatHistory, temperature: 0.7, max_tokens: 500 }) });
-    const data = await res.json(); typingDiv.remove();
-    if (data.error) { const errDiv = document.createElement('div'); errDiv.className = 'chat-msg bot'; errDiv.textContent = '⚠️ API error: ' + (data.error.message || 'Try again later'); messages.appendChild(errDiv); }
-    else { const reply = data.choices[0].message.content; chatHistory.push({ role: 'assistant', content: reply }); const botDiv = document.createElement('div'); botDiv.className = 'chat-msg bot'; botDiv.textContent = reply; messages.appendChild(botDiv); }
-  } catch (err) { typingDiv.remove(); const errDiv = document.createElement('div'); errDiv.className = 'chat-msg bot'; errDiv.textContent = '⚠️ Connection error. Please try again.'; messages.appendChild(errDiv); }
-  messages.scrollTop = messages.scrollHeight;
+// ═══ CHAT USAGE LIMIT SYSTEM ═══
+const CHAT_LIMIT = 5;
+
+function getChatUsage() {
+  return parseInt(localStorage.getItem('collex-chat-usage') || '0', 10);
 }
 
+function incrementChatUsage() {
+  const current = getChatUsage();
+  localStorage.setItem('collex-chat-usage', (current + 1).toString());
+  return current + 1;
+}
+
+function getRemainingChats() {
+  return Math.max(0, CHAT_LIMIT - getChatUsage());
+}
+
+function showChatLimitReached() {
+  const messages = document.getElementById('chat-messages');
+  
+  // Remove typing indicator if any
+  const typingEls = messages.querySelectorAll('.chat-msg.typing');
+  typingEls.forEach(el => el.remove());
+  
+  const limitDiv = document.createElement('div');
+  limitDiv.className = 'chat-limit-msg';
+  limitDiv.innerHTML = `
+    <div class="limit-icon">✦</div>
+    <div class="limit-title">Free searches exhausted</div>
+    <div class="limit-desc">
+      You have used all <strong>5 free AI searches</strong> on this device.<br><br>
+      Want <strong>unlimited AI search</strong> and many more premium features? Get early access to <strong>Collex Premium</strong> by reaching out to us!
+    </div>
+    <a href="mailto:collex.business@gmail.com?subject=Collex%20Premium%20Early%20Access&body=Hi%20Collex%20team%2C%0A%0AI%20would%20like%20early%20access%20to%20Collex%20Premium%20with%20unlimited%20AI%20search.%0A%0AThanks!" 
+       class="limit-email-btn">
+      ✉ collex.business@gmail.com
+    </a>
+    <div class="limit-counter">0 of ${CHAT_LIMIT} searches remaining</div>
+  `;
+  messages.appendChild(limitDiv);
+  messages.scrollTop = messages.scrollHeight;
+  
+  // Disable the input
+  const input = document.getElementById('chat-input');
+  input.disabled = true;
+  input.placeholder = 'Free limit reached — email us for premium access';
+  document.querySelector('.chat-send').disabled = true;
+  document.querySelector('.chat-send').style.opacity = '0.4';
+  document.querySelector('.chat-send').style.cursor = 'not-allowed';
+}
+
+function updateChatRemainingIndicator() {
+  const remaining = getRemainingChats();
+  let indicator = document.getElementById('chat-remaining-indicator');
+  
+  if (!indicator) {
+    indicator = document.createElement('div');
+    indicator.id = 'chat-remaining-indicator';
+    indicator.className = 'chat-remaining';
+    const inputRow = document.querySelector('.chat-input-row');
+    if (inputRow) {
+      inputRow.parentNode.insertBefore(indicator, inputRow);
+    }
+  }
+  
+  if (remaining <= 0) {
+    indicator.innerHTML = `<strong>0</strong> of ${CHAT_LIMIT} free searches remaining`;
+  } else {
+    indicator.innerHTML = `<strong>${remaining}</strong> of ${CHAT_LIMIT} free searches remaining`;
+  }
+}
+
+document.getElementById('chat-input').addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatSend(); } });
+
+async function chatSend(text) {
+  const input = document.getElementById('chat-input');
+  const msg = text || input.value.trim();
+  if (!msg) return;
+  
+  // ═══ CHECK CHAT LIMIT ═══
+  const usage = getChatUsage();
+  if (usage >= CHAT_LIMIT) {
+    input.value = '';
+    showChatLimitReached();
+    return;
+  }
+  
+  input.value = '';
+  document.getElementById('chat-suggestions').style.display = 'none';
+  
+  const messages = document.getElementById('chat-messages');
+  const userDiv = document.createElement('div');
+  userDiv.className = 'chat-msg user';
+  userDiv.textContent = msg;
+  messages.appendChild(userDiv);
+  
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'chat-msg typing';
+  typingDiv.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  messages.appendChild(typingDiv);
+  
+  let dbContext = '';
+  const lowerMsg = msg.toLowerCase();
+  for (const key in DB) {
+    if (lowerMsg.includes(key) || lowerMsg.includes(DB[key].name.toLowerCase())) {
+      const c = DB[key];
+      dbContext += `\n[${c.name}]: Score ${c.score}/10, ${c.type}, ${c.location}, Fees: ${c.fees}, Placement: ${c.placement}, Verdict: ${c.verdict}`;
+    }
+  }
+  
+  chatHistory.push({ role: 'user', content: msg + (dbContext ? '\n\nRelevant college data from our database:' + dbContext : '') });
+  
+  try {
+    const res = await fetch('/api/groq', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: chatHistory, temperature: 0.6, max_tokens: 600 })
+    });
+    const data = await res.json();
+    typingDiv.remove();
+    
+    if (data.error) {
+      const errDiv = document.createElement('div');
+      errDiv.className = 'chat-msg bot';
+      errDiv.textContent = '⚠ API error: ' + (data.error.message || data.error);
+      messages.appendChild(errDiv);
+    } else {
+      const reply = data.choices[0].message.content;
+      chatHistory.push({ role: 'assistant', content: reply });
+      const botDiv = document.createElement('div');
+      botDiv.className = 'chat-msg bot';
+      botDiv.textContent = reply;
+      messages.appendChild(botDiv);
+      
+      // ═══ INCREMENT USAGE AFTER SUCCESSFUL RESPONSE ═══
+      const newUsage = incrementChatUsage();
+      updateChatRemainingIndicator();
+      
+      // Check if this was the last free search
+      if (newUsage >= CHAT_LIMIT) {
+        setTimeout(() => {
+          showChatLimitReached();
+        }, 1500);
+      }
+    }
+  } catch (err) {
+    typingDiv.remove();
+    const errDiv = document.createElement('div');
+    errDiv.className = 'chat-msg bot';
+    errDiv.textContent = '⚠ Connection error. Please try again.';
+    messages.appendChild(errDiv);
+  }
+  
+  messages.scrollTop = messages.scrollHeight;
+}
 // ═══ FILTER SYSTEM (with Firebase tracking) ═══
 
 function populateFilterOptions() {

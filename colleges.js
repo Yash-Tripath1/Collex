@@ -4961,5 +4961,5 @@ const ALIASES = {
   "xaviers mumbai":"st xaviers mumbai","st xaviers mumbai":"st xaviers mumbai",
   "xaviers kolkata":"st xaviers kolkata","st xaviers kolkata":"st xaviers kolkata",
   "mount carmel":"mount carmel bangalore","mcc bangalore":"mount carmel bangalore"
-  
+
 };
