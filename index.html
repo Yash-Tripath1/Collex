@@ -1699,36 +1699,131 @@ function showNotFound(query) {
   document.getElementById('compare-toggle').checked = false;
 }
 
-// ═══ GROQ API ═══
+// ═══ GROQ API ════════════════════════════
 async function fetchReview(college) {
   if (reviewCache[college.name]) { renderReview(reviewCache[college.name]); return; }
-  const prompt = `You are Collex, an honest India college research assistant. Based on verified data about ${college.name}, generate student sentiment analysis.\nData: fees=${college.fees}, placement=${college.placement}, score=${college.score}/10, verdict=${college.verdict}\nRespond with ONLY a raw JSON object. No markdown. No backticks. No explanation. Just the JSON starting with { and ending with }:\n{"summary":"2-3 honest sentences from student perspective","pros":["specific pro 1","specific pro 2","specific pro 3"],"cons":["specific con 1","specific con 2","specific con 3"],"voices":[{"quote":"realistic student quote","source":"Reddit r/india"},{"quote":"realistic student quote","source":"Quora"},{"quote":"realistic student quote","source":"Reddit r/indianstudents"}]}`;
+  const prompt = `You are Collex, an honest India college research assistant. Based on verified data about ${college.name}, generate student sentiment analysis.
+Data: fees=${college.fees}, placement=${college.placement}, score=${college.score}/10, verdict=${college.verdict}
+
+CRITICAL RULES:
+1. Respond with ONLY a raw JSON object. No markdown, no backticks, no explanation.
+2. Do NOT use apostrophes or single quotes inside strings. Use "cannot" instead of "can't", "does not" instead of "doesn't" etc.
+3. Do NOT use special characters like em-dashes. Use regular hyphens only.
+4. Keep each string short - under 80 characters.
+5. Start with { and end with }
+
+Format:
+{"summary":"2-3 honest sentences","pros":["pro 1","pro 2","pro 3"],"cons":["con 1","con 2","con 3"],"voices":[{"quote":"student quote 1","source":"Reddit r/india"},{"quote":"student quote 2","source":"Quora"},{"quote":"student quote 3","source":"Reddit r/indianstudents"}]}`;
+
   try {
     const res = await fetch('/api/groq', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: [{ role: 'user', content: prompt }], temperature: 0.7, max_tokens: 800 })
+      body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: [{ role: 'user', content: prompt }], temperature: 0.6, max_tokens: 800 })
     });
     const data = await res.json();
     if (data.error) { showReviewError(data.error); return; }
-    const raw = data.choices[0].message.content;
+    let raw = data.choices[0].message.content;
     const start = raw.indexOf('{');
     const end = raw.lastIndexOf('}');
     if (start === -1 || end === -1) { showReviewError('Invalid format'); return; }
-    const parsed = JSON.parse(raw.substring(start, end + 1));
+    raw = raw.substring(start, end + 1);
+
+    // Clean common JSON issues from AI responses
+    raw = raw
+      .replace(/,\s*]/g, ']')           // trailing commas in arrays
+      .replace(/,\s*}/g, '}')           // trailing commas in objects
+      .replace(/[\u2018\u2019]/g, "'")  // smart single quotes
+      .replace(/[\u201C\u201D]/g, '"')  // smart double quotes
+      .replace(/\u2014/g, '-')          // em-dash
+      .replace(/\u2013/g, '-')          // en-dash
+      .replace(/\n/g, ' ')             // newlines inside strings
+      .replace(/\t/g, ' ');            // tabs
+
+    let parsed;
+    try {
+      parsed = JSON.parse(raw);
+    } catch (e1) {
+      // Second attempt: fix unescaped quotes inside string values
+      try {
+        raw = raw.replace(/"([^"]*?)"/g, (match, content) => {
+          // Only fix inner content, not the boundary quotes
+          const fixed = content.replace(/(?<!\\)"/g, '\\"');
+          return '"' + fixed + '"';
+        });
+        parsed = JSON.parse(raw);
+      } catch (e2) {
+        // Third attempt: manually extract fields with regex
+        try {
+          parsed = extractReviewManually(raw);
+        } catch (e3) {
+          showReviewError('Response parsing failed. Retrying may help.');
+          return;
+        }
+      }
+    }
+
+    if (!parsed || !parsed.summary) {
+      showReviewError('Incomplete response. Try refreshing.');
+      return;
+    }
+
+    // Ensure all required fields exist
+    parsed.pros = parsed.pros || ['Good academic reputation'];
+    parsed.cons = parsed.cons || ['Limited data available'];
+    parsed.voices = parsed.voices || [{ quote: 'Overall decent college experience.', source: 'Student Review' }];
+
     reviewCache[college.name] = parsed;
     renderReview(parsed);
   } catch (err) {
     showReviewError(err.message);
   }
 }
-function renderReview(d) {
-  document.getElementById('ai-review').innerHTML = `<p class="summary">${d.summary}</p><div class="section-label pro">↑ Strengths</div><div class="items">${d.pros.map(p=>`<div class="item pro">${p}</div>`).join('')}</div><div class="section-label con">↓ Watch Out</div><div class="items">${d.cons.map(c=>`<div class="item con">${c}</div>`).join('')}</div>`;
-  document.getElementById('voices').innerHTML = d.voices.map(v=>`<div class="voice">"${v.quote}"<div class="voice-src">— ${v.source}</div></div>`).join('');
-}
-function showReviewError(msg) {
-  document.getElementById('ai-review').innerHTML = `<div class="nf"><div class="nf-icon">⚠️</div><div class="nf-text">API error.<br><small style="color:var(--light)">${msg||'Check your Groq key.'}</small></div></div>`;
-  document.getElementById('voices').innerHTML = `<div class="nf"><div class="nf-text">Unavailable due to API error.</div></div>`;
+
+// Fallback: extract review data with regex when JSON.parse fails
+function extractReviewManually(raw) {
+  function extractString(key) {
+    const regex = new RegExp('"' + key + '"\\s*:\\s*"((?:[^"\\\\]|\\\\.)*)"', 'i');
+    const match = raw.match(regex);
+    return match ? match[1] : null;
+  }
+
+  function extractArray(key) {
+    const regex = new RegExp('"' + key + '"\\s*:\\s*\\[(.*?)\\]', 'is');
+    const match = raw.match(regex);
+    if (!match) return [];
+    const items = [];
+    const itemRegex = /"((?:[^"\\]|\\.)*)"/g;
+    let m;
+    while ((m = itemRegex.exec(match[1])) !== null) {
+      items.push(m[1]);
+    }
+    return items;
+  }
+
+  function extractVoices() {
+    const regex = /"voices"\s*:\s*\[(.*)\]/is;
+    const match = raw.match(regex);
+    if (!match) return [{ quote: 'Decent college overall.', source: 'Student' }];
+    const voices = [];
+    const voiceRegex = /\{\s*"quote"\s*:\s*"((?:[^"\\]|\\.)*)"\s*,\s*"source"\s*:\s*"((?:[^"\\]|\\.)*)"\s*\}/g;
+    let m;
+    while ((m = voiceRegex.exec(match[1])) !== null) {
+      voices.push({ quote: m[1], source: m[2] });
+    }
+    return voices.length > 0 ? voices : [{ quote: 'Decent college overall.', source: 'Student Review' }];
+  }
+
+  const summary = extractString('summary') || 'AI analysis generated based on available data.';
+  const pros = extractArray('pros');
+  const cons = extractArray('cons');
+  const voices = extractVoices();
+
+  if (pros.length === 0 && cons.length === 0) {
+    throw new Error('Could not extract any data');
+  }
+
+  return { summary, pros, cons, voices };
 }
 
 // ═══ AI CHATBOT ═══
