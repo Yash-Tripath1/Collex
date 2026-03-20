@@ -935,6 +935,158 @@ body.dark .score-disclaimer::before {
     transform: none;
   }
 }
+/* ═══ DONATE ═══ */
+.user-dropdown-item.donate {
+  color: #f7931a;
+}
+.user-dropdown-item.donate:hover {
+  background: rgba(247,147,26,0.08);
+}
+
+.donate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 700;
+  background: rgba(26,23,20,0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.donate-overlay.show {
+  display: flex;
+  animation: fadeIn 0.3s;
+}
+
+.donate-popup {
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(40px) saturate(1.8);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 24px;
+  padding: 36px 32px 28px;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+  box-shadow:
+    0 24px 80px rgba(0,0,0,0.12),
+    0 1px 0 rgba(255,255,255,0.8) inset,
+    0 -1px 0 rgba(0,0,0,0.04) inset;
+  animation: donateIn 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+body.dark .donate-popup {
+  background: rgba(30,28,25,0.6);
+  border-color: rgba(255,255,255,0.1);
+  box-shadow:
+    0 24px 80px rgba(0,0,0,0.4),
+    0 1px 0 rgba(255,255,255,0.06) inset;
+}
+
+@keyframes donateIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.donate-emoji {
+  font-size: 42px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.donate-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.donate-sub {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.donate-upi-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: rgba(255,255,255,0.5);
+  border: 1.5px solid rgba(255,255,255,0.6);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin-bottom: 18px;
+}
+
+body.dark .donate-upi-box {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.donate-upi-box:hover {
+  border-color: var(--accent);
+  background: rgba(193,126,74,0.08);
+  transform: translateY(-1px);
+}
+
+.donate-upi-id {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+
+.donate-copy-hint {
+  font-size: 11px;
+  color: var(--light);
+  transition: color 0.2s;
+}
+
+.donate-upi-box:hover .donate-copy-hint {
+  color: var(--accent);
+}
+
+.donate-fine {
+  font-size: 10px;
+  color: var(--light);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.donate-dismiss {
+  background: none;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--light);
+  cursor: pointer;
+  padding: 6px 16px;
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.donate-dismiss:hover {
+  color: var(--text);
+  background: rgba(0,0,0,0.04);
+}
+
+body.dark .donate-dismiss:hover {
+  background: rgba(255,255,255,0.06);
+}
+
   </style>
 </head>
 <body>
@@ -1351,8 +1503,12 @@ function renderAuthUI() {
             Comparisons
             <span class="ud-count" id="ud-compare-count">${getUserStat('comparisonsMade')}</span>
           </div>
-          <div class="user-dropdown-divider"></div>
-          <div class="user-dropdown-item logout" onclick="event.stopPropagation(); logoutUser();">
+     <div class="user-dropdown-divider"></div>
+<div class="user-dropdown-item donate" onclick="event.stopPropagation(); openDonate();">
+  <span class="ud-icon">☕</span>
+  Buy me a chai
+</div>
+<div class="user-dropdown-item logout" onclick="event.stopPropagation(); logoutUser();">
             <span class="ud-icon">🚪</span>
             Logout
           </div>
@@ -2440,6 +2596,43 @@ if (document.readyState !== 'loading') {
   initFilters();
   initAuth();
 }
+
+// ═══ DONATE ═══
+function openDonate() {
+  document.getElementById('donate-overlay').classList.add('show');
+  const dropdown = document.getElementById('user-dropdown');
+  const btn = document.getElementById('nav-user-btn');
+  if (dropdown) dropdown.classList.remove('show');
+  if (btn) btn.classList.remove('open');
+}
+
+function closeDonate() {
+  document.getElementById('donate-overlay').classList.remove('show');
+}
+
+function copyUPI() {
+  const upiId = 'tripathiyash382@okaxis';
+  navigator.clipboard.writeText(upiId).then(() => {
+    showToast('📋 UPI ID copied — thank you! ☕');
+  }).catch(() => {
+    showToast('UPI: ' + upiId);
+  });
+}
+
 </script>
+<!-- ═══ DONATE ═══ -->
+<div class="donate-overlay" id="donate-overlay" onclick="if(event.target===this)closeDonate()">
+  <div class="donate-popup">
+    <span class="donate-emoji">☕</span>
+    <div class="donate-title">Buy me a chai</div>
+    <div class="donate-sub">If Collex helped you even a little! This means a lot ❤️</div>
+    <div class="donate-upi-box" onclick="copyUPI()">
+      <span class="donate-upi-id">tripathiyash382@okaxis</span>
+      <span class="donate-copy-hint">tap to copy</span>
+    </div>
+    <div class="donate-fine">no pressure, collex is always free</div>
+    <button class="donate-dismiss" onclick="closeDonate()">maybe later</button>
+  </div>
+</div>
 </body>
 </html>
