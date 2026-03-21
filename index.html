@@ -1452,6 +1452,78 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const fireDb = firebase.firestore();
 
+// ═══ ANONYMOUS VISIT TRACKING ═══
+function trackPageVisit() {
+  try {
+    fireDb.collection('collex-stats').doc('visits').set({
+      totalVisits: firebase.firestore.FieldValue.increment(1),
+      lastVisit: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+
+    const visitorId = getOrCreateVisitorId();
+
+    fireDb.collection('collex-visits').add({
+      visitorId: visitorId,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      page: window.location.href,
+      referrer: document.referrer || 'direct',
+      userAgent: navigator.userAgent,
+      screenWidth: window.innerWidth,
+      screenHeight: window.innerHeight,
+      language: navigator.language,
+      platform: navigator.platform || 'unknown',
+      isLoggedIn: !!localStorage.getItem('collex-currentUser'),
+      email: localStorage.getItem('collex-currentUser') || null,
+      hour: new Date().getHours(),
+      day: new Date().toLocaleDateString('en-IN', { weekday: 'long' }),
+      date: new Date().toLocaleDateString('en-IN')
+    });
+
+    const today = new Date().toISOString().split('T')[0];
+    fireDb.collection('collex-daily').doc(today).set({
+      visits: firebase.firestore.FieldValue.increment(1),
+      uniqueVisitors: firebase.firestore.FieldValue.arrayUnion(visitorId),
+      date: today
+    }, { merge: true });
+
+  } catch (err) {
+    console.warn('Visit tracking error:', err);
+  }
+}
+
+function getOrCreateVisitorId() {
+  let id = localStorage.getItem('collex-visitor-id');
+  if (!id) {
+    id = 'v_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+    localStorage.setItem('collex-visitor-id', id);
+  }
+  return id;
+}
+
+function trackCollegeSearch(collegeName) {
+  try {
+    fireDb.collection('collex-searches').add({
+      college: collegeName,
+      visitorId: getOrCreateVisitorId(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      isLoggedIn: !!localStorage.getItem('collex-currentUser')
+    });
+
+    const slug = collegeName.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+    fireDb.collection('collex-popular').doc(slug).set({
+      name: collegeName,
+      searchCount: firebase.firestore.FieldValue.increment(1),
+      lastSearched: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+
+  } catch (err) {
+    console.warn('Search tracking error:', err);
+  }
+}
+
+trackPageVisit();
+
+// ═══ USER AUTH STATE ═══
 // ═══ USER AUTH STATE ═══
 let collexUser = {
   email: null,
@@ -1971,7 +2043,7 @@ function search(query) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   const college = findCollege(query);
   if (!college) { showNotFound(query); currentCollege = null; return; }
-  currentCollege = college; updateURL(college.name); updateResultBookmarkBtn();
+  currentCollege = college; updateURL(college.name); trackCollegeSearch(college.name); updateResultBookmarkBtn();
   const compareList = getCompareList();
   document.getElementById('compare-toggle').checked = compareList.some(c => c.name === college.name);
   document.getElementById('col-type').textContent = college.type;

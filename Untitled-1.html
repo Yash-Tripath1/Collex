@@ -1912,9 +1912,7 @@ function search(query) {
   const college = findCollege(query);
   if (!college) { showNotFound(query); currentCollege = null; return; }
   
-  currentCollege = college; 
-  updateURL(college.name); 
-  updateResultBookmarkBtn();
+  currentCollege = college; updateURL(college.name); trackCollegeSearch(college.name); updateResultBookmarkBtn();
   
   const compareList = getCompareList();
   document.getElementById('compare-toggle').checked = compareList.some(c => c.name === college.name);
