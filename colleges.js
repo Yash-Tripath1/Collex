@@ -2999,24 +2999,6 @@ const DB = {
     ]
   },
 
-  "amity university": {
-    name:"Amity University", type:"Private Deemed University", location:"Noida, Uttar Pradesh", score:6.2, verdict:"Brand Name — Mixed Returns",
-    programs:"Engineering, Law, Medicine, Business, Design, Media — 300+ programs",
-    fees:"₹2L–₹5L/year — expensive with variable outcomes",
-    campuses:"Multiple campuses; Noida main — 150 acres",
-    sports:"Good infra at Noida — courts, gym, pool",
-    extra:"Amifest, cultural events; structured environment",
-    placement:"₹3.5–6 LPA avg; variable by program",
-    est:"2005",
-    metrics:[
-      {n:"Fits Most Students' Budget",v:4.5,c:"r"},{n:"Academic Life",v:6.5,c:"a"},
-      {n:"Teaching & Staff",v:6.0,c:"a"},{n:"Campus Experience",v:7.5,c:"a"},
-      {n:"Student Community",v:7.0,c:"a"},{n:"Graduate Salaries",v:5.8,c:"a"},
-      {n:"Future Opportunities",v:6.0,c:"a"},{n:"Infrastructure",v:8.0,c:"g"},
-      {n:"Bureaucracy",v:5.0,c:"r"},{n:"Hostel Life",v:6.5,c:"a"}
-    ]
-  },
-
   "thapar university": {
     name:"Thapar Institute of Engineering and Technology", type:"Deemed University (Private)", location:"Patiala, Punjab", score:7.8, verdict:"Strong Private — North India's Best",
     programs:"B.E./B.Tech in 12+ branches incl. CSE, ECE, Mechanical, Civil, Mechatronics; M.E./M.Tech (40+), MBA, PhD",
@@ -5538,11 +5520,463 @@ const DB = {
       {n:"Future Opportunities",v:9.3,c:"g"},{n:"Infrastructure",v:8.8,c:"g"},
       {n:"Bureaucracy",v:7.0,c:"a"},{n:"Hostel Life",v:7.8,c:"a"}
     ]
-  }
+  },
+  // ══════════════════════════════════════════
+  //  AMITY UNIVERSITY NETWORK
+  // ══════════════════════════════════════════
 
+  "amity noida": {
+    name: "Amity University (Noida)", type: "Private University", location: "Sector 125, Noida, UP", score: 6.8, verdict: "The Flagship — Best Infra & Exposure",
+    programs: "B.Tech, Biotech, Law, Fashion, Mass Comm, Psychology",
+    fees: "₹3–₹4L/year (High)",
+    campuses: "Massive 150-acre HQ, H-Block is famous",
+    sports: "Olympic pool, shooting range, horse riding, huge grounds",
+    extra: "Amifest; celebrity visits weekly; rich student life",
+    placement: "Avg ₹5–7 LPA; Mass recruiters + some premium (Amazon/Shell)",
+    est: "2005",
+    metrics: [{n:"Budget",v:4.0,c:"r"},{n:"Academics",v:7.0,c:"a"},{n:"Campus",v:9.5,c:"g"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:9.5,c:"g"}]
+  },
+
+  "amity lucknow": {
+    name: "Amity University Lucknow", type: "Private University", location: "Gomti Nagar Ext, Lucknow", score: 6.2, verdict: "Good for Region — Not Noida Level",
+    programs: "B.Tech, BBA, Law, B.Com",
+    fees: "₹1.5–₹2L/year",
+    campuses: "Large green campus (40 acres), modern buildings",
+    sports: "Good grounds, gym, annual Sangathan sports",
+    extra: "Amiphoria; strict discipline compared to Noida",
+    placement: "Avg ₹3.5–5 LPA; mostly TCS/Wipro/Capgemini",
+    est: "2004",
+    metrics: [{n:"Budget",v:6.5,c:"a"},{n:"Academics",v:6.0,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:5.5,c:"r"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "amity gurgaon": {
+    name: "Amity University (Gurugram)", type: "Private University", location: "Manesar, Haryana", score: 6.4, verdict: "Remote Location — Good Infra",
+    programs: "B.Tech, Medical, Nursing, MBA",
+    fees: "₹2–₹2.5L/year",
+    campuses: "110 acres, nestled in Aravalli hills (isolated)",
+    sports: "Military training camps, good sports complex",
+    extra: "Amiste; focus on innovation & incubation",
+    placement: "Avg ₹4–5.5 LPA; decent corporate connect due to Gurgaon",
+    est: "2010",
+    metrics: [{n:"Budget",v:5.5,c:"r"},{n:"Academics",v:6.2,c:"a"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "amity mumbai": {
+    name: "Amity University (Mumbai)", type: "Private University", location: "Panvel, Mumbai-Pune E-way", score: 6.5, verdict: "Expensive — Far from City",
+    programs: "B.Tech, B.Arch, Fashion, Film, MBA",
+    fees: "₹2.5–₹3.5L/year (Very High)",
+    campuses: "Modern campus but very far from main Mumbai",
+    sports: "Standard courts and grounds",
+    extra: "Aminova; frequent bollywood workshops",
+    placement: "Avg ₹5–7 LPA; good media/fashion connects",
+    est: "2014",
+    metrics: [{n:"Budget",v:3.5,c:"r"},{n:"Academics",v:6.5,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:6.2,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  VIT GROUP (Vellore, Chennai, AP, Bhopal)
+  // ══════════════════════════════════════════
+
+  "vit vellore": {
+    name: "VIT Vellore (Main Campus)", type: "Deemed University", location: "Vellore, Tamil Nadu", score: 8.0, verdict: "The Original — Best Placements",
+    programs: "B.Tech (60+ branches), M.Tech, MBA",
+    fees: "₹2–₹5L/year (Category system)",
+    campuses: "370 acres, railway track cuts through campus",
+    sports: "Rivera (Cultural), huge sports facilities",
+    extra: "Riviera is famous; intense crowd competition",
+    placement: "Avg ₹9–10 LPA; Highest chances for Super Dream offers",
+    est: "1984",
+    metrics: [{n:"Budget",v:6.0,c:"a"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:8.2,c:"g"},{n:"Infra",v:9.0,c:"g"}]
+  },
+
+  "vit chennai": {
+    name: "VIT Chennai", type: "Deemed University", location: "Vandalur-Kelambakkam Road", score: 7.6, verdict: "City Advantage — Strict Rules",
+    programs: "B.Tech, Law, Fashion",
+    fees: "₹2–₹5L/year",
+    campuses: "Compact 170 acres, very modern vertical buildings",
+    sports: "Good courts, but less open space than Vellore",
+    extra: "Vibrance; strict outing rules",
+    placement: "Centralized with Vellore (Avg ₹8–9 LPA)",
+    est: "2010",
+    metrics: [{n:"Budget",v:6.0,c:"a"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:7.8,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "vit ap": {
+    name: "VIT AP (Amaravati)", type: "Private University", location: "Amaravati, Andhra Pradesh", score: 6.8, verdict: "Developing — Value for Rank",
+    programs: "B.Tech (CSE specialized)",
+    fees: "₹2–₹3L/year",
+    campuses: "New, under construction areas, 200 acres",
+    sports: "Basic facilities established",
+    extra: "Vitopia; growing student culture",
+    placement: "Avg ₹5–7 LPA; Centralized placement helps",
+    est: "2017",
+    metrics: [{n:"Budget",v:6.5,c:"a"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "vit bhopal": {
+    name: "VIT Bhopal", type: "Private University", location: "Sehore, Madhya Pradesh", score: 6.7, verdict: "Future Gaming Focus — Remote",
+    programs: "B.Tech (Gaming, Cloud, AI)",
+    fees: "₹2–₹3L/year",
+    campuses: "Open campus without walls (literally), scenic",
+    sports: "Developing",
+    extra: "Advitya; 100% doctoral faculty claim",
+    placement: "Avg ₹5–7 LPA; Centralized helps",
+    est: "2017",
+    metrics: [{n:"Budget",v:6.5,c:"a"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  SRM GROUP (KTR, Ramapuram, AP)
+  // ══════════════════════════════════════════
+
+  "srm ktr": {
+    name: "SRM KTR (Main Campus)", type: "Deemed University", location: "Kattankulathur, Chennai", score: 7.5, verdict: "Massive Campus — The Real SRM",
+    programs: "B.Tech, Medical, Science, Hotel Mgmt",
+    fees: "₹2.5–₹4.5L/year",
+    campuses: "250 acres, mini-city with malls/hotels inside",
+    sports: "Milan (Cultural), Aaruush; massive facilities",
+    extra: "Diverse crowd from all over India",
+    placement: "Avg ₹7–8 LPA; huge bulk hiring numbers",
+    est: "1985",
+    metrics: [{n:"Budget",v:5.0,c:"r"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  "srm ramapuram": {
+    name: "SRM Ramapuram", type: "Deemed University", location: "Ramapuram, Chennai City", score: 6.8, verdict: "City Center — Congested but Placed",
+    programs: "B.Tech, Architecture, Dental",
+    fees: "₹2–₹3L/year",
+    campuses: "Very small, crowded, shared with hospital",
+    sports: "Very limited grounds",
+    extra: "Strict academics; centralized placement with KTR",
+    placement: "Avg ₹6–7 LPA; good if you ignore campus life",
+    est: "2004",
+    metrics: [{n:"Budget",v:5.5,c:"r"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:4.0,c:"r"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:5.0,c:"r"}]
+  },
+
+  "srm ap": {
+    name: "SRM AP (Amaravati)", type: "Private University", location: "Amaravati, Andhra Pradesh", score: 7.0, verdict: "Modern & Coding Focused",
+    programs: "B.Tech (CSE, AI, ML)",
+    fees: "₹2–₹3L/year",
+    campuses: "Brand new buildings, tech-heavy infra",
+    sports: "Developing",
+    extra: "Infinitus; active coding clubs (Next Tech Lab)",
+    placement: "Avg ₹6–8 LPA; good record for a new campus",
+    est: "2017",
+    metrics: [{n:"Budget",v:6.0,c:"a"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:8.5,c:"g"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  MANIPAL GROUP (Main, Jaipur, Sikkim)
+  // ══════════════════════════════════════════
+
+  "mit manipal": {
+    name: "Manipal Institute of Tech (Main)", type: "Deemed University", location: "Manipal, Karnataka", score: 8.2, verdict: "Premium Lifestyle — Top Tier",
+    programs: "B.Tech, M.Tech, MCA",
+    fees: "₹4–₹5L/year (Expensive)",
+    campuses: "University town, student-run city",
+    sports: "Marena (World class sports complex)",
+    extra: "Revels, TechTatva; unmatched student freedom/life",
+    placement: "Avg ₹12–14 LPA; top tier product companies",
+    est: "1957",
+    metrics: [{n:"Budget",v:3.5,c:"r"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:9.5,c:"g"},{n:"Placement",v:8.5,c:"g"},{n:"Infra",v:9.8,c:"g"}]
+  },
+
+  "manipal jaipur": {
+    name: "Manipal University Jaipur (MUJ)", type: "Private University", location: "Jaipur, Rajasthan", score: 7.5, verdict: "Resort Campus — Growing Fast",
+    programs: "B.Tech, B.Arch, Law, Design",
+    fees: "₹3–₹4L/year",
+    campuses: "Award-winning architecture, lavish hostels",
+    sports: "Great courts, gym, swimming",
+    extra: "Oneiros; vibrant, wealthy crowd",
+    placement: "Avg ₹7–9 LPA; separate placement cell (improving)",
+    est: "2011",
+    metrics: [{n:"Budget",v:4.0,c:"r"},{n:"Academics",v:7.2,c:"a"},{n:"Campus",v:9.5,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:9.5,c:"g"}]
+  },
+
+  "smu sikkim": {
+    name: "Sikkim Manipal (SMIT)", type: "Private-Govt PPP", location: "Majitar, Sikkim", score: 6.8, verdict: "Scenic & Disciplined — North East Best",
+    programs: "B.Tech, BCA, MBA",
+    fees: "₹2.5–₹3L/year",
+    campuses: "On the banks of river Teesta, hills",
+    sports: "Indoor stadium, football ground",
+    extra: "Kaalrav; peaceful environment",
+    placement: "Avg ₹5–7 LPA; Dell, Microsoft, Shell visit",
+    est: "1997",
+    metrics: [{n:"Budget",v:5.5,c:"r"},{n:"Academics",v:6.8,c:"a"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:6.5,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+    // ══════════════════════════════════════════
+  //  COMMERCE & ARTS GIANTS (MUMBAI/DELHI/KOLKATA)
+
+  "hr college mumbai": {
+    name: "H.R. College of Commerce", type: "Private (HSNC)", location: "Churchgate, Mumbai", score: 8.5, verdict: "South Bombay's Commerce King",
+    programs: "B.Com, BMS, BAF, BFM",
+    fees: "₹20K–₹40K/year",
+    campuses: "Small building, prime location",
+    sports: "Cricket club is famous",
+    extra: "Numaish; elite crowd, finance focus",
+    placement: "Avg ₹5–7 LPA; Big 4 Audit firms recruit heavily",
+    est: "1960",
+    metrics: [{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:4.0,c:"r"},{n:"Placement",v:8.0,c:"g"},{n:"Crowd",v:9.0,c:"g"}]
+  },
+
+  "jai hind mumbai": {
+    name: "Jai Hind College", type: "Private Autonomous", location: "Churchgate, Mumbai", score: 8.4, verdict: "The 'Cool' College — holistic",
+    programs: "BA, BSc, BCom, BMS",
+    fees: "₹25K–₹45K/year",
+    campuses: "Near Marine Drive (Backbay)",
+    sports: "Gymkhana",
+    extra: "Entourage; active cultural scene",
+    placement: "Avg ₹4–6 LPA; Media & Consulting",
+    est: "1948",
+    metrics: [{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:7.5,c:"a"},{n:"Crowd",v:9.5,c:"g"}]
+  },
+
+  "venky delhi": {
+    name: "Sri Venkateswara (Venky)", type: "Constituent College (DU)", location: "Dhaula Kuan, South Campus, Delhi", score: 8.2, verdict: "South Campus Gem — All Rounder",
+    programs: "B.Com Hons, BA Pol Sci, BSc",
+    fees: "₹15K–₹25K/year",
+    campuses: "Large green campus opposite Satya Niketan",
+    sports: "Huge cricket ground",
+    extra: "Nexus (Fest); active societies",
+    placement: "Avg ₹5–8 LPA; Consulting & Analytics",
+    est: "1961",
+    metrics: [{n:"Budget",v:9.5,c:"g"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "gargi college": {
+    name: "Gargi College", type: "Constituent College (DU)", location: "Siri Fort, Delhi", score: 8.0, verdict: "Top Women's College — Arts/Sci",
+    programs: "BA, BSc, B.Com",
+    fees: "₹15K–₹20K/year",
+    campuses: "Red brick architecture, vibrant",
+    sports: "Tennis, Basketball",
+    extra: "Reverie; feminist & liberal vibe",
+    placement: "Avg ₹4–6 LPA; DE Shaw, EY",
+    est: "1967",
+    metrics: [{n:"Budget",v:9.5,c:"g"},{n:"Academics",v:8.2,c:"g"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "presidency kolkata": {
+    name: "Presidency University", type: "State University", location: "College Street, Kolkata", score: 8.6, verdict: "Historical Legacy — Political Hub",
+    programs: "BA, BSc (Pol Sci, History, Eco)",
+    fees: "₹5K–₹10K/year (Very Low)",
+    campuses: "Heritage buildings, Coffee House nearby",
+    sports: "Famous field",
+    extra: "Milieu; intense student politics",
+    placement: "Research & Academia focused; less corporate",
+    est: "1817",
+    metrics: [{n:"Budget",v:10.0,c:"g"},{n:"Academics",v:9.0,c:"g"},{n:"Campus",v:8.5,c:"g"},{n:"Placement",v:5.0,c:"r"},{n:"Legacy",v:10.0,c:"g"}]
+  },
+
+  "scottish church": {
+    name: "Scottish Church College", type: "Private Aided", location: "Hedua, Kolkata", score: 7.8, verdict: "Old World Charm — Strict",
+    programs: "BA, BSc, BCom, BBA",
+    fees: "₹40K–₹60K/year",
+    campuses: "North Kolkata heritage site",
+    sports: "Limited",
+    extra: "Caledonia; disciplined environment",
+    placement: "Avg ₹3–5 LPA",
+    est: "1830",
+    metrics: [{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  BANGALORE & PUNE (ARTS/SCIENCE/BBA)
+  // ══════════════════════════════════════════
+
+  "st josephs bangalore": {
+    name: "St. Joseph's University", type: "Private University", location: "Langford Road, Bengaluru", score: 7.9, verdict: "Bangalore's Heart — Diverse",
+    programs: "B.Com, BBA, BA (Visual Comm)",
+    fees: "₹80K–₹1.5L/year",
+    campuses: "Green campus in city center",
+    sports: "Hockey stadium adjacent",
+    extra: "Visages; very active cultural life",
+    placement: "Avg ₹4–6 LPA; Goldman, Target",
+    est: "1882",
+    metrics: [{n:"Budget",v:7.5,c:"a"},{n:"Academics",v:7.8,c:"a"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:7.0,c:"a"},{n:"Vibe",v:9.0,c:"g"}]
+  },
+
+  "jyoti nivas": {
+    name: "Jyoti Nivas College", type: "Private Autonomous", location: "Koramangala, Bengaluru", score: 7.5, verdict: "Trendy Location — Good Arts",
+    programs: "BA, BSc, B.Com",
+    fees: "₹40K–₹70K/year",
+    campuses: "Located in Koramangala (Food hub)",
+    sports: "Basketball, Gym",
+    extra: "Scintilla; fashion & arts focus",
+    placement: "Avg ₹3–5 LPA",
+    est: "1966",
+    metrics: [{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:6.0,c:"a"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "bmcc pune": {
+    name: "BMCC Pune", type: "Private Aided", location: "Deccan Gymkhana, Pune", score: 8.0, verdict: "Pune's Top Commerce College",
+    programs: "B.Com, BBA, BBM",
+    fees: "₹20K–₹50K/year",
+    campuses: "Heritage stone building",
+    sports: "Access to Deccan Gymkhana",
+    extra: "Troika; CA/CS aspirant hub",
+    placement: "Avg ₹4–6 LPA; Finance focused",
+    est: "1943",
+    metrics: [{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:7.0,c:"a"},{n:"Infra",v:7.5,c:"a"}]
+  },
+
+  "symbiosis arts": {
+    name: "Symbiosis Arts & Commerce", type: "Private Autonomous", location: "Senapati Bapat Rd, Pune", score: 7.8, verdict: "Premium Crowd — Liberal Vibe",
+    programs: "BA, B.Com",
+    fees: "₹40K–₹60K/year",
+    campuses: "Shared SB Road campus",
+    sports: "Limited",
+    extra: "Sympulse; very active student life",
+    placement: "Avg ₹4–6 LPA",
+    est: "1971",
+    metrics: [{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:6.5,c:"a"},{n:"Placement",v:6.5,c:"a"},{n:"Crowd",v:9.0,c:"g"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  HOTEL MANAGEMENT (IHMs)
+  // ══════════════════════════════════════════
+
+  "ihm pusa": {
+    name: "IHM Pusa (Delhi)", type: "Central Govt (NCHMCT)", location: "Pusa, New Delhi", score: 8.8, verdict: "The 'IIT' of Hotel Management",
+    programs: "B.Sc Hospitality & Hotel Admin",
+    fees: "₹1.2L/year",
+    campuses: "Functional, specialized kitchens",
+    sports: "Basic",
+    extra: "Strict grooming (no beards); 100% jobs",
+    placement: "Avg ₹4–6 LPA; Oberoi, Taj, ITC (MT roles)",
+    est: "1962",
+    metrics: [{n:"Budget",v:8.0,c:"g"},{n:"Training",v:9.5,c:"g"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:8.5,c:"g"},{n:"Discipline",v:9.0,c:"g"}]
+  },
+
+  "ihm mumbai": {
+    name: "IHM Mumbai", type: "Central Govt", location: "Dadar West, Mumbai", score: 8.5, verdict: "Top Tier Hospitality — Catering Capital",
+    programs: "B.Sc Hospitality",
+    fees: "₹1.2L/year",
+    campuses: "Urban campus (Glass building)",
+    sports: "Very limited",
+    extra: "Cornucopia; industry proximity",
+    placement: "Avg ₹4–5.5 LPA; Taj/Marriott/Hyatt",
+    est: "1954",
+    metrics: [{n:"Budget",v:8.0,c:"g"},{n:"Training",v:9.0,c:"g"},{n:"Campus",v:5.5,c:"r"},{n:"Placement",v:8.2,c:"g"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "ihm bangalore": {
+    name: "IHM Bangalore", type: "Central Govt", location: "Seshadripuram, Bengaluru", score: 8.3, verdict: "Garden City Hospitality",
+    programs: "B.Sc Hospitality",
+    fees: "₹1.1L/year",
+    campuses: "Green campus within Govt park area",
+    sports: "Volleyball",
+    extra: "Food fests; strict academics",
+    placement: "Avg ₹4–5 LPA; IT catering & Hotels",
+    est: "1969",
+    metrics: [{n:"Budget",v:8.0,c:"g"},{n:"Training",v:8.8,c:"g"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:7.0,c:"a"}]
+  },
+
+  "welcomgroup manipal": {
+    name: "Welcomgroup (WGSHA)", type: "Private (Manipal)", location: "Manipal, Karnataka", score: 8.6, verdict: "Premium Culinary School — ITC Tie-up",
+    programs: "BA Culinary Arts, BHM",
+    fees: "₹3.5–₹4.5L/year (Expensive)",
+    campuses: "5-star hotel simulated infrastructure",
+    sports: "Marena access",
+    extra: "Foodathlon; distinct chef uniforms",
+    placement: "Avg ₹5–7 LPA; Global internships (Michelin)",
+    est: "1986",
+    metrics: [{n:"Budget",v:4.0,c:"r"},{n:"Training",v:9.5,c:"g"},{n:"Campus",v:9.0,c:"g"},{n:"Placement",v:8.5,c:"g"},{n:"Infra",v:9.5,c:"g"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  MEDIA, FASHION & DESIGN (CREATIVE)
+  // ══════════════════════════════════════════
+
+  "pearl delhi": {
+    name: "Pearl Academy (Delhi)", type: "Private Institute", location: "Rajouri Garden, Delhi", score: 7.5, verdict: "Expensive — Fashion & Luxury",
+    programs: "Fashion Design, Interior, Luxury Brand",
+    fees: "₹6–₹7L/year (Very Expensive)",
+    campuses: "Small but aesthetically pleasing",
+    sports: "None",
+    extra: "Portfolio (Fashion show); rich crowd",
+    placement: "Avg ₹4–6 LPA; Retail & Designer labels",
+    est: "1993",
+    metrics: [{n:"Budget",v:2.0,c:"r"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:6.0,c:"a"},{n:"Placement",v:7.0,c:"a"},{n:"Vibe",v:9.0,c:"g"}]
+  },
+
+  "nift mumbai": {
+    name: "NIFT Mumbai", type: "Statutory Institute", location: "Kharghar, Navi Mumbai", score: 8.4, verdict: "Fashion Hub — Bollywood Access",
+    programs: "B.Des, B.F.Tech",
+    fees: "₹3L/year",
+    campuses: "Modern creative campus",
+    sports: "Indoor facilities",
+    extra: "Spectrum; costume design focus",
+    placement: "Avg ₹5–7 LPA; Styling & Retail",
+    est: "1995",
+    metrics: [{n:"Budget",v:6.5,c:"a"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:8.0,c:"g"},{n:"Infra",v:8.0,c:"g"}]
+  },
+
+  "iimc delhi": {
+    name: "IIMC Delhi", type: "Autonomous (Govt)", location: "JNU Campus, New Delhi", score: 8.5, verdict: "The 'IAS' of Journalism",
+    programs: "PG Diploma in Journalism/Ad-PR",
+    fees: "₹1.5L/year",
+    campuses: "Shared with JNU, green",
+    sports: "Badminton",
+    extra: "Media festivals; intense 9-month course",
+    placement: "Avg ₹5–8 LPA; Top news channels/Agencies",
+    est: "1965",
+    metrics: [{n:"Budget",v:8.0,c:"g"},{n:"Academics",v:9.0,c:"g"},{n:"Campus",v:7.5,c:"a"},{n:"Placement",v:8.0,c:"g"},{n:"Brand",v:9.5,c:"g"}]
+  },
+
+  "simc pune": {
+    name: "SIMC Pune (Symbiosis Media)", type: "Private University", location: "Lavale, Pune", score: 8.0, verdict: "Top Tier Private Media School",
+    programs: "BA/MA Mass Communication",
+    fees: "₹3.5–₹4.5L/year",
+    campuses: "Hilltop scenic campus",
+    sports: "Swimming, Gym",
+    extra: "Fest-O-Comm; creative freedom",
+    placement: "Avg ₹5–7 LPA; Advertising & PR focus",
+    est: "1990",
+    metrics: [{n:"Budget",v:4.0,c:"r"},{n:"Academics",v:8.5,c:"g"},{n:"Campus",v:9.5,c:"g"},{n:"Placement",v:7.5,c:"a"},{n:"Infra",v:9.0,c:"g"}]
+  },
+
+  // ══════════════════════════════════════════
+  //  REGIONAL GENERAL (Patna, Guwahati, Chandigarh)
+  // ══════════════════════════════════════════
+
+  "patna womens": {
+    name: "Patna Women's College", type: "Private Autonomous", location: "Bailey Road, Patna", score: 7.2, verdict: "Bihar's Best for Women",
+    programs: "BA, BSc, B.Com, BCA",
+    fees: "₹30K–₹50K/year",
+    campuses: "Historic red building",
+    sports: "Basketball, throwball",
+    extra: "Shravani; strict discipline",
+    placement: "Avg ₹3–4 LPA; Banking/Teaching",
+    est: "1940",
+    metrics: [{n:"Budget",v:9.0,c:"g"},{n:"Academics",v:7.5,c:"a"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:5.0,c:"r"},{n:"Safety",v:9.0,c:"g"}]
+  },
+
+  "cotton university": {
+    name: "Cotton University", type: "State University", location: "Panbazar, Guwahati, Assam", score: 7.5, verdict: "Prestige of North East",
+    programs: "BA, BSc (Liberal Arts focus)",
+    fees: "₹10K–₹20K/year",
+    campuses: "City center, heritage blocks",
+    sports: "Football field",
+    extra: "Cottonian; student politics active",
+    placement: "Academia focused; Civil services hub",
+    est: "1901",
+    metrics: [{n:"Budget",v:9.5,c:"g"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:7.0,c:"a"},{n:"Placement",v:4.5,c:"r"},{n:"Legacy",v:9.0,c:"g"}]
+  },
+
+  "mcm dav chandigarh": {
+    name: "MCM DAV College", type: "Private (Women)", location: "Sector 36, Chandigarh", score: 7.6, verdict: "Top Tier Arts/Science in North",
+    programs: "BA, BSc, BCom",
+    fees: "₹30K–₹50K/year",
+    campuses: "Well maintained, rose garden",
+    sports: "National level sports teams",
+    extra: "Meraki; safe and vibrant",
+    placement: "Avg ₹3–5 LPA; EY/Wipro visit",
+    est: "1968",
+    metrics: [{n:"Budget",v:8.5,c:"g"},{n:"Academics",v:8.0,c:"g"},{n:"Campus",v:8.0,c:"g"},{n:"Placement",v:6.0,c:"a"},{n:"Safety",v:9.0,c:"g"}]
+  }
 };
 
-// ── SEARCH ALIASES ───────────────────────────────────────────
+// ── SEARCH ALIASES 
 const ALIASES = {
   // ── IITs ──
   "iitb":"iit bombay","iit mumbai":"iit bombay",
@@ -5714,7 +6148,7 @@ const ALIASES = {
   "tifr":"tifr mumbai","tata institute":"tifr mumbai",
   "hri":"hri allahabad","harish chandra":"hri allahabad",
   "niser":"niser bhubaneswar",
-    // ── Regional Colleges (Add these to existing ALIASES) ──
+    // ── Regional Colleges 
   "integral":"integral university","integral lucknow":"integral university",
   "bbau":"bbau lucknow","babasaheb bhimrao":"bbau lucknow",
   "bbd":"bbd university","babu banarasi das":"bbd university",
@@ -5795,7 +6229,7 @@ const ALIASES = {
   "ils":"ils pune","ils law":"ils pune",
   "sls":"sls pune","symbiosis law":"sls pune",
   "ail":"army law mohali","army institute of law":"army law mohali",
-    // ── Batch 3 Aliases (Paste into ALIASES object) ──
+    // ── Batch 3 Aliases 
   "iet lucknow":"iet lucknow","iet lko":"iet lucknow",
   "psit":"psit kanpur","pranveer singh":"psit kanpur",
   "knit":"knit sultanpur","kamla nehru":"knit sultanpur",
@@ -5923,5 +6357,70 @@ const ALIASES = {
   "rayat bahra":"rayat bahra",
   "meri":"marine kolkata","marine engineering":"marine kolkata",
   "pantnagar":"gb pant agriculture","gbpuat":"gb pant agriculture",
-  "tnau":"tnau coimbatore","agri university":"tnau coimbatore"
+  "tnau":"tnau coimbatore","agri university":"tnau coimbatore",
+  // ─── AMITY BRANCHES ───
+"amity": "amity noida", // Default to main
+"amity noida": "amity noida",
+"amity lucknow": "amity lucknow",
+"amity lko": "amity lucknow",
+"amity gurgaon": "amity gurgaon",
+"amity manesar": "amity gurgaon",
+"amity gurugram": "amity gurgaon",
+"amity mumbai": "amity mumbai",
+"amity panvel": "amity mumbai",
+"amity jaipur": "amity jaipur", 
+
+// ─── VIT BRANCHES ───
+"vit": "vit vellore", // Default to main
+"vit vellore": "vit vellore",
+"vit chennai": "vit chennai",
+"vit ap": "vit ap",
+"vit amaravati": "vit ap",
+"vit andhra": "vit ap",
+"vit bhopal": "vit bhopal",
+"vit mp": "vit bhopal",
+
+// ─── SRM BRANCHES ───
+"srm": "srm ktr", // Default to main
+"srm ktr": "srm ktr",
+"srm kattankulathur": "srm ktr",
+"srm main": "srm ktr",
+"srm ramapuram": "srm ramapuram",
+"srm rmp": "srm ramapuram",
+"srm ap": "srm ap",
+"srm amaravati": "srm ap",
+"srm andhra": "srm ap",
+"srm ncr": "srm ramapuram", 
+
+// ─── MANIPAL BRANCHES ───
+"manipal": "mit manipal", // Default to main
+"mit manipal": "mit manipal",
+"mahe": "mit manipal",
+"manipal jaipur": "manipal jaipur",
+"muj": "manipal jaipur",
+"sikkim manipal": "smu sikkim",
+"smit": "smu sikkim",
+
+  // ── Batch 5 Aliases (Arts/Commerce/Others) ──
+  "hr college":"hr college mumbai",
+  "jai hind":"jai hind mumbai",
+  "venky":"venky delhi","sri venkateswara":"venky delhi",
+  "gargi":"gargi college",
+  "presidency":"presidency kolkata","presidency university":"presidency kolkata",
+  "scottish church":"scottish church",
+  "st josephs":"st josephs bangalore","sju":"st josephs bangalore",
+  "jyoti nivas":"jyoti nivas",
+  "bmcc":"bmcc pune",
+  "symbiosis arts":"symbiosis arts",
+  "ihm pusa":"ihm pusa","ihtm pusa":"ihm pusa",
+  "ihm mumbai":"ihm mumbai","dadar catering":"ihm mumbai",
+  "ihm bangalore":"ihm bangalore",
+  "wgsha":"welcomgroup manipal","welcomgroup":"welcomgroup manipal",
+  "pearl":"pearl delhi","pearl academy":"pearl delhi",
+  "nift mumbai":"nift mumbai",
+  "iimc":"iimc delhi","mass comm":"iimc delhi",
+  "simc":"simc pune",
+  "patna womens":"patna womens","pwc patna":"patna womens",
+  "cotton":"cotton university",
+  "mcm dav":"mcm dav chandigarh"
 };
