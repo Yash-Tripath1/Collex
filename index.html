@@ -1086,7 +1086,53 @@ body.dark .donate-upi-box {
 body.dark .donate-dismiss:hover {
   background: rgba(255,255,255,0.06);
 }
+/* ═══ TIER BADGES & RADAR ═══ */
+.filter-tier-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+.filter-tier-badge.elite { background: var(--green-bg); color: var(--green); }
+.filter-tier-badge.top { background: var(--accent-bg); color: var(--accent); }
+.filter-tier-badge.good { background: rgba(52,152,219,0.1); color: #3498db; }
+.filter-tier-badge.avg { background: var(--surface2); color: var(--muted); }
+body.dark .filter-tier-badge.good { background: rgba(52,152,219,0.15); color: #5dade2; }
 
+.filter-result-name {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.radar-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.export-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.export-btn:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
   </style>
 </head>
 <body>
@@ -1217,54 +1263,81 @@ body.dark .donate-dismiss:hover {
     </button>
 
     <div class="filter-panel" id="filter-panel">
-      <div class="filter-row">
-        <div class="filter-group">
-          <div class="filter-label">City / Location</div>
-          <select class="filter-select" id="filter-city" onchange="updateFilterPreview()">
-            <option value="">All Cities</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <div class="filter-label">College Type</div>
-          <select class="filter-select" id="filter-type" onchange="updateFilterPreview()">
-            <option value="">All Types</option>
-          </select>
-        </div>
-      </div>
+  <div class="filter-row">
+    <div class="filter-group">
+      <div class="filter-label">City / Location</div>
+      <select class="filter-select" id="filter-city" onchange="updateFilterPreview()">
+        <option value="">All Cities</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label">Field / Discipline</div>
+      <select class="filter-select" id="filter-field" onchange="updateFilterPreview()">
+        <option value="">All Fields</option>
+        <option value="engineering">🔧 Engineering & Tech</option>
+        <option value="medical">🏥 Medical & Health</option>
+        <option value="management">📊 Management & MBA</option>
+        <option value="law">⚖️ Law</option>
+        <option value="science">🔬 Science & Research</option>
+        <option value="arts">📚 Arts & Humanities</option>
+        <option value="design">🎨 Design & Architecture</option>
+        <option value="agriculture">🌾 Agriculture</option>
+      </select>
+    </div>
+  </div>
 
-      <div class="filter-row">
-        <div class="filter-group">
-          <div class="filter-label">Minimum Rating</div>
-          <div class="filter-range-wrap">
-            <input type="range" class="filter-range" id="filter-rating" min="0" max="10" step="0.5" value="0" oninput="updateRatingLabel(); updateFilterPreview()"/>
-            <span class="filter-range-val" id="filter-rating-val">Any</span>
-          </div>
-        </div>
-        <div class="filter-group">
-          <div class="filter-label">Placement (Min Avg LPA)</div>
-          <select class="filter-select" id="filter-placement" onchange="updateFilterPreview()">
-            <option value="">Any Placement</option>
-            <option value="3">₹3+ LPA avg</option>
-            <option value="5">₹5+ LPA avg</option>
-            <option value="8">₹8+ LPA avg</option>
-            <option value="10">₹10+ LPA avg</option>
-            <option value="15">₹15+ LPA avg</option>
-            <option value="20">₹20+ LPA avg</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="filter-actions">
-        <div class="filter-results-count" id="filter-count-label">
-          <strong id="filter-match-count">0</strong> colleges match
-        </div>
-        <div class="filter-btns">
-          <button class="filter-clear-btn" onclick="clearFilters()">Clear All</button>
-          <button class="filter-apply-btn" onclick="applyFilters()">Show Results →</button>
-        </div>
+  <div class="filter-row">
+    <div class="filter-group">
+      <div class="filter-label">College Type</div>
+      <select class="filter-select" id="filter-type" onchange="updateFilterPreview()">
+        <option value="">All Types</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label">Minimum Rating</div>
+      <div class="filter-range-wrap">
+        <input type="range" class="filter-range" id="filter-rating" min="0" max="10" step="0.5" value="0" oninput="updateRatingLabel(); updateFilterPreview()"/>
+        <span class="filter-range-val" id="filter-rating-val">Any</span>
       </div>
     </div>
+  </div>
 
+  <div class="filter-row">
+    <div class="filter-group">
+      <div class="filter-label">Placement (Min Avg LPA)</div>
+      <select class="filter-select" id="filter-placement" onchange="updateFilterPreview()">
+        <option value="">Any Placement</option>
+        <option value="3">₹3+ LPA avg</option>
+        <option value="5">₹5+ LPA avg</option>
+        <option value="8">₹8+ LPA avg</option>
+        <option value="10">₹10+ LPA avg</option>
+        <option value="15">₹15+ LPA avg</option>
+        <option value="20">₹20+ LPA avg</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label">Established Before</div>
+      <select class="filter-select" id="filter-est" onchange="updateFilterPreview()">
+        <option value="">Any Year</option>
+        <option value="1950">Before 1950</option>
+        <option value="1970">Before 1970</option>
+        <option value="1990">Before 1990</option>
+        <option value="2000">Before 2000</option>
+        <option value="2010">Before 2010</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="filter-actions">
+    <div class="filter-results-count" id="filter-count-label">
+      <strong id="filter-match-count">0</strong> colleges match
+    </div>
+    <div class="filter-btns">
+      <button class="filter-clear-btn" onclick="clearFilters()">Clear All</button>
+      <button class="filter-apply-btn" onclick="applyFilters()">Show Results →</button>
+    </div>
+  </div>
+</div>
     <div class="filter-results-dropdown" id="filter-results-dropdown">
       <div class="filter-results-header">
         <span class="filter-results-title" id="filter-results-title">Results</span>
@@ -2482,11 +2555,33 @@ function extractPlacementNum(placementStr) {
   return 0;
 }
 
+// ═══ FIELD/DISCIPLINE DETECTION ═══
+function detectCollegeField(college) {
+  const name = (college.name || '').toLowerCase();
+  const type = (college.type || '').toLowerCase();
+  const programs = (college.programs || '').toLowerCase();
+  const all = name + ' ' + type + ' ' + programs;
+
+  if (/iit |nit |iiit|engineering|technology|polytechnic|technical/.test(all)) return 'engineering';
+  if (/aiims|medical|mbbs|health|pharma|dental|nursing/.test(all)) return 'medical';
+  if (/iim |management|mba|business|commerce/.test(all)) return 'management';
+  if (/law|legal|nlsiu|nlu|nalsar|judiciary/.test(all)) return 'law';
+  if (/iisc|iiser|science|research|physics|chemistry|biology|mathematics/.test(all)) return 'science';
+  if (/arts|humanities|social|liberal|literature|history|jnu|university/.test(all)) return 'arts';
+  if (/design|architecture|nid|nift|fashion|planning/.test(all)) return 'design';
+  if (/agri|farming|veterinary|dairy|horticulture/.test(all)) return 'agriculture';
+  if (/iit|nit|bit/.test(name)) return 'engineering';
+  if (/iim/.test(name)) return 'management';
+  return '';
+}
+
 function getFilteredColleges() {
   const city = document.getElementById('filter-city').value.toLowerCase();
   const type = document.getElementById('filter-type').value.toLowerCase();
+  const field = document.getElementById('filter-field').value;
   const minRating = parseFloat(document.getElementById('filter-rating').value) || 0;
   const minPlacement = parseFloat(document.getElementById('filter-placement').value) || 0;
+  const estBefore = document.getElementById('filter-est').value;
 
   const results = [];
 
@@ -2499,10 +2594,140 @@ function getFilteredColleges() {
       const placementNum = extractPlacementNum(c.placement);
       if (placementNum < minPlacement) continue;
     }
+    // Field filter
+    if (field) {
+      const collegeField = detectCollegeField(c);
+      if (collegeField !== field) continue;
+    }
+    // Established filter
+    if (estBefore) {
+      const estMatch = (c.est || '').match(/(\d{4})/);
+      if (estMatch) {
+        const year = parseInt(estMatch[1]);
+        if (year >= parseInt(estBefore)) continue;
+      } else continue;
+    }
     results.push(c);
   }
-
   return results;
+}
+
+function updateFilterPreview() {
+  const results = getFilteredColleges();
+  document.getElementById('filter-match-count').textContent = results.length;
+
+  let activeCount = 0;
+  if (document.getElementById('filter-city').value) activeCount++;
+  if (document.getElementById('filter-type').value) activeCount++;
+  if (document.getElementById('filter-field').value) activeCount++;
+  if (parseFloat(document.getElementById('filter-rating').value) > 0) activeCount++;
+  if (document.getElementById('filter-placement').value) activeCount++;
+  if (document.getElementById('filter-est').value) activeCount++;
+
+  const badge = document.getElementById('filter-active-count');
+  if (activeCount > 0) {
+    badge.textContent = activeCount;
+    badge.classList.add('show');
+  } else {
+    badge.classList.remove('show');
+  }
+}
+
+function applyFilters() {
+  trackUserAction('filtersUsed');
+  let results = getFilteredColleges();
+  const sortVal = document.getElementById('filter-sort').value;
+
+  switch (sortVal) {
+    case 'score-desc':
+      results.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+      break;
+    case 'score-asc':
+      results.sort((a, b) => parseFloat(a.score) - parseFloat(b.score));
+      break;
+    case 'name-asc':
+      results.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+    case 'name-desc':
+      results.sort((a, b) => b.name.localeCompare(a.name));
+      break;
+    case 'placement-desc':
+      results.sort((a, b) => extractPlacementNum(b.placement) - extractPlacementNum(a.placement));
+      break;
+    case 'est-asc':
+      results.sort((a, b) => {
+        const ya = parseInt(((a.est || '').match(/(\d{4})/) || [])[1] || '9999');
+        const yb = parseInt(((b.est || '').match(/(\d{4})/) || [])[1] || '9999');
+        return ya - yb;
+      });
+      break;
+  }
+
+  const dropdown = document.getElementById('filter-results-dropdown');
+  const list = document.getElementById('filter-results-list');
+  const title = document.getElementById('filter-results-title');
+  title.textContent = results.length + ' college' + (results.length !== 1 ? 's' : '') + ' found';
+
+  if (results.length === 0) {
+    list.innerHTML = `
+      <div class="filter-no-results">
+        <div class="filter-no-results-icon">🔍</div>
+        No colleges match your filters.<br>
+        <span style="font-size:12px;color:var(--light)">Try adjusting your criteria.</span>
+      </div>`;
+  } else {
+    list.innerHTML = results.map(c => {
+      const s = parseFloat(c.score);
+      const scoreClass = s >= 7.5 ? 'score-high' : s >= 5.5 ? 'score-mid' : 'score-low';
+      const mainType = (c.type || '').split('—')[0].split('(')[0].split('–')[0].trim();
+      const placementShort = extractPlacementShortFilter(c.placement);
+      const escapedName = c.name.replace(/'/g, "\\'");
+      const tierLabel = s >= 9 ? '<span class="filter-tier-badge elite">Elite</span>' :
+                        s >= 7.5 ? '<span class="filter-tier-badge top">Top Tier</span>' :
+                        s >= 6 ? '<span class="filter-tier-badge good">Good</span>' :
+                        '<span class="filter-tier-badge avg">Average</span>';
+      return `
+        <div class="filter-result-item" onclick="search('${escapedName}'); closeFilterResults();">
+          <div class="filter-result-info">
+            <div class="filter-result-name">${c.name} ${tierLabel}</div>
+            <div class="filter-result-meta">
+              <span>${c.location}</span>
+              <span class="meta-sep"></span>
+              <span>${mainType}</span>
+              ${placementShort ? `<span class="meta-sep"></span><span>${placementShort}</span>` : ''}
+            </div>
+          </div>
+          <div class="filter-result-score ${scoreClass}">${c.score}</div>
+          <span class="filter-result-arrow">→</span>
+        </div>`;
+    }).join('');
+  }
+  dropdown.classList.add('open');
+}
+
+function extractPlacementShortFilter(p) {
+  if (!p) return '';
+  const m = p.match(/avg\s*₹?([\d.]+[–\-]?[\d.]*)\s*LPA/i) ||
+            p.match(/₹?([\d.]+[–\-]?[\d.]*)\s*LPA\s*avg/i);
+  if (m) return '₹' + m[1] + ' LPA avg';
+  const m2 = p.match(/₹?([\d.]+)\s*LPA/i);
+  return m2 ? '₹' + m2[1] + ' LPA' : '';
+}
+
+function closeFilterResults() {
+  document.getElementById('filter-results-dropdown').classList.remove('open');
+}
+
+function clearFilters() {
+  document.getElementById('filter-city').value = '';
+  document.getElementById('filter-type').value = '';
+  document.getElementById('filter-field').value = '';
+  document.getElementById('filter-rating').value = 0;
+  document.getElementById('filter-placement').value = '';
+  document.getElementById('filter-est').value = '';
+  updateRatingLabel();
+  updateFilterPreview();
+  closeFilterResults();
 }
 
 function updateFilterPreview() {
